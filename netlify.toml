@@ -1,0 +1,4 @@
+# Netlify serves ONLY the public/ folder.
+# draw-private.json lives at the repo root (outside public/) so it is never served.
+[build]
+  publish = "public"

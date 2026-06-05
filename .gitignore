@@ -1,0 +1,7 @@
+.claude/
+.DS_Store
+# draw-private.json is committed to this PRIVATE repo at root (not in public/),
+# so the tracker routine can read the sealed mapping. It is never served by Netlify.
+# If you prefer to keep it off the repo entirely, uncomment the next line and
+# supply it to the routine another way:
+# draw-private.json
