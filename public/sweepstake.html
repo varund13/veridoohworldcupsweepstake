@@ -169,6 +169,8 @@
   .updated{color:var(--muted);font-size:12px;font-weight:600}
   .hint{color:var(--muted);font-size:12px}
   .right{margin-left:auto}
+  .env-avatar{width:56px;height:56px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,0.25);margin-bottom:6px;display:block;}
+  .env-avatar-init{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;color:rgba(255,255,255,0.7);margin-bottom:6px;flex-shrink:0;}
 </style>
 </head>
 <body>
@@ -315,6 +317,47 @@ const PEOPLE = [
   "Aaron","Yamit","Puskar"
 ];
 const NEW_JOINERS = new Set(["Aaron","Yamit","Puskar"]);
+const PHOTOS = {
+  "Mo Moubayed":"https://avatars.slack-edge.com/2022-06-22/3726285196352_f96d22b6fd5e4020ee89_original.jpg",
+  "Zoe Jones":"https://avatars.slack-edge.com/2025-11-12/9882742227799_7d679f48edc34aeefc35_original.jpg",
+  "Jordan Scott":"https://avatars.slack-edge.com/2025-01-15/8308789289713_454cc519a21734995450_original.jpg",
+  "Nick Parker":"https://avatars.slack-edge.com/2026-05-25/11201946182294_846b78615e88cbfcb86f_original.png",
+  "Drew Weicker":"https://avatars.slack-edge.com/2025-11-17/9929758182931_5d11341a52d73816a757_original.jpg",
+  "Jon Kemp":"https://avatars.slack-edge.com/2026-04-02/10826524456659_6b18f8d8cfadcfb93e72_original.jpg",
+  "Daniel Sturdivant":"https://avatars.slack-edge.com/2026-01-26/10371045963859_773996804ca965beb213_original.jpg",
+  "Ebony Cox":"https://avatars.slack-edge.com/2024-12-10/8137463744807_128c63a03fa2b0291408_original.png",
+  "Lindsay Leskanic":"https://avatars.slack-edge.com/2025-09-24/9575727769650_144a0f055ddcff7fc96c_original.png",
+  "Georgia Rousselot":"https://avatars.slack-edge.com/2025-08-18/9370107826326_65f0bdd1a0a4f17d2b4b_original.jpg",
+  "Prash Menon":"https://avatars.slack-edge.com/2024-10-14/7873624436611_90a3a54122969fa9a145_original.png",
+  "Luke Kevin":"https://avatars.slack-edge.com/2025-05-27/8948151399846_f58c8503a2e1c2dda74b_original.jpg",
+  "Andres Puerto":"https://avatars.slack-edge.com/2022-06-06/3636967276705_e2363be525fb0257a1bb_original.jpg",
+  "Anchal Soni":"https://avatars.slack-edge.com/2026-01-27/10375363006693_a668f99f97e309338833_original.png",
+  "Daniela Castano":"https://avatars.slack-edge.com/2023-06-07/5370848644519_edb360b45aa3b31e5186_original.png",
+  "Jeremy Yang":"https://avatars.slack-edge.com/2022-06-06/3627806557188_dd8e64a02710f929a7d9_original.jpg",
+  "Varun Deshpande":"https://avatars.slack-edge.com/2026-05-05/11083624247056_76dd6af46d225c018605_original.jpg",
+  "Bess Eshraghi":"https://avatars.slack-edge.com/2026-02-11/10488203168450_883108fc4cac5583840c_original.png",
+  "Zehua Liu":"https://avatars.slack-edge.com/2022-06-08/3659732689344_83c17a765681e325dc3b_original.jpg",
+  "Alma Johansson":"https://avatars.slack-edge.com/2025-11-24/9978413280629_aa5da3c33fe276982aa0_original.jpg",
+  "Denny Ma":"https://avatars.slack-edge.com/2025-10-13/9684086069778_eec5cd0a9455d339cc3d_original.jpg",
+  "Jordan Benzacken":"https://avatars.slack-edge.com/2023-10-09/6008958076098_ae000249d1b709868514_original.jpg",
+  "Justin Nhan":"https://avatars.slack-edge.com/2025-09-25/9585111753316_ce9eb5b6907f38bedbe7_original.jpg",
+  "Usama Bhatti":"https://avatars.slack-edge.com/2025-08-15/9345851396311_5dffdc02c67866ab3686_original.jpg",
+  "Jade Nguyen":"https://avatars.slack-edge.com/2025-06-17/9057364877653_96821ed089f464b65d75_original.jpg",
+  "Mike Pham":"https://avatars.slack-edge.com/2025-04-23/8790067814981_46382bd9409941d8aff5_original.jpg",
+  "Danny Chavez":"https://avatars.slack-edge.com/2026-01-30/10432379527120_e48446a310142717afc7_original.jpg",
+  "Quan Do":"https://avatars.slack-edge.com/2025-05-25/8935858845335_8343ba7b587bd93561df_original.png",
+  "James Tran":"https://avatars.slack-edge.com/2026-04-18/10944539381250_516552d74fb4aee1d7fe_original.jpg",
+  "Minh Dao":"https://avatars.slack-edge.com/2025-01-16/8324833553728_804fb63d1ce37ab81b28_original.jpg",
+  "Tom Vu":"https://avatars.slack-edge.com/2025-04-22/8784602001173_a84325e64a3b3dce4821_original.png",
+  "Tinh Pham":"https://avatars.slack-edge.com/2025-06-02/8980644251349_dd919e533f6fdad6377d_original.jpg",
+  "Thanh Dao":"https://avatars.slack-edge.com/2026-02-10/10482874736244_ebdc2783711d1ef32452_original.jpg",
+  "Nick Wong":"https://avatars.slack-edge.com/2025-03-28/8672193657314_f73c4879f36f6266bac9_original.png",
+  "Juan David (JD) Restrepo":"https://avatars.slack-edge.com/2025-09-08/9462251313847_1d2b7ac4ce718b7e6108_original.png",
+  "Aditya Shahi":"https://avatars.slack-edge.com/2026-03-27/10787691873878_d1e83e8c07aff9e4fd8c_original.png",
+  "Akshat Bansal":"https://avatars.slack-edge.com/2025-02-18/8465464796485_3fd11782acfbb06ac319_original.png",
+  "Zerui Song":"https://avatars.slack-edge.com/2026-05-12/11114682937140_9e645842fec2efb9e5e6_original.png",
+  "Yamit":"https://avatars.slack-edge.com/2026-03-11/10687264725857_5d7e9867c27f39d33df7_original.png"
+};
 
 /* Flatten teams in fixed order */
 const TEAMS = [];
@@ -387,6 +430,27 @@ function reviveTeam(country){ // admin undo
 function flagOf(c){ const t=TEAMS.find(x=>x.name===c); return t?t.flag:"🏳️"; }
 function groupOf(c){ const t=TEAMS.find(x=>x.name===c); return t?t.group:""; }
 
+/* ============================ AVATAR HELPERS ============================ */
+function initialsEl(person, size){
+  const s = size||56;
+  const d = document.createElement('div');
+  d.style.cssText = `width:${s}px;height:${s}px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:${Math.round(s*0.33)}px;font-weight:700;color:rgba(255,255,255,0.7);margin-bottom:6px;flex-shrink:0;`;
+  d.textContent = person.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+  return d;
+}
+function avatarEl(person, size){
+  const s = size||56;
+  const url = PHOTOS[person];
+  if(url){
+    const img = document.createElement('img');
+    img.src = url; img.alt = person;
+    img.style.cssText = `width:${s}px;height:${s}px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,0.25);margin-bottom:6px;display:block;`;
+    img.onerror = ()=>{ img.replaceWith(initialsEl(person,s)); };
+    return img;
+  }
+  return initialsEl(person, s);
+}
+
 /* ============================ RENDER ============================ */
 function render(){
   const outCount = Object.keys(state.out).length;
@@ -434,12 +498,25 @@ function envCard(t){
   const drawn=state.drawn;
   const el=document.createElement("div");
   el.className="env "+(!drawn?"sealed":(isOut?"out":"alive"));
-  let letter;
+
+  // Build the letter div as a DOM element so we can inject avatar nodes
+  const letterEl=document.createElement("div"); letterEl.className="letter";
   if(isOut){
     const p=state.out[t.name];
-    const nb=NEW_JOINERS.has(p.person)?`<span class="new-badge">NEW</span>`:"";
-    letter=`<div class="letter"><div class="nm">${p.person}</div>${nb}<div class="kod">knocked out ${p.when}</div></div>`;
-  } else letter=`<div class="letter"></div>`;
+    // avatar above the name inside the open envelope
+    letterEl.appendChild(avatarEl(p.person, 56));
+    const nm=document.createElement("div"); nm.className="nm"; nm.textContent=p.person; letterEl.appendChild(nm);
+    if(NEW_JOINERS.has(p.person)){ const nb=document.createElement("span"); nb.className="new-badge"; nb.textContent="NEW"; letterEl.appendChild(nb); }
+    const kod=document.createElement("div"); kod.className="kod"; kod.textContent="knocked out "+p.when; letterEl.appendChild(kod);
+  } else if(drawn && state.admin){
+    // sealed but drawn: show small admin-only preview avatar + name
+    const adminPerson = mapping()[t.name];
+    if(adminPerson){
+      letterEl.appendChild(avatarEl(adminPerson, 32));
+      const nm=document.createElement("div"); nm.className="nm"; nm.style.fontSize="11px"; nm.style.opacity="0.7"; nm.textContent=adminPerson; letterEl.appendChild(nm);
+    }
+  }
+
   el.innerHTML =
     (drawn?`<div class="tag">${isOut?"OUT":"IN"}</div>`:"")+
     `<div class="flag">${t.flag}</div>
@@ -448,12 +525,16 @@ function envCard(t){
      <div class="envelope">
        <div class="flap"></div>
        <div class="wax">${t.group}</div>
-       ${letter}
      </div>`;
+
+  // Append the letter element into the envelope div
+  el.querySelector(".envelope").appendChild(letterEl);
+
   if(drawn && state.admin){
-    el.innerHTML += isOut
-      ? `<button class="ko" onclick="event.stopPropagation();reviveTeam('${esc(t.name)}')">↩︎ Undo</button>`
-      : `<button class="ko danger" onclick="event.stopPropagation();knockOut('${esc(t.name)}')">✉️ Knock out &amp; reveal</button>`;
+    const btn=document.createElement("button"); btn.className=isOut?"ko":"ko danger";
+    btn.onclick=e=>{ e.stopPropagation(); isOut?reviveTeam(t.name):knockOut(t.name); };
+    btn.innerHTML=isOut?"↩︎ Undo":"✉️ Knock out &amp; reveal";
+    el.appendChild(btn);
   }
   return el;
 }
@@ -760,6 +841,14 @@ function nextReveal(){
   document.getElementById("cName").textContent=item.person;
   document.getElementById("cWhen").textContent="this envelope is now open";
   document.getElementById("cWax").textContent=groupOf(item.country);
+  // inject avatar into the big envelope letter area
+  const beLetter=document.querySelector(".be-letter");
+  const oldAvatar=beLetter.querySelector(".cine-avatar");
+  if(oldAvatar) oldAvatar.remove();
+  const av=avatarEl(item.person, 80);
+  av.className=(av.tagName==="IMG"?"cine-avatar":"cine-avatar");
+  av.style.marginBottom="10px";
+  beLetter.insertBefore(av, beLetter.firstChild);
   bigenv.classList.remove("open");
   revealModal.classList.add("show");
   spawnConfetti();
