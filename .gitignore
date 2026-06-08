@@ -5,3 +5,6 @@
 # If you prefer to keep it off the repo entirely, uncomment the next line and
 # supply it to the routine another way:
 # draw-private.json
+
+# Local Netlify folder
+.netlify
