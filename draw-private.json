@@ -1,0 +1,271 @@
+{
+  "mapping": {
+    "Mexico": "Andres Puerto",
+    "South Africa": "Quan Do",
+    "South Korea": "Tinh Pham",
+    "Czech Republic": "Thanh Dao",
+    "Canada": "Aditya Shahi",
+    "Bosnia & Herzegovina": "Kate Crook",
+    "Qatar": "Aaron",
+    "Switzerland": "Jade Nguyen",
+    "Brazil": "Nick Parker",
+    "Morocco": "Jeremy Yang",
+    "Haiti": "Usama Bhatti",
+    "Scotland": "Mike Pham",
+    "United States": "Anchal Soni",
+    "Paraguay": "Akshat Bansal",
+    "Australia": "Stefan Klukowski",
+    "Turkey": "Luke Kevin",
+    "Germany": "Zerui Song",
+    "Curaçao": "Xun Sun",
+    "Ivory Coast": "Son Nguyen",
+    "Ecuador": "Drew Weicker",
+    "Netherlands": "Juan David (JD) Restrepo",
+    "Japan": "Georgia Rousselot",
+    "Sweden": "Daniel Sturdivant",
+    "Tunisia": "Zoe Jones",
+    "Belgium": "Nick Wong",
+    "Egypt": "Puskar",
+    "Iran": "Jon Kemp",
+    "New Zealand": "Pratham Gulati",
+    "Spain": "Alma Johansson",
+    "Cape Verde": "Mo Moubayed",
+    "Saudi Arabia": "James Tran",
+    "Uruguay": "Danny Chavez",
+    "France": "Varun Deshpande",
+    "Senegal": "Justin Nhan",
+    "Iraq": "Nischit Shrestha",
+    "Norway": "Jordan Benzacken",
+    "Argentina": "Zehua Liu",
+    "Algeria": "Tom Vu",
+    "Austria": "Ebony Cox",
+    "Jordan": "Daniela Castano",
+    "Portugal": "The Anh Nguyen",
+    "DR Congo": "Lindsay Leskanic",
+    "Uzbekistan": "Jordan Scott",
+    "Colombia": "Denny Ma",
+    "England": "Yamit",
+    "Croatia": "Bess Eshraghi",
+    "Ghana": "Minh Dao",
+    "Panama": "Prash Menon"
+  },
+  "groups": {
+    "A": [
+      [
+        "Mexico",
+        "🇲🇽"
+      ],
+      [
+        "South Africa",
+        "🇿🇦"
+      ],
+      [
+        "South Korea",
+        "🇰🇷"
+      ],
+      [
+        "Czech Republic",
+        "🇨🇿"
+      ]
+    ],
+    "B": [
+      [
+        "Canada",
+        "🇨🇦"
+      ],
+      [
+        "Bosnia & Herzegovina",
+        "🇧🇦"
+      ],
+      [
+        "Qatar",
+        "🇶🇦"
+      ],
+      [
+        "Switzerland",
+        "🇨🇭"
+      ]
+    ],
+    "C": [
+      [
+        "Brazil",
+        "🇧🇷"
+      ],
+      [
+        "Morocco",
+        "🇲🇦"
+      ],
+      [
+        "Haiti",
+        "🇭🇹"
+      ],
+      [
+        "Scotland",
+        "🏴󠁧󠁢󠁳󠁣󠁴󠁿"
+      ]
+    ],
+    "D": [
+      [
+        "United States",
+        "🇺🇸"
+      ],
+      [
+        "Paraguay",
+        "🇵🇾"
+      ],
+      [
+        "Australia",
+        "🇦🇺"
+      ],
+      [
+        "Turkey",
+        "🇹🇷"
+      ]
+    ],
+    "E": [
+      [
+        "Germany",
+        "🇩🇪"
+      ],
+      [
+        "Curaçao",
+        "🇨🇼"
+      ],
+      [
+        "Ivory Coast",
+        "🇨🇮"
+      ],
+      [
+        "Ecuador",
+        "🇪🇨"
+      ]
+    ],
+    "F": [
+      [
+        "Netherlands",
+        "🇳🇱"
+      ],
+      [
+        "Japan",
+        "🇯🇵"
+      ],
+      [
+        "Sweden",
+        "🇸🇪"
+      ],
+      [
+        "Tunisia",
+        "🇹🇳"
+      ]
+    ],
+    "G": [
+      [
+        "Belgium",
+        "🇧🇪"
+      ],
+      [
+        "Egypt",
+        "🇪🇬"
+      ],
+      [
+        "Iran",
+        "🇮🇷"
+      ],
+      [
+        "New Zealand",
+        "🇳🇿"
+      ]
+    ],
+    "H": [
+      [
+        "Spain",
+        "🇪🇸"
+      ],
+      [
+        "Cape Verde",
+        "🇨🇻"
+      ],
+      [
+        "Saudi Arabia",
+        "🇸🇦"
+      ],
+      [
+        "Uruguay",
+        "🇺🇾"
+      ]
+    ],
+    "I": [
+      [
+        "France",
+        "🇫🇷"
+      ],
+      [
+        "Senegal",
+        "🇸🇳"
+      ],
+      [
+        "Iraq",
+        "🇮🇶"
+      ],
+      [
+        "Norway",
+        "🇳🇴"
+      ]
+    ],
+    "J": [
+      [
+        "Argentina",
+        "🇦🇷"
+      ],
+      [
+        "Algeria",
+        "🇩🇿"
+      ],
+      [
+        "Austria",
+        "🇦🇹"
+      ],
+      [
+        "Jordan",
+        "🇯🇴"
+      ]
+    ],
+    "K": [
+      [
+        "Portugal",
+        "🇵🇹"
+      ],
+      [
+        "DR Congo",
+        "🇨🇩"
+      ],
+      [
+        "Uzbekistan",
+        "🇺🇿"
+      ],
+      [
+        "Colombia",
+        "🇨🇴"
+      ]
+    ],
+    "L": [
+      [
+        "England",
+        "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
+      ],
+      [
+        "Croatia",
+        "🇭🇷"
+      ],
+      [
+        "Ghana",
+        "🇬🇭"
+      ],
+      [
+        "Panama",
+        "🇵🇦"
+      ]
+    ]
+  },
+  "exportedAt": "2026-06-05T06:38:31.751Z"
+}
