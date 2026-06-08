@@ -317,18 +317,46 @@ let autoTimer = null;
 document.getElementById('unlockBtn').onclick = unlock;
 document.getElementById('passInput').addEventListener('keydown', e => { if(e.key==='Enter') unlock(); });
 
-function unlock(){
+async function unlock(){
   const v = document.getElementById('passInput').value;
   if(v !== ADMIN_PASS){ document.getElementById('passErr').textContent='Wrong passphrase. Try again.'; return; }
-  const raw = localStorage.getItem(STORE_KEY);
-  if(!raw){ document.getElementById('passErr').textContent='No draw found. Run Draw & Seal in sweepstake.html first.'; return; }
-  const state = JSON.parse(raw);
-  if(!state.drawn || !state.mapping){ document.getElementById('passErr').textContent='Draw not yet sealed. Open sweepstake.html and click Draw & Seal first.'; return; }
-  const mapping = dec(state.mapping); // {country -> person}
-  // invert + enrich
-  const groups = buildGroups();
-  const countryInfo = {}; // country -> {flag, group}
-  for(const [g, list] of Object.entries(groups)) for(const [name, flag] of list) countryInfo[name]={flag,group:g};
+
+  let mapping, groups;
+
+  // 1. Try fetching reveal-data.json (Netlify mode)
+  try {
+    const res = await fetch('/reveal-data.json?_=' + Date.now());
+    if(res.ok){
+      const data = await res.json();
+      mapping = dec(data.mapping);
+      groups = dec(data.groups);
+    }
+  } catch(e){}
+
+  // 2. Fallback: localStorage (local dev mode)
+  if(!mapping){
+    const raw = localStorage.getItem(STORE_KEY);
+    if(!raw){ document.getElementById('passErr').textContent='No draw data found. Deploy reveal-data.json or run locally after Draw & Seal.'; return; }
+    const state = JSON.parse(raw);
+    if(!state.drawn || !state.mapping){ document.getElementById('passErr').textContent='Draw not yet sealed.'; return; }
+    mapping = dec(state.mapping);
+    groups = buildGroups();
+    // convert groups to same {country:{flag,group}} format
+    const converted = {};
+    for(const [g, list] of Object.entries(groups)) for(const [name, flag] of list) converted[name]=[name,flag];
+    groups = converted;
+  }
+
+  // Build countryInfo {country -> {flag, group}}
+  const countryInfo = {};
+  if(Array.isArray(Object.values(groups)[0])){
+    // groups is {A:[["Mexico","🇲🇽"],...]} format
+    for(const [g, list] of Object.entries(groups)) for(const [name, flag] of list) countryInfo[name]={flag,group:g};
+  } else {
+    // already flat — shouldn't happen but be safe
+    for(const [name, val] of Object.entries(groups)) countryInfo[name]={flag:val,group:'?'};
+  }
+
   // build pairs
   pairs = Object.entries(mapping).map(([country, person])=>({
     person, country,
@@ -337,14 +365,14 @@ function unlock(){
   }));
   // shuffle for reveal order
   for(let i=pairs.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pairs[i],pairs[j]]=[pairs[j],pairs[i]];}
-  // hide hero, show stage
+  // go
   document.getElementById('hero').classList.add('gone');
   document.getElementById('stage').style.display='flex';
   buildGrid();
   updateUI();
 }
 
-// ---- Groups (matches sweepstake.html) ----
+// ---- Groups fallback (local dev) ----
 function buildGroups(){
   return {
     A:[["Mexico","🇲🇽"],["United States","🇺🇸"],["Canada","🇨🇦"],["Panama","🇵🇦"]],
