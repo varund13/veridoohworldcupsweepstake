@@ -324,14 +324,15 @@ async function unlock(){
   let mapping, groups;
 
   // 1. Try fetching reveal-data.json (Netlify mode)
+  // mapping and groups are stored as plain objects in this file
   try {
     const res = await fetch('/reveal-data.json?_=' + Date.now());
     if(res.ok){
       const data = await res.json();
-      mapping = dec(data.mapping);
-      groups = dec(data.groups);
+      mapping = data.mapping;   // plain {country: person}
+      groups  = data.groups;    // plain {A:[["Mexico","🇲🇽"],...], ...}
     }
-  } catch(e){}
+  } catch(e){ console.warn('reveal-data.json fetch failed:', e); }
 
   // 2. Fallback: localStorage (local dev mode)
   if(!mapping){
