@@ -313,50 +313,67 @@ let pairs = [];   // [{person, country, flag, group}] shuffled for reveal order
 let cursor = 0;
 let autoTimer = null;
 
+// ---- AES-256-GCM decrypt (Web Crypto API) ----
+async function aesDecrypt(passphrase, encJson){
+  const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+  const salt = b64(encJson.salt), iv = b64(encJson.iv),
+        tag  = b64(encJson.tag),  ct = b64(encJson.data);
+  // tag is appended to ciphertext for SubtleCrypto
+  const ctWithTag = new Uint8Array(ct.length + tag.length);
+  ctWithTag.set(ct); ctWithTag.set(tag, ct.length);
+
+  const keyMaterial = await crypto.subtle.importKey(
+    'raw', new TextEncoder().encode(passphrase), 'PBKDF2', false, ['deriveKey']);
+  const key = await crypto.subtle.deriveKey(
+    {name:'PBKDF2', salt, iterations:100000, hash:'SHA-256'},
+    keyMaterial, {name:'AES-GCM', length:256}, false, ['decrypt']);
+  const plain = await crypto.subtle.decrypt({name:'AES-GCM', iv}, key, ctWithTag);
+  return JSON.parse(new TextDecoder().decode(plain));
+}
+
 // ---- Unlock ----
 document.getElementById('unlockBtn').onclick = unlock;
 document.getElementById('passInput').addEventListener('keydown', e => { if(e.key==='Enter') unlock(); });
 
 async function unlock(){
   const v = document.getElementById('passInput').value;
-  if(v !== ADMIN_PASS){ document.getElementById('passErr').textContent='Wrong passphrase. Try again.'; return; }
+  if(!v){ document.getElementById('passErr').textContent='Enter the passphrase.'; return; }
 
+  const errEl = document.getElementById('passErr');
+  errEl.textContent = '🔓 Decrypting…';
   let mapping, groups;
 
-  // 1. Try fetching reveal-data.json (Netlify mode)
-  // mapping and groups are stored as plain objects in this file
+  // 1. Fetch & decrypt reveal-data.enc (AES-256-GCM, Netlify mode)
   try {
-    const res = await fetch('/reveal-data.json?_=' + Date.now());
+    const res = await fetch('/reveal-data.enc?_=' + Date.now());
     if(res.ok){
-      const data = await res.json();
-      mapping = data.mapping;   // plain {country: person}
-      groups  = data.groups;    // plain {A:[["Mexico","🇲🇽"],...], ...}
+      const encJson = await res.json();
+      try {
+        const data = await aesDecrypt(v, encJson);
+        mapping = data.mapping;
+        groups  = data.groups;
+      } catch(e){
+        errEl.textContent = 'Wrong passphrase — decryption failed.';
+        return;
+      }
     }
-  } catch(e){ console.warn('reveal-data.json fetch failed:', e); }
+  } catch(e){ console.warn('reveal-data.enc fetch failed:', e); }
 
   // 2. Fallback: localStorage (local dev mode)
   if(!mapping){
     const raw = localStorage.getItem(STORE_KEY);
-    if(!raw){ document.getElementById('passErr').textContent='No draw data found. Deploy reveal-data.json or run locally after Draw & Seal.'; return; }
+    if(!raw){ errEl.textContent='No encrypted draw found on server and no local draw in this browser.'; return; }
     const state = JSON.parse(raw);
-    if(!state.drawn || !state.mapping){ document.getElementById('passErr').textContent='Draw not yet sealed.'; return; }
+    if(!state.drawn || !state.mapping){ errEl.textContent='Draw not yet sealed locally.'; return; }
+    if(v !== ADMIN_PASS){ errEl.textContent='Wrong passphrase.'; return; }
     mapping = dec(state.mapping);
-    groups = buildGroups();
-    // convert groups to same {country:{flag,group}} format
-    const converted = {};
-    for(const [g, list] of Object.entries(groups)) for(const [name, flag] of list) converted[name]=[name,flag];
-    groups = converted;
+    groups  = buildGroups();
   }
 
   // Build countryInfo {country -> {flag, group}}
   const countryInfo = {};
-  if(Array.isArray(Object.values(groups)[0])){
-    // groups is {A:[["Mexico","🇲🇽"],...]} format
-    for(const [g, list] of Object.entries(groups)) for(const [name, flag] of list) countryInfo[name]={flag,group:g};
-  } else {
-    // already flat — shouldn't happen but be safe
-    for(const [name, val] of Object.entries(groups)) countryInfo[name]={flag:val,group:'?'};
-  }
+  for(const [g, list] of Object.entries(groups))
+    for(const [name, flag] of list) countryInfo[name]={flag,group:g};
 
   // build pairs
   pairs = Object.entries(mapping).map(([country, person])=>({
