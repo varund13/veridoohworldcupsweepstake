@@ -2,7 +2,13 @@
   "drawn": true,
   "readonly": true,
   "mapping": null,
-  "out": {},
+  "out": {
+    "Qatar": {
+      "person": "Aaron",
+      "when": "09 Jun"
+    }
+  },
+  "revealed": {},
   "bracket": {
     "r32": [
       {
@@ -171,7 +177,14 @@
     ],
     "champion": null
   },
-  "revealed": {},
-  "log": [],
-  "exportedAt": "2026-06-08T22:41:38.238Z"
+  "log": [
+    {
+      "country": "Qatar",
+      "person": "Aaron",
+      "when": "09 Jun",
+      "flag": "🇶🇦"
+    }
+  ],
+  "champion": null,
+  "exportedAt": "2026-06-09T00:15:51.199Z"
 }
