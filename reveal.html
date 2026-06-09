@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>World Cup 2026 — The Draw Reveal 🌍</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#FFD700;--green:#00C853;--red:#E53935;
+  --dark:#0a0e1a;--card-w:140px;--card-h:180px;
+}
+body{
+  background:var(--dark);color:#fff;font-family:'Segoe UI',system-ui,sans-serif;
+  min-height:100vh;overflow-x:hidden;
+}
+
+/* === HERO / INTRO === */
+#hero{
+  position:fixed;inset:0;z-index:100;
+  background:radial-gradient(ellipse at 50% 60%,#0d1f3c 0%,#050810 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:24px;transition:opacity .6s;
+}
+#hero.gone{opacity:0;pointer-events:none;}
+.hero-title{
+  font-size:clamp(2rem,6vw,4.5rem);font-weight:900;
+  text-align:center;letter-spacing:-.02em;line-height:1.1;
+}
+.hero-title span{
+  background:linear-gradient(135deg,#FFD700,#FF6B35,#FF1744);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-sub{color:rgba(255,255,255,.55);font-size:1.1rem;text-align:center;}
+#passWrap{display:flex;gap:10px;flex-direction:column;align-items:center;margin-top:8px;}
+#passInput{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);
+  color:#fff;padding:12px 20px;border-radius:10px;font-size:1rem;width:260px;
+  outline:none;text-align:center;
+}
+#passInput::placeholder{color:rgba(255,255,255,.35);}
+#passErr{color:#ff5252;font-size:.85rem;min-height:20px;}
+#unlockBtn{
+  background:linear-gradient(135deg,#FFD700,#FF6B35);
+  border:none;color:#000;font-weight:800;font-size:1.1rem;
+  padding:14px 40px;border-radius:12px;cursor:pointer;
+  transition:transform .15s,box-shadow .15s;
+  box-shadow:0 4px 24px rgba(255,180,0,.35);
+}
+#unlockBtn:hover{transform:scale(1.05);box-shadow:0 6px 32px rgba(255,180,0,.5);}
+
+/* === STAGE === */
+#stage{
+  padding:24px 16px 80px;
+  display:flex;flex-direction:column;align-items:center;gap:24px;
+}
+#topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  width:100%;max-width:1100px;gap:12px;flex-wrap:wrap;
+}
+.stage-title{font-size:1.4rem;font-weight:800;letter-spacing:-.01em;}
+.stage-title span{color:var(--gold);}
+#counter{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+  border-radius:8px;padding:6px 16px;font-size:.95rem;color:rgba(255,255,255,.7);
+}
+#controls{display:flex;gap:10px;flex-wrap:wrap;}
+.btn{
+  border:none;border-radius:10px;cursor:pointer;font-weight:700;
+  padding:10px 22px;font-size:.9rem;transition:transform .12s,opacity .12s;
+}
+.btn:hover{transform:scale(1.04);}
+.btn:disabled{opacity:.35;cursor:default;transform:none;}
+#revealOneBtn{background:linear-gradient(135deg,#FFD700,#FF6B35);color:#000;}
+#autoBtn{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2);}
+#autoBtn.active{background:#00C853;color:#000;}
+#revealAllBtn{background:#1565C0;color:#fff;}
+
+/* === GRID === */
+#grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,var(--card-w));
+  gap:14px;justify-content:center;width:100%;max-width:1140px;
+}
+
+/* === CARD === */
+.card{
+  width:var(--card-w);height:var(--card-h);perspective:600px;cursor:pointer;
+}
+.card-inner{
+  width:100%;height:100%;position:relative;
+  transform-style:preserve-3d;transition:transform .7s cubic-bezier(.4,0,.2,1);
+}
+.card.flipped .card-inner{transform:rotateY(180deg);}
+.card-face{
+  position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:6px;padding:10px 8px;overflow:hidden;
+}
+/* FRONT: person */
+.card-front{
+  background:linear-gradient(145deg,#1a2340,#0f1628);
+  border:1px solid rgba(255,255,255,.1);
+}
+.card-front:hover{border-color:rgba(255,180,0,.4);}
+.card-avatar{
+  width:64px;height:64px;border-radius:50%;object-fit:cover;
+  border:2px solid rgba(255,255,255,.2);flex-shrink:0;
+}
+.card-init{
+  width:64px;height:64px;border-radius:50%;
+  background:linear-gradient(135deg,rgba(255,215,0,.15),rgba(255,107,53,.15));
+  border:2px solid rgba(255,255,255,.15);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;font-weight:800;color:rgba(255,255,255,.6);flex-shrink:0;
+}
+.card-name{
+  font-size:.72rem;font-weight:600;text-align:center;
+  color:rgba(255,255,255,.75);line-height:1.25;
+}
+.card-new{
+  font-size:.6rem;font-weight:700;letter-spacing:.05em;
+  background:var(--green);color:#000;padding:2px 6px;border-radius:4px;
+}
+.card-mystery{
+  font-size:2rem;opacity:.25;margin-top:4px;
+}
+
+/* BACK: country */
+.card-back{
+  background:linear-gradient(145deg,#0d2040,#061428);
+  border:2px solid rgba(255,215,0,.3);
+  transform:rotateY(180deg);
+}
+.card-flag{font-size:2.8rem;line-height:1;}
+.card-country{
+  font-size:.75rem;font-weight:800;text-align:center;
+  color:#FFD700;letter-spacing:.02em;line-height:1.2;
+}
+.card-person-back{
+  font-size:.65rem;color:rgba(255,255,255,.6);text-align:center;line-height:1.2;
+}
+.card-group{
+  position:absolute;top:7px;right:8px;
+  font-size:.55rem;font-weight:700;
+  background:rgba(255,255,255,.08);border-radius:4px;
+  padding:2px 5px;color:rgba(255,255,255,.4);
+}
+
+/* === PROGRESS BAR === */
+#progressWrap{
+  width:100%;max-width:600px;
+}
+#progressBar{
+  height:6px;border-radius:3px;background:rgba(255,255,255,.08);overflow:hidden;
+}
+#progressFill{
+  height:100%;background:linear-gradient(90deg,#FFD700,#FF6B35);
+  width:0%;transition:width .5s ease;border-radius:3px;
+}
+#progressLabel{
+  text-align:center;font-size:.8rem;color:rgba(255,255,255,.45);margin-top:6px;
+}
+
+/* === SPOTLIGHT (big card pop) === */
+#spotlight{
+  position:fixed;inset:0;z-index:200;
+  background:rgba(0,0,0,.85);backdrop-filter:blur(8px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:16px;cursor:pointer;opacity:0;pointer-events:none;
+  transition:opacity .3s;
+}
+#spotlight.show{opacity:1;pointer-events:all;}
+#spot-card{
+  width:240px;height:300px;
+  background:linear-gradient(145deg,#0d2040,#061428);
+  border:3px solid var(--gold);border-radius:20px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:10px;padding:20px;
+  animation:popIn .5s cubic-bezier(.17,.67,.3,1.3);
+}
+@keyframes popIn{from{transform:scale(.4) rotateY(-90deg);opacity:0}to{transform:scale(1) rotateY(0);opacity:1}}
+#spot-flag{font-size:5rem;line-height:1;}
+#spot-country{font-size:1.4rem;font-weight:900;color:var(--gold);text-align:center;}
+#spot-person-wrap{display:flex;flex-direction:column;align-items:center;gap:6px;}
+#spot-avatar{width:56px;height:56px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,.25);}
+#spot-person{font-size:.95rem;color:rgba(255,255,255,.8);text-align:center;font-weight:600;}
+#spot-hint{color:rgba(255,255,255,.3);font-size:.8rem;}
+#spot-group{font-size:.75rem;color:rgba(255,215,0,.5);}
+
+/* === DONE BANNER === */
+#doneBanner{
+  display:none;text-align:center;padding:24px;
+  animation:fadeIn .8s ease;
+}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.done-title{font-size:clamp(1.8rem,5vw,3rem);font-weight:900;color:var(--gold);}
+.done-sub{color:rgba(255,255,255,.55);margin-top:8px;}
+
+/* === CONFETTI === */
+.confetti-piece{
+  position:fixed;width:10px;height:10px;pointer-events:none;
+  animation:fall linear forwards;z-index:300;
+  top:-20px;border-radius:2px;
+}
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(720deg);opacity:0;}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO / UNLOCK -->
+<div id="hero">
+  <div class="hero-title">⚽ World Cup 2026<br><span>The Draw Reveal</span></div>
+  <div class="hero-sub">48 envelopes. 48 countries. One winner.<br>Enter the passphrase to reveal the draw.</div>
+  <div id="passWrap">
+    <input id="passInput" type="password" placeholder="Passphrase" autocomplete="off">
+    <div id="passErr"></div>
+    <button id="unlockBtn">Unlock the Draw 🔓</button>
+  </div>
+</div>
+
+<!-- STAGE -->
+<div id="stage" style="display:none">
+  <div id="topbar">
+    <div class="stage-title">⚽ <span>The Draw Reveal</span> — World Cup 2026</div>
+    <div id="counter">0 / 48 revealed</div>
+    <div id="controls">
+      <button class="btn" id="revealOneBtn">Reveal Next ▶</button>
+      <button class="btn" id="autoBtn">⏵ Auto</button>
+      <button class="btn" id="revealAllBtn">Reveal All</button>
+    </div>
+  </div>
+  <div id="progressWrap">
+    <div id="progressBar"><div id="progressFill"></div></div>
+    <div id="progressLabel">Click "Reveal Next" to begin</div>
+  </div>
+  <div id="grid"></div>
+  <div id="doneBanner">
+    <div class="done-title">🎉 Draw Complete!</div>
+    <div class="done-sub">All 48 envelopes have been opened.<br>May the best country win! 🏆</div>
+  </div>
+</div>
+
+<!-- SPOTLIGHT -->
+<div id="spotlight">
+  <div id="spot-card">
+    <div id="spot-flag"></div>
+    <div id="spot-country"></div>
+    <div id="spot-group"></div>
+    <div id="spot-person-wrap">
+      <img id="spot-avatar" src="" alt="" style="display:none">
+      <div id="spot-person"></div>
+    </div>
+  </div>
+  <div id="spot-hint">Tap anywhere to continue</div>
+</div>
+
+<script>
+const STORE_KEY = "vd_wc26_sweepstake_v1";
+const ADMIN_PASS = "veridooh2026";
+const dec = s => JSON.parse(decodeURIComponent(escape(atob(s))));
+
+const PHOTOS = {
+  "Mo Moubayed":"https://avatars.slack-edge.com/2022-06-22/3726285196352_f96d22b6fd5e4020ee89_original.jpg",
+  "Zoe Jones":"https://avatars.slack-edge.com/2025-11-12/9882742227799_7d679f48edc34aeefc35_original.jpg",
+  "Jordan Scott":"https://avatars.slack-edge.com/2025-01-15/8308789289713_454cc519a21734995450_original.jpg",
+  "Nick Parker":"https://avatars.slack-edge.com/2026-05-25/11201946182294_846b78615e88cbfcb86f_original.png",
+  "Drew Weicker":"https://avatars.slack-edge.com/2025-11-17/9929758182931_5d11341a52d73816a757_original.jpg",
+  "Jon Kemp":"https://avatars.slack-edge.com/2026-04-02/10826524456659_6b18f8d8cfadcfb93e72_original.jpg",
+  "Daniel Sturdivant":"https://avatars.slack-edge.com/2026-01-26/10371045963859_773996804ca965beb213_original.jpg",
+  "Ebony Cox":"https://avatars.slack-edge.com/2024-12-10/8137463744807_128c63a03fa2b0291408_original.png",
+  "Lindsay Leskanic":"https://avatars.slack-edge.com/2025-09-24/9575727769650_144a0f055ddcff7fc96c_original.png",
+  "Georgia Rousselot":"https://avatars.slack-edge.com/2025-08-18/9370107826326_65f0bdd1a0a4f17d2b4b_original.jpg",
+  "Prash Menon":"https://avatars.slack-edge.com/2024-10-14/7873624436611_90a3a54122969fa9a145_original.png",
+  "Luke Kevin":"https://avatars.slack-edge.com/2025-05-27/8948151399846_f58c8503a2e1c2dda74b_original.jpg",
+  "Andres Puerto":"https://avatars.slack-edge.com/2022-06-06/3636967276705_e2363be525fb0257a1bb_original.jpg",
+  "Anchal Soni":"https://avatars.slack-edge.com/2026-01-27/10375363006693_a668f99f97e309338833_original.png",
+  "Daniela Castano":"https://avatars.slack-edge.com/2023-06-07/5370848644519_edb360b45aa3b31e5186_original.png",
+  "Jeremy Yang":"https://avatars.slack-edge.com/2022-06-06/3627806557188_dd8e64a02710f929a7d9_original.jpg",
+  "Varun Deshpande":"https://avatars.slack-edge.com/2026-05-05/11083624247056_76dd6af46d225c018605_original.jpg",
+  "Bess Eshraghi":"https://avatars.slack-edge.com/2026-02-11/10488203168450_883108fc4cac5583840c_original.png",
+  "Zehua Liu":"https://avatars.slack-edge.com/2022-06-08/3659732689344_83c17a765681e325dc3b_original.jpg",
+  "Alma Johansson":"https://avatars.slack-edge.com/2025-11-24/9978413280629_aa5da3c33fe276982aa0_original.jpg",
+  "Denny Ma":"https://avatars.slack-edge.com/2025-10-13/9684086069778_eec5cd0a9455d339cc3d_original.jpg",
+  "Jordan Benzacken":"https://avatars.slack-edge.com/2023-10-09/6008958076098_ae000249d1b709868514_original.jpg",
+  "Justin Nhan":"https://avatars.slack-edge.com/2025-09-25/9585111753316_ce9eb5b6907f38bedbe7_original.jpg",
+  "Usama Bhatti":"https://avatars.slack-edge.com/2025-08-15/9345851396311_5dffdc02c67866ab3686_original.jpg",
+  "Jade Nguyen":"https://avatars.slack-edge.com/2025-06-17/9057364877653_96821ed089f464b65d75_original.jpg",
+  "Mike Pham":"https://avatars.slack-edge.com/2025-04-23/8790067814981_46382bd9409941d8aff5_original.jpg",
+  "Danny Chavez":"https://avatars.slack-edge.com/2026-01-30/10432379527120_e48446a310142717afc7_original.jpg",
+  "Quan Do":"https://avatars.slack-edge.com/2025-05-25/8935858845335_8343ba7b587bd93561df_original.png",
+  "James Tran":"https://avatars.slack-edge.com/2026-04-18/10944539381250_516552d74fb4aee1d7fe_original.jpg",
+  "Minh Dao":"https://avatars.slack-edge.com/2025-01-16/8324833553728_804fb63d1ce37ab81b28_original.jpg",
+  "Tom Vu":"https://avatars.slack-edge.com/2025-04-22/8784602001173_a84325e64a3b3dce4821_original.png",
+  "Tinh Pham":"https://avatars.slack-edge.com/2025-06-02/8980644251349_dd919e533f6fdad6377d_original.jpg",
+  "Thanh Dao":"https://avatars.slack-edge.com/2026-02-10/10482874736244_ebdc2783711d1ef32452_original.jpg",
+  "Nick Wong":"https://avatars.slack-edge.com/2025-03-28/8672193657314_f73c4879f36f6266bac9_original.png",
+  "Juan David (JD) Restrepo":"https://avatars.slack-edge.com/2025-09-08/9462251313847_1d2b7ac4ce718b7e6108_original.png",
+  "Aditya Shahi":"https://avatars.slack-edge.com/2026-03-27/10787691873878_d1e83e8c07aff9e4fd8c_original.png",
+  "Akshat Bansal":"https://avatars.slack-edge.com/2025-02-18/8465464796485_3fd11782acfbb06ac319_original.png",
+  "Zerui Song":"https://avatars.slack-edge.com/2026-05-12/11114682937140_9e645842fec2efb9e5e6_original.png",
+  "Yamit":"https://avatars.slack-edge.com/2026-03-11/10687264725857_5d7e9867c27f39d33df7_original.png",
+  "Nischit Shrestha":"/photos/nischit-shrestha.jpg",
+  "The Anh Nguyen":"/photos/the-anh-nguyen.jpg",
+  "Tinh Pham":"/photos/tinh-pham.jpg"
+};
+const NEW_JOINERS = new Set(["Aaron","Yamit","Puskar"]);
+
+// ---- State ----
+let pairs = [];   // [{person, country, flag, group}] shuffled for reveal order
+let cursor = 0;
+let autoTimer = null;
+
+// ---- AES-256-GCM decrypt (Web Crypto API) ----
+async function aesDecrypt(passphrase, encJson){
+  const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+  const salt = b64(encJson.salt), iv = b64(encJson.iv),
+        tag  = b64(encJson.tag),  ct = b64(encJson.data);
+  // tag is appended to ciphertext for SubtleCrypto
+  const ctWithTag = new Uint8Array(ct.length + tag.length);
+  ctWithTag.set(ct); ctWithTag.set(tag, ct.length);
+
+  const keyMaterial = await crypto.subtle.importKey(
+    'raw', new TextEncoder().encode(passphrase), 'PBKDF2', false, ['deriveKey']);
+  const key = await crypto.subtle.deriveKey(
+    {name:'PBKDF2', salt, iterations:100000, hash:'SHA-256'},
+    keyMaterial, {name:'AES-GCM', length:256}, false, ['decrypt']);
+  const plain = await crypto.subtle.decrypt({name:'AES-GCM', iv}, key, ctWithTag);
+  return JSON.parse(new TextDecoder().decode(plain));
+}
+
+// ---- Unlock ----
+document.getElementById('unlockBtn').onclick = unlock;
+document.getElementById('passInput').addEventListener('keydown', e => { if(e.key==='Enter') unlock(); });
+
+async function unlock(){
+  const v = document.getElementById('passInput').value;
+  if(!v){ document.getElementById('passErr').textContent='Enter the passphrase.'; return; }
+
+  const errEl = document.getElementById('passErr');
+  errEl.textContent = '🔓 Decrypting…';
+  let mapping, groups;
+
+  // 1. Fetch & decrypt reveal-data.enc (AES-256-GCM, Netlify mode)
+  try {
+    const res = await fetch('/reveal-data.enc?_=' + Date.now());
+    if(res.ok){
+      const encJson = await res.json();
+      try {
+        const data = await aesDecrypt(v, encJson);
+        mapping = data.mapping;
+        groups  = data.groups;
+      } catch(e){
+        errEl.textContent = 'Wrong passphrase — decryption failed.';
+        return;
+      }
+    }
+  } catch(e){ console.warn('reveal-data.enc fetch failed:', e); }
+
+  // 2. Fallback: localStorage (local dev mode)
+  if(!mapping){
+    const raw = localStorage.getItem(STORE_KEY);
+    if(!raw){ errEl.textContent='No encrypted draw found on server and no local draw in this browser.'; return; }
+    const state = JSON.parse(raw);
+    if(!state.drawn || !state.mapping){ errEl.textContent='Draw not yet sealed locally.'; return; }
+    if(v !== ADMIN_PASS){ errEl.textContent='Wrong passphrase.'; return; }
+    mapping = dec(state.mapping);
+    groups  = buildGroups();
+  }
+
+  // Build countryInfo {country -> {flag, group}}
+  const countryInfo = {};
+  for(const [g, list] of Object.entries(groups))
+    for(const [name, flag] of list) countryInfo[name]={flag,group:g};
+
+  // build pairs
+  pairs = Object.entries(mapping).map(([country, person])=>({
+    person, country,
+    flag: countryInfo[country]?.flag || '🌍',
+    group: countryInfo[country]?.group || '?'
+  }));
+  // shuffle for reveal order
+  for(let i=pairs.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pairs[i],pairs[j]]=[pairs[j],pairs[i]];}
+  // go
+  document.getElementById('hero').classList.add('gone');
+  document.getElementById('stage').style.display='flex';
+  buildGrid();
+  updateUI();
+}
+
+// ---- Groups fallback (local dev) ----
+function buildGroups(){
+  return {
+    A:[["Mexico","🇲🇽"],["United States","🇺🇸"],["Canada","🇨🇦"],["Panama","🇵🇦"]],
+    B:[["Uruguay","🇺🇾"],["Bolivia","🇧🇴"],["Serbia","🇷🇸"],["South Africa","🇿🇦"]],
+    C:[["Brazil","🇧🇷"],["Colombia","🇨🇴"],["Ecuador","🇪🇨"],["Burkina Faso","🇧🇫"]],
+    D:[["Argentina","🇦🇷"],["Chile","🇨🇱"],["Peru","🇵🇪"],["Australia","🇦🇺"]],
+    E:[["Portugal","🇵🇹"],["Denmark","🇩🇰"],["Slovenia","🇸🇮"],["South Korea","🇰🇷"]],
+    F:[["Germany","🇩🇪"],["Netherlands","🇳🇱"],["Türkiye","🇹🇷"],["Czech Republic","🇨🇿"]],
+    G:[["Spain","🇪🇸"],["Morocco","🇲🇦"],["South Africa","🇿🇦"],["Benin","🇧🇯"]],
+    H:[["France","🇫🇷"],["Belgium","🇧🇪"],["Saudi Arabia","🇸🇦"],["Curaçao","🇨🇼"]],
+    I:[["England","🏴󠁧󠁢󠁥󠁮󠁧󠁿"],["Netherlands","🇳🇱"],["Senegal","🇸🇳"],["Costa Rica","🇨🇷"]],
+    J:[["Italy","🇮🇹"],["Switzerland","🇨🇭"],["Ecuador","🇪🇨"],["New Zealand","🇳🇿"]],
+    K:[["Japan","🇯🇵"],["Nigeria","🇳🇬"],["Cameroon","🇨🇲"],["Haiti","🇭🇹"]],
+    L:[["Croatia","🇭🇷"],["Scotland","🏴󠁧󠁢󠁳󠁣󠁴󠁿"],["Bosnia & Herzegovina","🇧🇦"],["Thailand","🇹🇭"]]
+  };
+}
+
+// ---- Build grid ----
+function buildGrid(){
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+  pairs.forEach((p,i) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.dataset.idx = i;
+    card.innerHTML = `
+      <div class="card-inner">
+        <div class="card-face card-front">
+          ${photoEl(p.person)}
+          <div class="card-name">${p.person}</div>
+          ${NEW_JOINERS.has(p.person)?'<div class="card-new">NEW</div>':''}
+          <div class="card-mystery">🎁</div>
+        </div>
+        <div class="card-face card-back">
+          <div class="card-group">GRP ${p.group}</div>
+          <div class="card-flag">${p.flag}</div>
+          <div class="card-country">${p.country}</div>
+          <div class="card-person-back">${p.person}</div>
+        </div>
+      </div>`;
+    card.addEventListener('click', () => {
+      if(card.classList.contains('flipped')) showSpotlight(i);
+    });
+    grid.appendChild(card);
+  });
+}
+
+function photoEl(person){
+  const url = PHOTOS[person];
+  const init = person.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+  if(url) return `<img class="card-avatar" src="${url}" alt="${person}" onerror="this.outerHTML='<div class=card-init>${init}</div>'">`;
+  return `<div class="card-init">${init}</div>`;
+}
+
+// ---- Reveal logic ----
+function revealNext(){
+  if(cursor >= pairs.length) return;
+  const i = cursor++;
+  const card = document.querySelector(`.card[data-idx="${i}"]`);
+  card.classList.add('flipped');
+  confetti(card);
+  showSpotlight(i);
+  updateUI();
+}
+
+function revealAll(){
+  stopAuto();
+  while(cursor < pairs.length){
+    const i = cursor++;
+    document.querySelector(`.card[data-idx="${i}"]`).classList.add('flipped');
+  }
+  updateUI();
+  bigConfetti();
+}
+
+function toggleAuto(){
+  if(autoTimer){ stopAuto(); return; }
+  const btn = document.getElementById('autoBtn');
+  btn.classList.add('active');
+  btn.textContent = '⏸ Pause';
+  autoTimer = setInterval(()=>{
+    if(cursor >= pairs.length){ stopAuto(); return; }
+    revealNext();
+  }, 2200);
+}
+
+function stopAuto(){
+  if(autoTimer){ clearInterval(autoTimer); autoTimer=null; }
+  const btn = document.getElementById('autoBtn');
+  btn.classList.remove('active');
+  btn.textContent = '⏵ Auto';
+}
+
+document.getElementById('revealOneBtn').onclick = revealNext;
+document.getElementById('autoBtn').onclick = toggleAuto;
+document.getElementById('revealAllBtn').onclick = revealAll;
+
+function updateUI(){
+  document.getElementById('counter').textContent = `${cursor} / ${pairs.length} revealed`;
+  document.getElementById('progressFill').style.width = `${(cursor/pairs.length)*100}%`;
+  document.getElementById('progressLabel').textContent = cursor===0
+    ? 'Click "Reveal Next" to begin'
+    : cursor===pairs.length
+    ? 'All revealed! 🎉'
+    : `${pairs.length - cursor} left to reveal`;
+  document.getElementById('revealOneBtn').disabled = cursor >= pairs.length;
+  document.getElementById('revealAllBtn').disabled = cursor >= pairs.length;
+  if(cursor >= pairs.length){
+    stopAuto();
+    document.getElementById('doneBanner').style.display='block';
+    bigConfetti();
+  }
+}
+
+// ---- Spotlight ----
+function showSpotlight(i){
+  const p = pairs[i];
+  document.getElementById('spot-flag').textContent = p.flag;
+  document.getElementById('spot-country').textContent = p.country;
+  document.getElementById('spot-group').textContent = `Group ${p.group}`;
+  document.getElementById('spot-person').textContent = p.person;
+  const av = document.getElementById('spot-avatar');
+  const url = PHOTOS[p.person];
+  if(url){ av.src=url; av.style.display='block'; }
+  else { av.style.display='none'; }
+  document.getElementById('spotlight').classList.add('show');
+}
+document.getElementById('spotlight').onclick = ()=>{
+  document.getElementById('spotlight').classList.remove('show');
+};
+
+// ---- Confetti ----
+function confetti(anchor){
+  const rect = anchor ? anchor.getBoundingClientRect() : null;
+  const cx = rect ? rect.left + rect.width/2 : window.innerWidth/2;
+  const COLORS=['#FFD700','#FF6B35','#FF1744','#00C853','#2979FF','#E040FB','#fff'];
+  for(let i=0;i<18;i++){
+    const el = document.createElement('i');
+    el.className='confetti-piece';
+    el.style.cssText=`
+      left:${cx + (Math.random()-0.5)*120}px;
+      background:${COLORS[i%COLORS.length]};
+      animation-duration:${0.9+Math.random()*0.8}s;
+      animation-delay:${Math.random()*0.2}s;
+      transform:rotate(${Math.random()*360}deg);
+      width:${6+Math.random()*8}px;height:${6+Math.random()*8}px;
+    `;
+    document.body.appendChild(el);
+    el.addEventListener('animationend',()=>el.remove());
+  }
+}
+function bigConfetti(){
+  for(let i=0;i<6;i++) setTimeout(()=>confetti(null),i*300);
+}
+</script>
+</body>
+</html>
