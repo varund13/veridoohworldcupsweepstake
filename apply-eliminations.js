@@ -4,8 +4,8 @@
  * is out (from 2+ sources); this script does the JSON surgery and preserves prior dates.
  *
  * The draw is stored encrypted (draw-private.enc). The passphrase is required at runtime:
- *   node apply-eliminations.js --pass "veridooh2026" --out "Scotland,Curaçao,Haiti"
- *   node apply-eliminations.js --pass "veridooh2026" --out "..." --champion "Brazil"
+ *   node apply-eliminations.js --pass "prism-falcon-eclipse-301" --out "Scotland,Curaçao,Haiti"
+ *   node apply-eliminations.js --pass "prism-falcon-eclipse-301" --out "..." --champion "Brazil"
  *
  * Country names must match draw-private.enc / GROUPS exactly.
  */
@@ -21,7 +21,7 @@ if(!fs.existsSync(ENC_DRAW)){
   console.error("Missing draw-private.enc at repo root.");
   process.exit(1);
 }
-const passphrase = arg("--pass") || "veridooh2026";
+const passphrase = arg("--pass") || "prism-falcon-eclipse-301";
 let draw;
 try {
   const enc = JSON.parse(fs.readFileSync(ENC_DRAW,"utf8"));
