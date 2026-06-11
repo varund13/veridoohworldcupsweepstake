@@ -345,7 +345,7 @@ async function unlock(){
 
   // 1. Fetch & decrypt reveal-data.enc (AES-256-GCM, Netlify mode)
   try {
-    const res = await fetch('/reveal-data.enc?_=' + Date.now());
+    const res = await fetch('reveal-data.enc?_=' + Date.now());
     if(res.ok){
       const encJson = await res.json();
       try {
