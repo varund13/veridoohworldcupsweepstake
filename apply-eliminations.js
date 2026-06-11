@@ -69,8 +69,10 @@ for(const c of outList){ log.unshift({country:c, person:mapping[c], when:out[c].
 const revealed={};
 if(champion){ revealed[champion]=mapping[champion]; }
 
+const revealAll=process.argv.includes("--reveal-all");
+
 const board={
-  drawn:true, readonly:true, mapping:null,
+  drawn:true, readonly:true, mapping: revealAll ? mapping : null,
   out, revealed,
   bracket: prev.bracket||null,
   log,
