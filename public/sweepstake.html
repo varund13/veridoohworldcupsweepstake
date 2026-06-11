@@ -514,6 +514,12 @@ function envCard(t){
     const nm=document.createElement("div"); nm.className="nm"; nm.textContent=p.person; letterEl.appendChild(nm);
     if(NEW_JOINERS.has(p.person)){ const nb=document.createElement("span"); nb.className="new-badge"; nb.textContent="NEW"; letterEl.appendChild(nb); }
     const kod=document.createElement("div"); kod.className="kod"; kod.textContent="knocked out "+p.when; letterEl.appendChild(kod);
+  } else if(drawn && state.publicMapping && state.publicMapping[t.name]){
+    // reveal-all mode: show person on sealed envelope for everyone
+    const pub=state.publicMapping[t.name];
+    letterEl.appendChild(avatarEl(pub, 56));
+    const nm=document.createElement("div"); nm.className="nm"; nm.textContent=pub; letterEl.appendChild(nm);
+    if(NEW_JOINERS.has(pub)){ const nb=document.createElement("span"); nb.className="new-badge"; nb.textContent="NEW"; letterEl.appendChild(nb); }
   } else if(drawn && state.admin){
     // sealed but drawn: show small admin-only preview avatar + name
     const adminPerson = mapping()[t.name];
@@ -890,7 +896,7 @@ async function pollBoard(){
     if(d.exportedAt===lastStamp){ showUpdated(); return; }
     const prev=new Set(Object.keys(state.out||{}));
     lastStamp=d.exportedAt;
-    state.out=d.out||{}; state.bracket=d.bracket||state.bracket; state.revealed=d.revealed||{}; state.log=d.log||[];
+    state.out=d.out||{}; state.bracket=d.bracket||state.bracket; state.revealed=d.revealed||{}; state.log=d.log||[]; if(d.mapping) state.publicMapping=d.mapping;
     render(); showUpdated();
     Object.keys(state.out).forEach(c=>{ if(!prev.has(c)) showReveal(c, state.out[c].person); });
   }catch(e){}
