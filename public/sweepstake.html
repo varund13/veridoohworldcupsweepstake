@@ -506,26 +506,30 @@ function renderBanner(alive){
 function envCard(t){
   const isOut=!!state.out[t.name];
   const drawn=state.drawn;
+  const pub = (state.publicMapping && state.publicMapping[t.name]) || (isOut && state.out[t.name].person) || null;
   const el=document.createElement("div");
   el.className="env "+(!drawn?"sealed":(isOut?"out":"alive"));
 
+  // If mapping is public, skip envelope entirely — just show person directly
+  if(pub){
+    const outData = isOut ? state.out[t.name] : null;
+    el.innerHTML = (drawn?`<div class="tag">${isOut?"OUT":"IN"}</div>`:"") +
+      `<div class="flag">${t.flag}</div>
+       <div class="country"${isOut?` style="color:#ffc9cf"`:""} >${t.name}</div>
+       <div class="grp">GROUP ${t.group}</div>`;
+    const personWrap=document.createElement("div");
+    personWrap.style.cssText="margin-top:12px;display:flex;flex-direction:column;align-items:center;gap:6px;";
+    personWrap.appendChild(avatarEl(pub,56));
+    const nm=document.createElement("div"); nm.className="nm"; nm.textContent=pub; personWrap.appendChild(nm);
+    if(NEW_JOINERS.has(pub)){ const nb=document.createElement("span"); nb.className="new-badge"; nb.textContent="NEW"; personWrap.appendChild(nb); }
+    if(isOut){ const kod=document.createElement("div"); kod.className="kod"; kod.textContent="knocked out "+outData.when; personWrap.appendChild(kod); }
+    el.appendChild(personWrap);
+    return el;
+  }
+
   // Build the letter div as a DOM element so we can inject avatar nodes
   const letterEl=document.createElement("div"); letterEl.className="letter";
-  if(isOut){
-    const p=state.out[t.name];
-    // avatar above the name inside the open envelope
-    letterEl.appendChild(avatarEl(p.person, 56));
-    const nm=document.createElement("div"); nm.className="nm"; nm.textContent=p.person; letterEl.appendChild(nm);
-    if(NEW_JOINERS.has(p.person)){ const nb=document.createElement("span"); nb.className="new-badge"; nb.textContent="NEW"; letterEl.appendChild(nb); }
-    const kod=document.createElement("div"); kod.className="kod"; kod.textContent="knocked out "+p.when; letterEl.appendChild(kod);
-  } else if(drawn && state.publicMapping && state.publicMapping[t.name]){
-    // reveal-all mode: open envelope for everyone
-    const pub=state.publicMapping[t.name];
-    el.classList.add('revealed');
-    letterEl.appendChild(avatarEl(pub, 56));
-    const nm=document.createElement("div"); nm.className="nm"; nm.textContent=pub; letterEl.appendChild(nm);
-    if(NEW_JOINERS.has(pub)){ const nb=document.createElement("span"); nb.className="new-badge"; nb.textContent="NEW"; letterEl.appendChild(nb); }
-  } else if(drawn && state.admin){
+  if(drawn && state.admin){
     // sealed but drawn: show small admin-only preview avatar + name
     const adminPerson = mapping()[t.name];
     if(adminPerson){
