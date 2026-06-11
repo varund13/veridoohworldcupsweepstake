@@ -75,6 +75,10 @@
   .env.out .flap{transform:rotateX(175deg);background:linear-gradient(160deg,#e7d8a4,#d3be86);z-index:0}
   .env.out .wax{opacity:0;transform:translate(-50%,-50%) scale(.3)}
   .env.out .letter{transform:translateY(0)}
+  /* revealed-all mode: open flap to show person, keep green IN border */
+  .env.alive.revealed .flap{transform:rotateX(175deg);background:linear-gradient(160deg,#e7d8a4,#d3be86);z-index:0}
+  .env.alive.revealed .wax{opacity:0;transform:translate(-50%,-50%) scale(.3)}
+  .env.alive.revealed .letter{transform:translateY(0)}
   .env .ko{margin-top:12px;width:100%}
   .new-badge{display:inline-block;font-size:9px;font-weight:800;color:#fff;background:#3a6bff;border-radius:999px;padding:1px 7px}
   /* Envelope toolbar + carousel (coverflow) */
@@ -515,8 +519,9 @@ function envCard(t){
     if(NEW_JOINERS.has(p.person)){ const nb=document.createElement("span"); nb.className="new-badge"; nb.textContent="NEW"; letterEl.appendChild(nb); }
     const kod=document.createElement("div"); kod.className="kod"; kod.textContent="knocked out "+p.when; letterEl.appendChild(kod);
   } else if(drawn && state.publicMapping && state.publicMapping[t.name]){
-    // reveal-all mode: show person on sealed envelope for everyone
+    // reveal-all mode: open envelope for everyone
     const pub=state.publicMapping[t.name];
+    el.classList.add('revealed');
     letterEl.appendChild(avatarEl(pub, 56));
     const nm=document.createElement("div"); nm.className="nm"; nm.textContent=pub; letterEl.appendChild(nm);
     if(NEW_JOINERS.has(pub)){ const nb=document.createElement("span"); nb.className="new-badge"; nb.textContent="NEW"; letterEl.appendChild(nb); }
