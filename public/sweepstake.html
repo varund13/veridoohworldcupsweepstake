@@ -949,6 +949,7 @@ document.getElementById("btnExportDraw").onclick=()=>{
       state.drawn=true; state.readonly=true; state.mapping=null;
       state.out=d.out||{}; state.bracket=d.bracket||null;
       state.revealed=d.revealed||{}; state.log=d.log||[];
+      if(d.mapping) state.publicMapping=d.mapping;
       lastStamp=d.exportedAt||null;
       render(); showUpdated();
       setInterval(pollBoard, 120000); // re-check the published board every 2 min
