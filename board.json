@@ -223,5 +223,19 @@
   },
   "log": [],
   "champion": null,
-  "exportedAt": "2026-06-11T07:09:22.433Z"
+  "exportedAt": "2026-06-11T07:09:22.433Z",
+  "match_results": {
+    "A": [
+      {
+        "t1": "Mexico",
+        "t2": "South Africa",
+        "s1": 2,
+        "s2": 0,
+        "date": "11 Jun"
+      }
+    ]
+  },
+  "posted_matches": [
+    "Mexico vs South Africa on 11 Jun"
+  ]
 }
