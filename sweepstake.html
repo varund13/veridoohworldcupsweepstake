@@ -102,13 +102,27 @@
   .cnav.prev{left:6px} .cnav.next{right:6px}
   .swipehint{text-align:center;color:var(--muted);font-size:12px;margin-top:2px}
   /* Groups */
-  .groups{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
-  .gcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}
-  .gcard h3{margin:0 0 10px;font-size:14px;letter-spacing:.5px;color:var(--blue)}
-  table{width:100%;border-collapse:collapse;font-size:13.5px}
-  td{padding:7px 6px;border-bottom:1px solid var(--line)}
-  tr:last-child td{border-bottom:none}
-  .trow.out td{color:#88708a;text-decoration:line-through}
+  .groups{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:18px}
+  .gcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .gcard-head{padding:11px 16px;background:var(--panel2);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+  .gcard-head h3{margin:0;font-size:13px;letter-spacing:.6px;color:var(--blue);text-transform:uppercase;font-weight:800}
+  .gt{width:100%;border-collapse:collapse;font-size:12.5px}
+  .gt thead th{padding:6px 7px;color:var(--muted);font-weight:700;text-transform:uppercase;font-size:10px;letter-spacing:.5px;text-align:center;border-bottom:1px solid var(--line)}
+  .gt thead th:first-child{text-align:left;padding-left:12px;min-width:160px}
+  .gt tbody td{padding:8px 7px;border-bottom:1px solid rgba(38,49,90,.5);text-align:center;vertical-align:middle}
+  .gt tbody td:first-child{text-align:left;padding-left:12px}
+  .gt tbody tr:last-child td{border-bottom:none}
+  .gt tbody tr.gout td{color:#886e8e;text-decoration:line-through;opacity:.65}
+  .gt tbody tr.gout .gteam-name{color:#886e8e}
+  .gt tbody tr:not(.gout):hover{background:rgba(91,140,255,.06)}
+  .gt .pts{font-weight:800;color:var(--ink);font-size:13px}
+  .gt .gteam-flag{font-size:18px;margin-right:6px;vertical-align:middle}
+  .gt .gteam-name{font-weight:700;font-size:13px;vertical-align:middle}
+  .gt .gperson{font-size:10px;color:var(--muted);display:block;margin-top:1px;font-weight:500}
+  .gt .grank{color:var(--muted);font-size:11px;font-weight:700;width:18px;text-align:center;display:inline-block;margin-right:4px}
+  .gt .qual-bar{width:3px;position:absolute;left:0;top:0;bottom:0;border-radius:0}
+  .gt tbody tr.qualify td:first-child{position:relative;padding-left:15px}
+  .gt tbody tr.qualify td:first-child::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue);border-radius:0 2px 2px 0}
   .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:8px;vertical-align:middle}
   .dot.alive{background:var(--green)} .dot.out{background:var(--red)}
   /* Bracket / spider */
@@ -186,13 +200,12 @@
     <div class="logo">⚽</div>
     <div>
       <h1>World Cup 2026 — Last Man Standing</h1>
-      <div class="sub">Veridooh staff sweepstake · 48 sealed envelopes · last country standing wins</div>
+      <div class="sub">Veridooh staff sweepstake · 48 countries · last country standing wins</div>
     </div>
   </div>
   <div class="stats">
     <div class="stat alive"><b id="sAlive">48</b><span>Standing</span></div>
     <div class="stat out"><b id="sOut">0</b><span>Eliminated</span></div>
-    <div class="stat"><b id="sSealed">48</b><span>Sealed</span></div>
   </div>
 </header>
 
@@ -467,7 +480,6 @@ function render(){
   const alive = TEAMS.length - outCount;
   document.getElementById("sAlive").textContent = state.drawn?alive:TEAMS.length;
   document.getElementById("sOut").textContent = outCount;
-  document.getElementById("sSealed").textContent = state.drawn?alive:TEAMS.length;
 
   const ro=state.readonly;
   document.getElementById("lockPill").style.display = ro?"none":"inline-block";
@@ -499,7 +511,8 @@ function renderBanner(alive){
     w.innerHTML=`<div class="banner winner">🏆 WINNER: ${personOf(c)||c} — riding ${flagOf(c)} ${c} to the title! 🏆</div>`;
     return;
   }
-  w.innerHTML = `<div class="banner">✉️ <b>${alive} envelopes still sealed.</b> As each country is officially knocked out, its envelope opens to reveal who's eliminated. Last name standing wins.</div>`;
+  const out48=48-alive;
+  w.innerHTML = `<div class="banner">⚽ <b>${alive} countries still standing</b>${out48>0?` · <span style="color:var(--red)">${out48} eliminated</span>`:""}. Results tracked automatically every 6 hours — board updates live. Last country standing wins! 🏆</div>`;
 }
 
 /* ---- one envelope card ---- */
@@ -611,14 +624,75 @@ function carouselGo(d){ carouselTo(carouselIndex+d); }
 function jumpToGroup(g){ if(!g)return; const i=TEAMS.findIndex(t=>t.group===g); if(i>=0){ if(envMode!=="carousel")setEnvMode("carousel"); carouselTo(i);} }
 function renderGroups(){
   const wrap=document.getElementById("groups"); wrap.innerHTML="";
+  // Build match results index from board data if available
+  const matchResults = (window._matchResults)||{};
+
   for(const g of Object.keys(GROUPS)){
+    const teams = GROUPS[g].map(([name,flag])=>({name,flag}));
+
+    // Compute standings from match results for this group
+    const stats={};
+    teams.forEach(t=>{ stats[t.name]={mp:0,w:0,d:0,l:0,gf:0,ga:0,pts:0}; });
+    const groupMatches = matchResults[g]||[];
+    groupMatches.forEach(({t1,t2,s1,s2})=>{
+      if(!stats[t1]||!stats[t2]) return;
+      stats[t1].mp++; stats[t2].mp++;
+      stats[t1].gf+=s1; stats[t1].ga+=s2;
+      stats[t2].gf+=s2; stats[t2].ga+=s1;
+      if(s1>s2){ stats[t1].w++; stats[t1].pts+=3; stats[t2].l++; }
+      else if(s1<s2){ stats[t2].w++; stats[t2].pts+=3; stats[t1].l++; }
+      else { stats[t1].d++; stats[t1].pts++; stats[t2].d++; stats[t2].pts++; }
+    });
+
+    // Sort: pts desc, gd desc, gf desc, name asc
+    const sorted=[...teams].sort((a,b)=>{
+      const sa=stats[a.name], sb=stats[b.name];
+      return (sb.pts-sa.pts)||((sb.gf-sb.ga)-(sa.gf-sa.ga))||(sb.gf-sa.gf)||a.name.localeCompare(b.name);
+    });
+
     const card=document.createElement("div"); card.className="gcard";
-    let rows = GROUPS[g].map(([name,flag])=>{
-      const isOut=!!state.out[name];
-      return `<tr class="trow ${isOut?'out':''}"><td><span class="dot ${isOut?'out':'alive'}"></span>${flag} ${name}</td>
-        <td style="text-align:right;color:${isOut?'#ff8a96':'#9be29b'};font-size:12px;font-weight:700">${isOut?'OUT':'IN'}</td></tr>`;
+
+    // Build rows
+    const rows=sorted.map((t,i)=>{
+      const isOut=!!state.out[t.name];
+      const s=stats[t.name];
+      const gd=s.gf-s.ga;
+      const person=(state.publicMapping&&state.publicMapping[t.name])||"";
+      // top 2 qualify (plus potentially 3rd)
+      const qualifies=!isOut&&i<2;
+      return `<tr class="${isOut?'gout':''}${qualifies?' qualify':''}">
+        <td>
+          <span class="grank">${i+1}</span>
+          <span class="gteam-flag">${t.flag}</span>
+          <span class="gteam-name">${t.name}${isOut?' 🚫':''}</span>
+          ${person?`<span class="gperson">👤 ${person}</span>`:''}
+        </td>
+        <td>${s.mp}</td>
+        <td>${s.w}</td>
+        <td>${s.d}</td>
+        <td>${s.l}</td>
+        <td>${s.gf}</td>
+        <td>${s.ga}</td>
+        <td style="color:${gd>0?'var(--green)':gd<0?'var(--red)':'var(--muted)'}">${gd>0?'+'+gd:gd}</td>
+        <td class="pts">${s.pts}</td>
+      </tr>`;
     }).join("");
-    card.innerHTML=`<h3>Group ${g}</h3><table>${rows}</table>`;
+
+    card.innerHTML=`
+      <div class="gcard-head">
+        <h3>Group ${g}</h3>
+        <span style="font-size:10px;color:var(--muted);font-weight:600">MP &nbsp; W &nbsp; D &nbsp; L &nbsp; GF &nbsp; GA &nbsp; GD &nbsp; Pts</span>
+      </div>
+      <table class="gt">
+        <thead>
+          <tr>
+            <th style="text-align:left">Team</th>
+            <th>MP</th><th>W</th><th>D</th><th>L</th>
+            <th>GF</th><th>GA</th><th>GD</th><th>Pts</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>`;
     wrap.appendChild(card);
   }
 }
@@ -905,7 +979,7 @@ async function pollBoard(){
     if(d.exportedAt===lastStamp){ showUpdated(); return; }
     const prev=new Set(Object.keys(state.out||{}));
     lastStamp=d.exportedAt;
-    state.out=d.out||{}; state.bracket=d.bracket||state.bracket; state.revealed=d.revealed||{}; state.log=d.log||[]; if(d.mapping) state.publicMapping=d.mapping;
+    state.out=d.out||{}; state.bracket=d.bracket||state.bracket; state.revealed=d.revealed||{}; state.log=d.log||[]; if(d.mapping) state.publicMapping=d.mapping; if(d.match_results) window._matchResults=d.match_results;
     render(); showUpdated();
     Object.keys(state.out).forEach(c=>{ if(!prev.has(c)) showReveal(c, state.out[c].person); });
   }catch(e){}
@@ -950,6 +1024,7 @@ document.getElementById("btnExportDraw").onclick=()=>{
       state.out=d.out||{}; state.bracket=d.bracket||null;
       state.revealed=d.revealed||{}; state.log=d.log||[];
       if(d.mapping) state.publicMapping=d.mapping;
+      if(d.match_results) window._matchResults=d.match_results;
       lastStamp=d.exportedAt||null;
       render(); showUpdated();
       setInterval(pollBoard, 120000); // re-check the published board every 2 min
