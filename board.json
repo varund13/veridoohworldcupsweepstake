@@ -232,10 +232,28 @@
         "s1": 2,
         "s2": 0,
         "date": "11 Jun"
+      },
+      {
+        "t1": "South Korea",
+        "t2": "Czech Republic",
+        "s1": 2,
+        "s2": 1,
+        "date": "11 Jun"
+      }
+    ],
+    "B": [
+      {
+        "t1": "Canada",
+        "t2": "Bosnia & Herzegovina",
+        "s1": 1,
+        "s2": 1,
+        "date": "12 Jun"
       }
     ]
   },
   "posted_matches": [
-    "Mexico vs South Africa on 11 Jun"
+    "Mexico vs South Africa on 11 Jun",
+    "South Korea vs Czech Republic on 11 Jun",
+    "Canada vs Bosnia & Herzegovina on 12 Jun"
   ]
 }
