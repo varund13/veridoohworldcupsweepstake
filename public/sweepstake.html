@@ -671,8 +671,6 @@ function renderGroups(){
         <td>${s.w}</td>
         <td>${s.d}</td>
         <td>${s.l}</td>
-        <td>${s.gf}</td>
-        <td>${s.ga}</td>
         <td style="color:${gd>0?'var(--green)':gd<0?'var(--red)':'var(--muted)'}">${gd>0?'+'+gd:gd}</td>
         <td class="pts">${s.pts}</td>
       </tr>`;
@@ -681,14 +679,13 @@ function renderGroups(){
     card.innerHTML=`
       <div class="gcard-head">
         <h3>Group ${g}</h3>
-        <span style="font-size:10px;color:var(--muted);font-weight:600">MP &nbsp; W &nbsp; D &nbsp; L &nbsp; GF &nbsp; GA &nbsp; GD &nbsp; Pts</span>
       </div>
       <table class="gt">
         <thead>
           <tr>
             <th style="text-align:left">Team</th>
-            <th>MP</th><th>W</th><th>D</th><th>L</th>
-            <th>GF</th><th>GA</th><th>GD</th><th>Pts</th>
+            <th>P</th><th>W</th><th>D</th><th>L</th><th>GD</th>
+            <th style="color:var(--ink)">Pts</th>
           </tr>
         </thead>
         <tbody>${rows}</tbody>
