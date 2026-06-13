@@ -248,12 +248,30 @@
         "s1": 1,
         "s2": 1,
         "date": "12 Jun"
+      },
+      {
+        "t1": "Qatar",
+        "t2": "Switzerland",
+        "s1": 1,
+        "s2": 1,
+        "date": "13 Jun"
+      }
+    ],
+    "D": [
+      {
+        "t1": "United States",
+        "t2": "Paraguay",
+        "s1": 4,
+        "s2": 1,
+        "date": "12 Jun"
       }
     ]
   },
   "posted_matches": [
     "Mexico vs South Africa on 11 Jun",
     "South Korea vs Czech Republic on 11 Jun",
-    "Canada vs Bosnia & Herzegovina on 12 Jun"
+    "Canada vs Bosnia & Herzegovina on 12 Jun",
+    "United States vs Paraguay on 12 Jun",
+    "Qatar vs Switzerland on 13 Jun"
   ]
 }
