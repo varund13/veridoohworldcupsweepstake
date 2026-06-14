@@ -406,6 +406,13 @@ function personOf(c){
   return mapping()[c] || "";
 }
 
+/* Escape values from board.json before they go into innerHTML (defensive: board.json
+   is fetched at runtime, so a name/result with HTML must not become live markup). */
+function escapeHtml(s){
+  return String(s==null?"":s).replace(/[&<>"']/g,m=>(
+    {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+}
+
 /* obfuscation (not security — just stops casual view-source peeking) */
 const enc = o => btoa(unescape(encodeURIComponent(JSON.stringify(o))));
 const dec = s => JSON.parse(decodeURIComponent(escape(atob(s))));
@@ -508,7 +515,7 @@ function renderBanner(alive){
   }
   if(alive===1){
     const c=TEAMS.map(t=>t.name).find(n=>!state.out[n]);
-    w.innerHTML=`<div class="banner winner">🏆 WINNER: ${personOf(c)||c} — riding ${flagOf(c)} ${c} to the title! 🏆</div>`;
+    w.innerHTML=`<div class="banner winner">🏆 WINNER: ${escapeHtml(personOf(c)||c)} — riding ${flagOf(c)} ${escapeHtml(c)} to the title! 🏆</div>`;
     return;
   }
   const out48=48-alive;
@@ -763,7 +770,7 @@ function renderBracket(alive){
   // champion / winner banner
   const champ = state.bracket.champion;
   if(champ){
-    winWrap.innerHTML=`<div class="banner winner">🏆 CHAMPIONS: ${flagOf(champ)} ${champ} — last envelope standing belongs to <u>${personOf(champ)}</u>! 🏆</div>`;
+    winWrap.innerHTML=`<div class="banner winner">🏆 CHAMPIONS: ${flagOf(champ)} ${escapeHtml(champ)} — last envelope standing belongs to <u>${escapeHtml(personOf(champ))}</u>! 🏆</div>`;
   } else winWrap.innerHTML="";
 
   // controls (admin only)
@@ -864,7 +871,7 @@ function renderTimeline(){
   const tl=document.getElementById("timeline");
   if(!state.log.length){ tl.innerHTML=`<div class="banner">No eliminations yet. The log fills as teams fall.</div>`; return; }
   tl.innerHTML = state.log.map(l=>
-    `<div class="tl"><span class="when">${l.when}</span> ${l.flag} <b>${l.country}</b> knocked out → envelope revealed <b style="color:var(--red)">${l.person}</b></div>`
+    `<div class="tl"><span class="when">${escapeHtml(l.when)}</span> ${escapeHtml(l.flag)} <b>${escapeHtml(l.country)}</b> knocked out → envelope revealed <b style="color:var(--red)">${escapeHtml(l.person)}</b></div>`
   ).join("");
 }
 
