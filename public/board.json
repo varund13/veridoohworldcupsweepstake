@@ -257,6 +257,22 @@
         "date": "13 Jun"
       }
     ],
+    "C": [
+      {
+        "t1": "Brazil",
+        "t2": "Morocco",
+        "s1": 1,
+        "s2": 1,
+        "date": "13 Jun"
+      },
+      {
+        "t1": "Haiti",
+        "t2": "Scotland",
+        "s1": 0,
+        "s2": 1,
+        "date": "13 Jun"
+      }
+    ],
     "D": [
       {
         "t1": "United States",
@@ -264,6 +280,13 @@
         "s1": 4,
         "s2": 1,
         "date": "12 Jun"
+      },
+      {
+        "t1": "Australia",
+        "t2": "Turkey",
+        "s1": 1,
+        "s2": 0,
+        "date": "14 Jun"
       }
     ]
   },
@@ -272,6 +295,9 @@
     "South Korea vs Czech Republic on 11 Jun",
     "Canada vs Bosnia & Herzegovina on 12 Jun",
     "United States vs Paraguay on 12 Jun",
-    "Qatar vs Switzerland on 13 Jun"
+    "Qatar vs Switzerland on 13 Jun",
+    "Brazil vs Morocco on 13 Jun",
+    "Haiti vs Scotland on 13 Jun",
+    "Australia vs Turkey on 14 Jun"
   ]
 }
