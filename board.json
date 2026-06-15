@@ -223,7 +223,7 @@
   },
   "log": [],
   "champion": null,
-  "exportedAt": "2026-06-11T07:09:22.433Z",
+  "exportedAt": "2026-06-14T23:37:04.302Z",
   "match_results": {
     "A": [
       {
@@ -284,8 +284,40 @@
       {
         "t1": "Australia",
         "t2": "Turkey",
+        "s1": 2,
+        "s2": 0,
+        "date": "14 Jun"
+      }
+    ],
+    "E": [
+      {
+        "t1": "Germany",
+        "t2": "Curaçao",
+        "s1": 7,
+        "s2": 1,
+        "date": "14 Jun"
+      },
+      {
+        "t1": "Ivory Coast",
+        "t2": "Ecuador",
         "s1": 1,
         "s2": 0,
+        "date": "14 Jun"
+      }
+    ],
+    "F": [
+      {
+        "t1": "Netherlands",
+        "t2": "Japan",
+        "s1": 2,
+        "s2": 2,
+        "date": "14 Jun"
+      },
+      {
+        "t1": "Sweden",
+        "t2": "Tunisia",
+        "s1": 5,
+        "s2": 1,
         "date": "14 Jun"
       }
     ]
@@ -298,6 +330,10 @@
     "Qatar vs Switzerland on 13 Jun",
     "Brazil vs Morocco on 13 Jun",
     "Haiti vs Scotland on 13 Jun",
-    "Australia vs Turkey on 14 Jun"
+    "Australia vs Turkey on 14 Jun",
+    "Germany vs Curaçao on 14 Jun",
+    "Netherlands vs Japan on 14 Jun",
+    "Ivory Coast vs Ecuador on 14 Jun",
+    "Sweden vs Tunisia on 14 Jun"
   ]
 }
