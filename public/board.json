@@ -284,7 +284,7 @@
       {
         "t1": "Australia",
         "t2": "Turkey",
-        "s1": 1,
+        "s1": 2,
         "s2": 0,
         "date": "14 Jun"
       }
@@ -296,6 +296,13 @@
         "s1": 7,
         "s2": 1,
         "date": "14 Jun"
+      },
+      {
+        "t1": "Ivory Coast",
+        "t2": "Ecuador",
+        "s1": 1,
+        "s2": 0,
+        "date": "14 Jun"
       }
     ],
     "F": [
@@ -304,6 +311,13 @@
         "t2": "Japan",
         "s1": 2,
         "s2": 2,
+        "date": "14 Jun"
+      },
+      {
+        "t1": "Sweden",
+        "t2": "Tunisia",
+        "s1": 5,
+        "s2": 1,
         "date": "14 Jun"
       }
     ]
@@ -318,6 +332,8 @@
     "Haiti vs Scotland on 13 Jun",
     "Australia vs Turkey on 14 Jun",
     "Germany vs Curaçao on 14 Jun",
-    "Netherlands vs Japan on 14 Jun"
+    "Netherlands vs Japan on 14 Jun",
+    "Ivory Coast vs Ecuador on 14 Jun",
+    "Sweden vs Tunisia on 14 Jun"
   ]
 }
