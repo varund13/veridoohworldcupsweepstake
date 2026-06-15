@@ -320,6 +320,24 @@
         "s2": 1,
         "date": "14 Jun"
       }
+    ],
+    "G": [
+      {
+        "t1": "Belgium",
+        "t2": "Egypt",
+        "s1": 1,
+        "s2": 1,
+        "date": "15 Jun"
+      }
+    ],
+    "H": [
+      {
+        "t1": "Spain",
+        "t2": "Cape Verde",
+        "s1": 0,
+        "s2": 0,
+        "date": "15 Jun"
+      }
     ]
   },
   "posted_matches": [
@@ -334,6 +352,8 @@
     "Germany vs Curaçao on 14 Jun",
     "Netherlands vs Japan on 14 Jun",
     "Ivory Coast vs Ecuador on 14 Jun",
-    "Sweden vs Tunisia on 14 Jun"
+    "Sweden vs Tunisia on 14 Jun",
+    "Belgium vs Egypt on 15 Jun",
+    "Spain vs Cape Verde on 15 Jun"
   ]
 }
