@@ -328,6 +328,13 @@
         "s1": 1,
         "s2": 1,
         "date": "15 Jun"
+      },
+      {
+        "t1": "Iran",
+        "t2": "New Zealand",
+        "s1": 2,
+        "s2": 2,
+        "date": "15 Jun"
       }
     ],
     "H": [
@@ -336,6 +343,13 @@
         "t2": "Cape Verde",
         "s1": 0,
         "s2": 0,
+        "date": "15 Jun"
+      },
+      {
+        "t1": "Saudi Arabia",
+        "t2": "Uruguay",
+        "s1": 1,
+        "s2": 1,
         "date": "15 Jun"
       }
     ]
@@ -354,6 +368,8 @@
     "Ivory Coast vs Ecuador on 14 Jun",
     "Sweden vs Tunisia on 14 Jun",
     "Belgium vs Egypt on 15 Jun",
-    "Spain vs Cape Verde on 15 Jun"
+    "Spain vs Cape Verde on 15 Jun",
+    "Iran vs New Zealand on 15 Jun",
+    "Saudi Arabia vs Uruguay on 15 Jun"
   ]
 }
