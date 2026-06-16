@@ -352,6 +352,22 @@
         "s2": 1,
         "date": "15 Jun"
       }
+    ],
+    "I": [
+      {
+        "t1": "France",
+        "t2": "Senegal",
+        "s1": 3,
+        "s2": 1,
+        "date": "16 Jun"
+      },
+      {
+        "t1": "Iraq",
+        "t2": "Norway",
+        "s1": 1,
+        "s2": 2,
+        "date": "16 Jun"
+      }
     ]
   },
   "posted_matches": [
@@ -370,6 +386,8 @@
     "Belgium vs Egypt on 15 Jun",
     "Spain vs Cape Verde on 15 Jun",
     "Iran vs New Zealand on 15 Jun",
-    "Saudi Arabia vs Uruguay on 15 Jun"
+    "Saudi Arabia vs Uruguay on 15 Jun",
+    "France vs Senegal on 16 Jun",
+    "Iraq vs Norway on 16 Jun"
   ]
 }
