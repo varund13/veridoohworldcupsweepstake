@@ -376,6 +376,38 @@
         "s1": 3,
         "s2": 0,
         "date": "16 Jun"
+      },
+      {
+        "t1": "Austria",
+        "t2": "Jordan",
+        "s1": 3,
+        "s2": 1,
+        "date": "17 Jun"
+      }
+    ],
+    "K": [
+      {
+        "t1": "Portugal",
+        "t2": "DR Congo",
+        "s1": 1,
+        "s2": 1,
+        "date": "17 Jun"
+      }
+    ],
+    "L": [
+      {
+        "t1": "England",
+        "t2": "Croatia",
+        "s1": 4,
+        "s2": 2,
+        "date": "17 Jun"
+      },
+      {
+        "t1": "Ghana",
+        "t2": "Panama",
+        "s1": 0,
+        "s2": 0,
+        "date": "17 Jun"
       }
     ]
   },
@@ -398,6 +430,10 @@
     "Saudi Arabia vs Uruguay on 15 Jun",
     "France vs Senegal on 16 Jun",
     "Iraq vs Norway on 16 Jun",
-    "Argentina vs Algeria on 16 Jun"
+    "Argentina vs Algeria on 16 Jun",
+    "Austria vs Jordan on 17 Jun",
+    "Portugal vs DR Congo on 17 Jun",
+    "England vs Croatia on 17 Jun",
+    "Ghana vs Panama on 17 Jun"
   ]
 }
