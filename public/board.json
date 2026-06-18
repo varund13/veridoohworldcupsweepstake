@@ -392,6 +392,13 @@
         "s1": 1,
         "s2": 1,
         "date": "17 Jun"
+      },
+      {
+        "t1": "Uzbekistan",
+        "t2": "Colombia",
+        "s1": 1,
+        "s2": 3,
+        "date": "17 Jun"
       }
     ],
     "L": [
@@ -434,6 +441,7 @@
     "Austria vs Jordan on 17 Jun",
     "Portugal vs DR Congo on 17 Jun",
     "England vs Croatia on 17 Jun",
-    "Ghana vs Panama on 17 Jun"
+    "Ghana vs Panama on 17 Jun",
+    "Uzbekistan vs Colombia on 17 Jun"
   ]
 }
