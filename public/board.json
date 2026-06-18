@@ -239,6 +239,13 @@
         "s1": 2,
         "s2": 1,
         "date": "11 Jun"
+      },
+      {
+        "t1": "Czech Republic",
+        "t2": "South Africa",
+        "s1": 1,
+        "s2": 1,
+        "date": "18 Jun"
       }
     ],
     "B": [
@@ -255,6 +262,13 @@
         "s1": 1,
         "s2": 1,
         "date": "13 Jun"
+      },
+      {
+        "t1": "Switzerland",
+        "t2": "Bosnia & Herzegovina",
+        "s1": 4,
+        "s2": 1,
+        "date": "18 Jun"
       }
     ],
     "C": [
@@ -442,6 +456,8 @@
     "Portugal vs DR Congo on 17 Jun",
     "England vs Croatia on 17 Jun",
     "Ghana vs Panama on 17 Jun",
-    "Uzbekistan vs Colombia on 17 Jun"
+    "Uzbekistan vs Colombia on 17 Jun",
+    "Czech Republic vs South Africa on 18 Jun",
+    "Switzerland vs Bosnia & Herzegovina on 18 Jun"
   ]
 }
