@@ -315,6 +315,13 @@
         "s1": 2,
         "s2": 0,
         "date": "14 Jun"
+      },
+      {
+        "t1": "United States",
+        "t2": "Australia",
+        "s1": 2,
+        "s2": 0,
+        "date": "19 Jun"
       }
     ],
     "E": [
@@ -474,6 +481,7 @@
     "Czech Republic vs South Africa on 18 Jun",
     "Switzerland vs Bosnia & Herzegovina on 18 Jun",
     "Mexico vs South Korea on 18 Jun",
-    "Canada vs Qatar on 18 Jun"
+    "Canada vs Qatar on 18 Jun",
+    "United States vs Australia on 19 Jun"
   ]
 }
