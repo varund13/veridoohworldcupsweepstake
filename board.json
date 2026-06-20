@@ -299,6 +299,20 @@
         "s1": 0,
         "s2": 1,
         "date": "13 Jun"
+      },
+      {
+        "t1": "Scotland",
+        "t2": "Morocco",
+        "s1": 0,
+        "s2": 1,
+        "date": "19 Jun"
+      },
+      {
+        "t1": "Brazil",
+        "t2": "Haiti",
+        "s1": 3,
+        "s2": 0,
+        "date": "19 Jun"
       }
     ],
     "D": [
@@ -482,6 +496,8 @@
     "Switzerland vs Bosnia & Herzegovina on 18 Jun",
     "Mexico vs South Korea on 18 Jun",
     "Canada vs Qatar on 18 Jun",
-    "United States vs Australia on 19 Jun"
+    "United States vs Australia on 19 Jun",
+    "Scotland vs Morocco on 19 Jun",
+    "Brazil vs Haiti on 19 Jun"
   ]
 }
