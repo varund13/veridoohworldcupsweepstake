@@ -51,7 +51,16 @@
     "Ghana": "Denny Ma",
     "Panama": "Justin Nhan"
   },
-  "out": {},
+  "out": {
+    "Haiti": {
+      "person": "Quan Do",
+      "when": "19 Jun"
+    },
+    "Turkey": {
+      "person": "Luke Kevin",
+      "when": "19 Jun"
+    }
+  },
   "revealed": {},
   "bracket": {
     "r32": [
@@ -221,9 +230,22 @@
     ],
     "champion": null
   },
-  "log": [],
+  "log": [
+    {
+      "country": "Turkey",
+      "person": "Luke Kevin",
+      "when": "19 Jun",
+      "flag": "🇹🇷"
+    },
+    {
+      "country": "Haiti",
+      "person": "Quan Do",
+      "when": "19 Jun",
+      "flag": "🇭🇹"
+    }
+  ],
   "champion": null,
-  "exportedAt": "2026-06-14T23:37:04.302Z",
+  "exportedAt": "2026-06-21T04:39:49.176Z",
   "match_results": {
     "A": [
       {
@@ -336,6 +358,13 @@
         "s1": 2,
         "s2": 0,
         "date": "19 Jun"
+      },
+      {
+        "t1": "Turkey",
+        "t2": "Paraguay",
+        "s1": 0,
+        "s2": 1,
+        "date": "19 Jun"
       }
     ],
     "E": [
@@ -352,6 +381,20 @@
         "s1": 1,
         "s2": 0,
         "date": "14 Jun"
+      },
+      {
+        "t1": "Germany",
+        "t2": "Ivory Coast",
+        "s1": 2,
+        "s2": 1,
+        "date": "20 Jun"
+      },
+      {
+        "t1": "Ecuador",
+        "t2": "Curaçao",
+        "s1": 0,
+        "s2": 0,
+        "date": "20 Jun"
       }
     ],
     "F": [
@@ -368,6 +411,13 @@
         "s1": 5,
         "s2": 1,
         "date": "14 Jun"
+      },
+      {
+        "t1": "Netherlands",
+        "t2": "Sweden",
+        "s1": 5,
+        "s2": 1,
+        "date": "20 Jun"
       }
     ],
     "G": [
@@ -498,6 +548,10 @@
     "Canada vs Qatar on 18 Jun",
     "United States vs Australia on 19 Jun",
     "Scotland vs Morocco on 19 Jun",
-    "Brazil vs Haiti on 19 Jun"
+    "Brazil vs Haiti on 19 Jun",
+    "Turkey vs Paraguay on 19 Jun",
+    "Germany vs Ivory Coast on 20 Jun",
+    "Ecuador vs Curaçao on 20 Jun",
+    "Netherlands vs Sweden on 20 Jun"
   ]
 }
