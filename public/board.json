@@ -59,6 +59,10 @@
     "Turkey": {
       "person": "Luke Kevin",
       "when": "19 Jun"
+    },
+    "Tunisia": {
+      "person": "Jade Nguyen",
+      "when": "20 Jun"
     }
   },
   "revealed": {},
@@ -232,6 +236,12 @@
   },
   "log": [
     {
+      "country": "Tunisia",
+      "person": "Jade Nguyen",
+      "when": "20 Jun",
+      "flag": "🇹🇳"
+    },
+    {
       "country": "Turkey",
       "person": "Luke Kevin",
       "when": "19 Jun",
@@ -245,7 +255,7 @@
     }
   ],
   "champion": null,
-  "exportedAt": "2026-06-21T04:39:49.176Z",
+  "exportedAt": "2026-06-21T23:38:12.129Z",
   "match_results": {
     "A": [
       {
@@ -418,6 +428,13 @@
         "s1": 5,
         "s2": 1,
         "date": "20 Jun"
+      },
+      {
+        "t1": "Tunisia",
+        "t2": "Japan",
+        "s1": 0,
+        "s2": 4,
+        "date": "20 Jun"
       }
     ],
     "G": [
@@ -434,6 +451,13 @@
         "s1": 2,
         "s2": 2,
         "date": "15 Jun"
+      },
+      {
+        "t1": "Belgium",
+        "t2": "Iran",
+        "s1": 0,
+        "s2": 0,
+        "date": "21 Jun"
       }
     ],
     "H": [
@@ -450,6 +474,13 @@
         "s1": 1,
         "s2": 1,
         "date": "15 Jun"
+      },
+      {
+        "t1": "Spain",
+        "t2": "Saudi Arabia",
+        "s1": 4,
+        "s2": 0,
+        "date": "21 Jun"
       }
     ],
     "I": [
@@ -552,6 +583,9 @@
     "Turkey vs Paraguay on 19 Jun",
     "Germany vs Ivory Coast on 20 Jun",
     "Ecuador vs Curaçao on 20 Jun",
-    "Netherlands vs Sweden on 20 Jun"
+    "Netherlands vs Sweden on 20 Jun",
+    "Tunisia vs Japan on 20 Jun",
+    "Belgium vs Iran on 21 Jun",
+    "Spain vs Saudi Arabia on 21 Jun"
   ]
 }
