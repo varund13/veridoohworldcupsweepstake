@@ -51,7 +51,20 @@
     "Ghana": "Denny Ma",
     "Panama": "Justin Nhan"
   },
-  "out": {},
+  "out": {
+    "Haiti": {
+      "person": "Quan Do",
+      "when": "19 Jun"
+    },
+    "Turkey": {
+      "person": "Luke Kevin",
+      "when": "19 Jun"
+    },
+    "Tunisia": {
+      "person": "Jade Nguyen",
+      "when": "20 Jun"
+    }
+  },
   "revealed": {},
   "bracket": {
     "r32": [
@@ -221,9 +234,28 @@
     ],
     "champion": null
   },
-  "log": [],
+  "log": [
+    {
+      "country": "Tunisia",
+      "person": "Jade Nguyen",
+      "when": "20 Jun",
+      "flag": "🇹🇳"
+    },
+    {
+      "country": "Turkey",
+      "person": "Luke Kevin",
+      "when": "19 Jun",
+      "flag": "🇹🇷"
+    },
+    {
+      "country": "Haiti",
+      "person": "Quan Do",
+      "when": "19 Jun",
+      "flag": "🇭🇹"
+    }
+  ],
   "champion": null,
-  "exportedAt": "2026-06-14T23:37:04.302Z",
+  "exportedAt": "2026-06-21T23:38:12.129Z",
   "match_results": {
     "A": [
       {
@@ -299,6 +331,20 @@
         "s1": 0,
         "s2": 1,
         "date": "13 Jun"
+      },
+      {
+        "t1": "Scotland",
+        "t2": "Morocco",
+        "s1": 0,
+        "s2": 1,
+        "date": "19 Jun"
+      },
+      {
+        "t1": "Brazil",
+        "t2": "Haiti",
+        "s1": 3,
+        "s2": 0,
+        "date": "19 Jun"
       }
     ],
     "D": [
@@ -322,6 +368,13 @@
         "s1": 2,
         "s2": 0,
         "date": "19 Jun"
+      },
+      {
+        "t1": "Turkey",
+        "t2": "Paraguay",
+        "s1": 0,
+        "s2": 1,
+        "date": "19 Jun"
       }
     ],
     "E": [
@@ -338,6 +391,20 @@
         "s1": 1,
         "s2": 0,
         "date": "14 Jun"
+      },
+      {
+        "t1": "Germany",
+        "t2": "Ivory Coast",
+        "s1": 2,
+        "s2": 1,
+        "date": "20 Jun"
+      },
+      {
+        "t1": "Ecuador",
+        "t2": "Curaçao",
+        "s1": 0,
+        "s2": 0,
+        "date": "20 Jun"
       }
     ],
     "F": [
@@ -354,6 +421,20 @@
         "s1": 5,
         "s2": 1,
         "date": "14 Jun"
+      },
+      {
+        "t1": "Netherlands",
+        "t2": "Sweden",
+        "s1": 5,
+        "s2": 1,
+        "date": "20 Jun"
+      },
+      {
+        "t1": "Tunisia",
+        "t2": "Japan",
+        "s1": 0,
+        "s2": 4,
+        "date": "20 Jun"
       }
     ],
     "G": [
@@ -370,6 +451,13 @@
         "s1": 2,
         "s2": 2,
         "date": "15 Jun"
+      },
+      {
+        "t1": "Belgium",
+        "t2": "Iran",
+        "s1": 0,
+        "s2": 0,
+        "date": "21 Jun"
       }
     ],
     "H": [
@@ -386,6 +474,13 @@
         "s1": 1,
         "s2": 1,
         "date": "15 Jun"
+      },
+      {
+        "t1": "Spain",
+        "t2": "Saudi Arabia",
+        "s1": 4,
+        "s2": 0,
+        "date": "21 Jun"
       }
     ],
     "I": [
@@ -482,6 +577,15 @@
     "Switzerland vs Bosnia & Herzegovina on 18 Jun",
     "Mexico vs South Korea on 18 Jun",
     "Canada vs Qatar on 18 Jun",
-    "United States vs Australia on 19 Jun"
+    "United States vs Australia on 19 Jun",
+    "Scotland vs Morocco on 19 Jun",
+    "Brazil vs Haiti on 19 Jun",
+    "Turkey vs Paraguay on 19 Jun",
+    "Germany vs Ivory Coast on 20 Jun",
+    "Ecuador vs Curaçao on 20 Jun",
+    "Netherlands vs Sweden on 20 Jun",
+    "Tunisia vs Japan on 20 Jun",
+    "Belgium vs Iran on 21 Jun",
+    "Spain vs Saudi Arabia on 21 Jun"
   ]
 }
