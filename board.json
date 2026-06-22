@@ -458,6 +458,13 @@
         "s1": 0,
         "s2": 0,
         "date": "21 Jun"
+      },
+      {
+        "t1": "New Zealand",
+        "t2": "Egypt",
+        "s1": 1,
+        "s2": 3,
+        "date": "21 Jun"
       }
     ],
     "H": [
@@ -480,6 +487,13 @@
         "t2": "Saudi Arabia",
         "s1": 4,
         "s2": 0,
+        "date": "21 Jun"
+      },
+      {
+        "t1": "Uruguay",
+        "t2": "Cape Verde",
+        "s1": 2,
+        "s2": 2,
         "date": "21 Jun"
       }
     ],
@@ -586,6 +600,8 @@
     "Netherlands vs Sweden on 20 Jun",
     "Tunisia vs Japan on 20 Jun",
     "Belgium vs Iran on 21 Jun",
-    "Spain vs Saudi Arabia on 21 Jun"
+    "Spain vs Saudi Arabia on 21 Jun",
+    "New Zealand vs Egypt on 21 Jun",
+    "Uruguay vs Cape Verde on 21 Jun"
   ]
 }
