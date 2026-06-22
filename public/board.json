@@ -527,6 +527,13 @@
         "s1": 3,
         "s2": 1,
         "date": "17 Jun"
+      },
+      {
+        "t1": "Argentina",
+        "t2": "Austria",
+        "s1": 2,
+        "s2": 0,
+        "date": "22 Jun"
       }
     ],
     "K": [
@@ -602,6 +609,7 @@
     "Belgium vs Iran on 21 Jun",
     "Spain vs Saudi Arabia on 21 Jun",
     "New Zealand vs Egypt on 21 Jun",
-    "Uruguay vs Cape Verde on 21 Jun"
+    "Uruguay vs Cape Verde on 21 Jun",
+    "Argentina vs Austria on 22 Jun"
   ]
 }
