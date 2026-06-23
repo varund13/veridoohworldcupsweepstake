@@ -63,6 +63,10 @@
     "Tunisia": {
       "person": "Jade Nguyen",
       "when": "20 Jun"
+    },
+    "Jordan": {
+      "person": "Puskar",
+      "when": "22 Jun"
     }
   },
   "revealed": {},
@@ -236,6 +240,12 @@
   },
   "log": [
     {
+      "country": "Jordan",
+      "person": "Puskar",
+      "when": "22 Jun",
+      "flag": "🇯🇴"
+    },
+    {
       "country": "Tunisia",
       "person": "Jade Nguyen",
       "when": "20 Jun",
@@ -255,7 +265,7 @@
     }
   ],
   "champion": null,
-  "exportedAt": "2026-06-21T23:38:12.129Z",
+  "exportedAt": "2026-06-23T23:42:38.463Z",
   "match_results": {
     "A": [
       {
@@ -553,7 +563,7 @@
         "t1": "Jordan",
         "t2": "Algeria",
         "s1": 1,
-        "s2": 1,
+        "s2": 2,
         "date": "22 Jun"
       }
     ],
@@ -571,6 +581,13 @@
         "s1": 1,
         "s2": 3,
         "date": "17 Jun"
+      },
+      {
+        "t1": "Portugal",
+        "t2": "Uzbekistan",
+        "s1": 5,
+        "s2": 0,
+        "date": "23 Jun"
       }
     ],
     "L": [
@@ -587,15 +604,13 @@
         "s1": 0,
         "s2": 0,
         "date": "17 Jun"
-      }
-    ],
-    "J": [
+      },
       {
-        "t1": "Jordan",
-        "t2": "Algeria",
-        "s1": 1,
-        "s2": 2,
-        "date": "22 Jun"
+        "t1": "England",
+        "t2": "Ghana",
+        "s1": 0,
+        "s2": 0,
+        "date": "23 Jun"
       }
     ]
   },
@@ -643,6 +658,8 @@
     "Argentina vs Austria on 22 Jun",
     "France vs Iraq on 22 Jun",
     "Norway vs Senegal on 22 Jun",
-    "Jordan vs Algeria on 22 Jun"
+    "Jordan vs Algeria on 22 Jun",
+    "Portugal vs Uzbekistan on 23 Jun",
+    "England vs Ghana on 23 Jun"
   ]
 }
