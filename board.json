@@ -511,6 +511,20 @@
         "s1": 1,
         "s2": 2,
         "date": "16 Jun"
+      },
+      {
+        "t1": "France",
+        "t2": "Iraq",
+        "s1": 3,
+        "s2": 0,
+        "date": "22 Jun"
+      },
+      {
+        "t1": "Norway",
+        "t2": "Senegal",
+        "s1": 3,
+        "s2": 2,
+        "date": "22 Jun"
       }
     ],
     "J": [
@@ -533,6 +547,13 @@
         "t2": "Austria",
         "s1": 2,
         "s2": 0,
+        "date": "22 Jun"
+      },
+      {
+        "t1": "Jordan",
+        "t2": "Algeria",
+        "s1": 1,
+        "s2": 1,
         "date": "22 Jun"
       }
     ],
@@ -610,6 +631,9 @@
     "Spain vs Saudi Arabia on 21 Jun",
     "New Zealand vs Egypt on 21 Jun",
     "Uruguay vs Cape Verde on 21 Jun",
-    "Argentina vs Austria on 22 Jun"
+    "Argentina vs Austria on 22 Jun",
+    "France vs Iraq on 22 Jun",
+    "Norway vs Senegal on 22 Jun",
+    "Jordan vs Algeria on 22 Jun"
   ]
 }
