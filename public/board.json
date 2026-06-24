@@ -67,6 +67,10 @@
     "Jordan": {
       "person": "Puskar",
       "when": "22 Jun"
+    },
+    "Panama": {
+      "person": "Justin Nhan",
+      "when": "23 Jun"
     }
   },
   "revealed": {},
@@ -240,6 +244,12 @@
   },
   "log": [
     {
+      "country": "Panama",
+      "person": "Justin Nhan",
+      "when": "23 Jun",
+      "flag": "🇵🇦"
+    },
+    {
       "country": "Jordan",
       "person": "Puskar",
       "when": "22 Jun",
@@ -265,7 +275,7 @@
     }
   ],
   "champion": null,
-  "exportedAt": "2026-06-23T23:42:38.463Z",
+  "exportedAt": "2026-06-24T04:44:44.801Z",
   "match_results": {
     "A": [
       {
@@ -588,6 +598,13 @@
         "s1": 5,
         "s2": 0,
         "date": "23 Jun"
+      },
+      {
+        "t1": "Colombia",
+        "t2": "DR Congo",
+        "s1": 1,
+        "s2": 0,
+        "date": "23 Jun"
       }
     ],
     "L": [
@@ -601,7 +618,7 @@
       {
         "t1": "Ghana",
         "t2": "Panama",
-        "s1": 0,
+        "s1": 1,
         "s2": 0,
         "date": "17 Jun"
       },
@@ -610,6 +627,13 @@
         "t2": "Ghana",
         "s1": 0,
         "s2": 0,
+        "date": "23 Jun"
+      },
+      {
+        "t1": "Panama",
+        "t2": "Croatia",
+        "s1": 0,
+        "s2": 1,
         "date": "23 Jun"
       }
     ]
@@ -660,6 +684,8 @@
     "Norway vs Senegal on 22 Jun",
     "Jordan vs Algeria on 22 Jun",
     "Portugal vs Uzbekistan on 23 Jun",
-    "England vs Ghana on 23 Jun"
+    "England vs Ghana on 23 Jun",
+    "Colombia vs DR Congo on 23 Jun",
+    "Panama vs Croatia on 23 Jun"
   ]
 }
