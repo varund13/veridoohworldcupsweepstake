@@ -71,6 +71,14 @@
     "Panama": {
       "person": "Justin Nhan",
       "when": "23 Jun"
+    },
+    "Czech Republic": {
+      "person": "Zerui Song",
+      "when": "25 Jun"
+    },
+    "Qatar": {
+      "person": "Akshat Bansal",
+      "when": "25 Jun"
     }
   },
   "revealed": {},
@@ -244,6 +252,18 @@
   },
   "log": [
     {
+      "country": "Qatar",
+      "person": "Akshat Bansal",
+      "when": "25 Jun",
+      "flag": "🇶🇦"
+    },
+    {
+      "country": "Czech Republic",
+      "person": "Zerui Song",
+      "when": "25 Jun",
+      "flag": "🇨🇿"
+    },
+    {
       "country": "Panama",
       "person": "Justin Nhan",
       "when": "23 Jun",
@@ -275,7 +295,7 @@
     }
   ],
   "champion": null,
-  "exportedAt": "2026-06-24T04:44:44.801Z",
+  "exportedAt": "2026-06-25T05:22:48.759Z",
   "match_results": {
     "A": [
       {
@@ -305,6 +325,20 @@
         "s1": 1,
         "s2": 0,
         "date": "18 Jun"
+      },
+      {
+        "t1": "Czech Republic",
+        "t2": "Mexico",
+        "s1": 0,
+        "s2": 3,
+        "date": "24 Jun"
+      },
+      {
+        "t1": "South Africa",
+        "t2": "South Korea",
+        "s1": 1,
+        "s2": 0,
+        "date": "24 Jun"
       }
     ],
     "B": [
@@ -335,6 +369,20 @@
         "s1": 6,
         "s2": 0,
         "date": "18 Jun"
+      },
+      {
+        "t1": "Switzerland",
+        "t2": "Canada",
+        "s1": 2,
+        "s2": 1,
+        "date": "24 Jun"
+      },
+      {
+        "t1": "Bosnia & Herzegovina",
+        "t2": "Qatar",
+        "s1": 3,
+        "s2": 1,
+        "date": "24 Jun"
       }
     ],
     "C": [
@@ -365,6 +413,20 @@
         "s1": 3,
         "s2": 0,
         "date": "19 Jun"
+      },
+      {
+        "t1": "Brazil",
+        "t2": "Scotland",
+        "s1": 3,
+        "s2": 0,
+        "date": "24 Jun"
+      },
+      {
+        "t1": "Morocco",
+        "t2": "Haiti",
+        "s1": 4,
+        "s2": 2,
+        "date": "24 Jun"
       }
     ],
     "D": [
@@ -686,6 +748,12 @@
     "Portugal vs Uzbekistan on 23 Jun",
     "England vs Ghana on 23 Jun",
     "Colombia vs DR Congo on 23 Jun",
-    "Panama vs Croatia on 23 Jun"
+    "Panama vs Croatia on 23 Jun",
+    "Czech Republic vs Mexico on 24 Jun",
+    "South Africa vs South Korea on 24 Jun",
+    "Switzerland vs Canada on 24 Jun",
+    "Bosnia & Herzegovina vs Qatar on 24 Jun",
+    "Brazil vs Scotland on 24 Jun",
+    "Morocco vs Haiti on 24 Jun"
   ]
 }
