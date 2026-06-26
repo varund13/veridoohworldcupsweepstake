@@ -79,6 +79,10 @@
     "Qatar": {
       "person": "Akshat Bansal",
       "when": "25 Jun"
+    },
+    "Curaçao": {
+      "person": "Jon Kemp",
+      "when": "26 Jun"
     }
   },
   "revealed": {},
@@ -252,6 +256,12 @@
   },
   "log": [
     {
+      "country": "Curaçao",
+      "person": "Jon Kemp",
+      "when": "26 Jun",
+      "flag": "🇨🇼"
+    },
+    {
       "country": "Qatar",
       "person": "Akshat Bansal",
       "when": "25 Jun",
@@ -295,7 +305,7 @@
     }
   ],
   "champion": null,
-  "exportedAt": "2026-06-25T05:22:48.759Z",
+  "exportedAt": "2026-06-26T00:26:40.662Z",
   "match_results": {
     "A": [
       {
@@ -487,6 +497,20 @@
         "s1": 0,
         "s2": 0,
         "date": "20 Jun"
+      },
+      {
+        "t1": "Ecuador",
+        "t2": "Germany",
+        "s1": 2,
+        "s2": 1,
+        "date": "25 Jun"
+      },
+      {
+        "t1": "Curaçao",
+        "t2": "Ivory Coast",
+        "s1": 0,
+        "s2": 2,
+        "date": "25 Jun"
       }
     ],
     "F": [
@@ -754,6 +778,8 @@
     "Switzerland vs Canada on 24 Jun",
     "Bosnia & Herzegovina vs Qatar on 24 Jun",
     "Brazil vs Scotland on 24 Jun",
-    "Morocco vs Haiti on 24 Jun"
+    "Morocco vs Haiti on 24 Jun",
+    "Ecuador vs Germany on 25 Jun",
+    "Curaçao vs Ivory Coast on 25 Jun"
   ]
 }
