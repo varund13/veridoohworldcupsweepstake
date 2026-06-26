@@ -63,6 +63,26 @@
     "Tunisia": {
       "person": "Jade Nguyen",
       "when": "20 Jun"
+    },
+    "Jordan": {
+      "person": "Puskar",
+      "when": "22 Jun"
+    },
+    "Panama": {
+      "person": "Justin Nhan",
+      "when": "23 Jun"
+    },
+    "Czech Republic": {
+      "person": "Zerui Song",
+      "when": "25 Jun"
+    },
+    "Qatar": {
+      "person": "Akshat Bansal",
+      "when": "25 Jun"
+    },
+    "Curaçao": {
+      "person": "Jon Kemp",
+      "when": "26 Jun"
     }
   },
   "revealed": {},
@@ -236,6 +256,36 @@
   },
   "log": [
     {
+      "country": "Curaçao",
+      "person": "Jon Kemp",
+      "when": "26 Jun",
+      "flag": "🇨🇼"
+    },
+    {
+      "country": "Qatar",
+      "person": "Akshat Bansal",
+      "when": "25 Jun",
+      "flag": "🇶🇦"
+    },
+    {
+      "country": "Czech Republic",
+      "person": "Zerui Song",
+      "when": "25 Jun",
+      "flag": "🇨🇿"
+    },
+    {
+      "country": "Panama",
+      "person": "Justin Nhan",
+      "when": "23 Jun",
+      "flag": "🇵🇦"
+    },
+    {
+      "country": "Jordan",
+      "person": "Puskar",
+      "when": "22 Jun",
+      "flag": "🇯🇴"
+    },
+    {
       "country": "Tunisia",
       "person": "Jade Nguyen",
       "when": "20 Jun",
@@ -255,7 +305,7 @@
     }
   ],
   "champion": null,
-  "exportedAt": "2026-06-21T23:38:12.129Z",
+  "exportedAt": "2026-06-26T00:26:40.662Z",
   "match_results": {
     "A": [
       {
@@ -285,6 +335,20 @@
         "s1": 1,
         "s2": 0,
         "date": "18 Jun"
+      },
+      {
+        "t1": "Czech Republic",
+        "t2": "Mexico",
+        "s1": 0,
+        "s2": 3,
+        "date": "24 Jun"
+      },
+      {
+        "t1": "South Africa",
+        "t2": "South Korea",
+        "s1": 1,
+        "s2": 0,
+        "date": "24 Jun"
       }
     ],
     "B": [
@@ -315,6 +379,20 @@
         "s1": 6,
         "s2": 0,
         "date": "18 Jun"
+      },
+      {
+        "t1": "Switzerland",
+        "t2": "Canada",
+        "s1": 2,
+        "s2": 1,
+        "date": "24 Jun"
+      },
+      {
+        "t1": "Bosnia & Herzegovina",
+        "t2": "Qatar",
+        "s1": 3,
+        "s2": 1,
+        "date": "24 Jun"
       }
     ],
     "C": [
@@ -345,6 +423,20 @@
         "s1": 3,
         "s2": 0,
         "date": "19 Jun"
+      },
+      {
+        "t1": "Brazil",
+        "t2": "Scotland",
+        "s1": 3,
+        "s2": 0,
+        "date": "24 Jun"
+      },
+      {
+        "t1": "Morocco",
+        "t2": "Haiti",
+        "s1": 4,
+        "s2": 2,
+        "date": "24 Jun"
       }
     ],
     "D": [
@@ -405,6 +497,20 @@
         "s1": 0,
         "s2": 0,
         "date": "20 Jun"
+      },
+      {
+        "t1": "Ecuador",
+        "t2": "Germany",
+        "s1": 2,
+        "s2": 1,
+        "date": "25 Jun"
+      },
+      {
+        "t1": "Curaçao",
+        "t2": "Ivory Coast",
+        "s1": 0,
+        "s2": 2,
+        "date": "25 Jun"
       }
     ],
     "F": [
@@ -553,7 +659,7 @@
         "t1": "Jordan",
         "t2": "Algeria",
         "s1": 1,
-        "s2": 1,
+        "s2": 2,
         "date": "22 Jun"
       }
     ],
@@ -571,6 +677,20 @@
         "s1": 1,
         "s2": 3,
         "date": "17 Jun"
+      },
+      {
+        "t1": "Portugal",
+        "t2": "Uzbekistan",
+        "s1": 5,
+        "s2": 0,
+        "date": "23 Jun"
+      },
+      {
+        "t1": "Colombia",
+        "t2": "DR Congo",
+        "s1": 1,
+        "s2": 0,
+        "date": "23 Jun"
       }
     ],
     "L": [
@@ -584,18 +704,23 @@
       {
         "t1": "Ghana",
         "t2": "Panama",
-        "s1": 0,
+        "s1": 1,
         "s2": 0,
         "date": "17 Jun"
-      }
-    ],
-    "J": [
+      },
       {
-        "t1": "Jordan",
-        "t2": "Algeria",
-        "s1": 1,
-        "s2": 2,
-        "date": "22 Jun"
+        "t1": "England",
+        "t2": "Ghana",
+        "s1": 0,
+        "s2": 0,
+        "date": "23 Jun"
+      },
+      {
+        "t1": "Panama",
+        "t2": "Croatia",
+        "s1": 0,
+        "s2": 1,
+        "date": "23 Jun"
       }
     ]
   },
@@ -643,6 +768,18 @@
     "Argentina vs Austria on 22 Jun",
     "France vs Iraq on 22 Jun",
     "Norway vs Senegal on 22 Jun",
-    "Jordan vs Algeria on 22 Jun"
+    "Jordan vs Algeria on 22 Jun",
+    "Portugal vs Uzbekistan on 23 Jun",
+    "England vs Ghana on 23 Jun",
+    "Colombia vs DR Congo on 23 Jun",
+    "Panama vs Croatia on 23 Jun",
+    "Czech Republic vs Mexico on 24 Jun",
+    "South Africa vs South Korea on 24 Jun",
+    "Switzerland vs Canada on 24 Jun",
+    "Bosnia & Herzegovina vs Qatar on 24 Jun",
+    "Brazil vs Scotland on 24 Jun",
+    "Morocco vs Haiti on 24 Jun",
+    "Ecuador vs Germany on 25 Jun",
+    "Curaçao vs Ivory Coast on 25 Jun"
   ]
 }
