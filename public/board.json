@@ -541,6 +541,20 @@
         "s1": 0,
         "s2": 4,
         "date": "20 Jun"
+      },
+      {
+        "t1": "Japan",
+        "t2": "Sweden",
+        "s1": 1,
+        "s2": 1,
+        "date": "25 Jun"
+      },
+      {
+        "t1": "Netherlands",
+        "t2": "Tunisia",
+        "s1": 3,
+        "s2": 1,
+        "date": "25 Jun"
       }
     ],
     "G": [
@@ -780,6 +794,8 @@
     "Brazil vs Scotland on 24 Jun",
     "Morocco vs Haiti on 24 Jun",
     "Ecuador vs Germany on 25 Jun",
-    "Curaçao vs Ivory Coast on 25 Jun"
+    "Curaçao vs Ivory Coast on 25 Jun",
+    "Japan vs Sweden on 25 Jun",
+    "Netherlands vs Tunisia on 25 Jun"
   ]
 }
