@@ -83,6 +83,10 @@
     "Curaçao": {
       "person": "Jon Kemp",
       "when": "26 Jun"
+    },
+    "Iraq": {
+      "person": "Bess Eshraghi",
+      "when": "26 Jun"
     }
   },
   "revealed": {},
@@ -256,6 +260,12 @@
   },
   "log": [
     {
+      "country": "Iraq",
+      "person": "Bess Eshraghi",
+      "when": "26 Jun",
+      "flag": "🇮🇶"
+    },
+    {
       "country": "Curaçao",
       "person": "Jon Kemp",
       "when": "26 Jun",
@@ -305,7 +315,7 @@
     }
   ],
   "champion": null,
-  "exportedAt": "2026-06-26T00:26:40.662Z",
+  "exportedAt": "2026-06-27T01:02:01.430Z",
   "match_results": {
     "A": [
       {
@@ -467,6 +477,20 @@
         "s1": 0,
         "s2": 1,
         "date": "19 Jun"
+      },
+      {
+        "t1": "Turkey",
+        "t2": "United States",
+        "s1": 3,
+        "s2": 2,
+        "date": "25 Jun"
+      },
+      {
+        "t1": "Paraguay",
+        "t2": "Australia",
+        "s1": 0,
+        "s2": 0,
+        "date": "25 Jun"
       }
     ],
     "E": [
@@ -645,6 +669,20 @@
         "s1": 3,
         "s2": 2,
         "date": "22 Jun"
+      },
+      {
+        "t1": "Norway",
+        "t2": "France",
+        "s1": 1,
+        "s2": 4,
+        "date": "26 Jun"
+      },
+      {
+        "t1": "Senegal",
+        "t2": "Iraq",
+        "s1": 5,
+        "s2": 0,
+        "date": "26 Jun"
       }
     ],
     "J": [
@@ -796,6 +834,10 @@
     "Ecuador vs Germany on 25 Jun",
     "Curaçao vs Ivory Coast on 25 Jun",
     "Japan vs Sweden on 25 Jun",
-    "Netherlands vs Tunisia on 25 Jun"
+    "Netherlands vs Tunisia on 25 Jun",
+    "Turkey vs United States on 25 Jun",
+    "Paraguay vs Australia on 25 Jun",
+    "Norway vs France on 26 Jun",
+    "Senegal vs Iraq on 26 Jun"
   ]
 }
