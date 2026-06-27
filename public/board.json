@@ -831,6 +831,20 @@
         "s1": 0,
         "s2": 1,
         "date": "23 Jun"
+      },
+      {
+        "t1": "Panama",
+        "t2": "England",
+        "s1": 0,
+        "s2": 2,
+        "date": "27 Jun"
+      },
+      {
+        "t1": "Croatia",
+        "t2": "Ghana",
+        "s1": 2,
+        "s2": 1,
+        "date": "27 Jun"
       }
     ]
   },
@@ -900,6 +914,8 @@
     "Egypt vs Iran on 26 Jun",
     "New Zealand vs Belgium on 26 Jun",
     "Uruguay vs Spain on 26 Jun",
-    "Cape Verde vs Saudi Arabia on 26 Jun"
+    "Cape Verde vs Saudi Arabia on 26 Jun",
+    "Panama vs England on 27 Jun",
+    "Croatia vs Ghana on 27 Jun"
   ]
 }
