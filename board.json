@@ -87,6 +87,18 @@
     "Iraq": {
       "person": "Bess Eshraghi",
       "when": "26 Jun"
+    },
+    "New Zealand": {
+      "person": "Thanh Dao",
+      "when": "26 Jun"
+    },
+    "Saudi Arabia": {
+      "person": "Mo Moubayed",
+      "when": "26 Jun"
+    },
+    "Uruguay": {
+      "person": "Varun Deshpande",
+      "when": "26 Jun"
     }
   },
   "revealed": {},
@@ -260,6 +272,24 @@
   },
   "log": [
     {
+      "country": "Uruguay",
+      "person": "Varun Deshpande",
+      "when": "26 Jun",
+      "flag": "🇺🇾"
+    },
+    {
+      "country": "Saudi Arabia",
+      "person": "Mo Moubayed",
+      "when": "26 Jun",
+      "flag": "🇸🇦"
+    },
+    {
+      "country": "New Zealand",
+      "person": "Thanh Dao",
+      "when": "26 Jun",
+      "flag": "🇳🇿"
+    },
+    {
       "country": "Iraq",
       "person": "Bess Eshraghi",
       "when": "26 Jun",
@@ -315,7 +345,7 @@
     }
   ],
   "champion": null,
-  "exportedAt": "2026-06-27T01:02:01.430Z",
+  "exportedAt": "2026-06-27T04:33:52.570Z",
   "match_results": {
     "A": [
       {
@@ -609,6 +639,20 @@
         "s1": 1,
         "s2": 3,
         "date": "21 Jun"
+      },
+      {
+        "t1": "Egypt",
+        "t2": "Iran",
+        "s1": 1,
+        "s2": 1,
+        "date": "26 Jun"
+      },
+      {
+        "t1": "New Zealand",
+        "t2": "Belgium",
+        "s1": 0,
+        "s2": 3,
+        "date": "26 Jun"
       }
     ],
     "H": [
@@ -639,6 +683,20 @@
         "s1": 2,
         "s2": 2,
         "date": "21 Jun"
+      },
+      {
+        "t1": "Uruguay",
+        "t2": "Spain",
+        "s1": 0,
+        "s2": 1,
+        "date": "26 Jun"
+      },
+      {
+        "t1": "Cape Verde",
+        "t2": "Saudi Arabia",
+        "s1": 0,
+        "s2": 0,
+        "date": "26 Jun"
       }
     ],
     "I": [
@@ -838,6 +896,10 @@
     "Turkey vs United States on 25 Jun",
     "Paraguay vs Australia on 25 Jun",
     "Norway vs France on 26 Jun",
-    "Senegal vs Iraq on 26 Jun"
+    "Senegal vs Iraq on 26 Jun",
+    "Egypt vs Iran on 26 Jun",
+    "New Zealand vs Belgium on 26 Jun",
+    "Uruguay vs Spain on 26 Jun",
+    "Cape Verde vs Saudi Arabia on 26 Jun"
   ]
 }
