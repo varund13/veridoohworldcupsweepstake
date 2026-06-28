@@ -99,6 +99,22 @@
     "Uruguay": {
       "person": "Varun Deshpande",
       "when": "26 Jun"
+    },
+    "Uzbekistan": {
+      "person": "Daniela Castano",
+      "when": "28 Jun"
+    },
+    "South Korea": {
+      "person": "Son Nguyen",
+      "when": "28 Jun"
+    },
+    "Scotland": {
+      "person": "The Anh Nguyen",
+      "when": "28 Jun"
+    },
+    "Iran": {
+      "person": "Zehua Liu",
+      "when": "28 Jun"
     }
   },
   "revealed": {},
@@ -272,6 +288,30 @@
   },
   "log": [
     {
+      "country": "Iran",
+      "person": "Zehua Liu",
+      "when": "28 Jun",
+      "flag": "🇮🇷"
+    },
+    {
+      "country": "Scotland",
+      "person": "The Anh Nguyen",
+      "when": "28 Jun",
+      "flag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿"
+    },
+    {
+      "country": "South Korea",
+      "person": "Son Nguyen",
+      "when": "28 Jun",
+      "flag": "🇰🇷"
+    },
+    {
+      "country": "Uzbekistan",
+      "person": "Daniela Castano",
+      "when": "28 Jun",
+      "flag": "🇺🇿"
+    },
+    {
       "country": "Uruguay",
       "person": "Varun Deshpande",
       "when": "26 Jun",
@@ -345,7 +385,7 @@
     }
   ],
   "champion": null,
-  "exportedAt": "2026-06-27T04:33:52.570Z",
+  "exportedAt": "2026-06-28T04:39:49.733Z",
   "match_results": {
     "A": [
       {
@@ -771,6 +811,20 @@
         "s1": 1,
         "s2": 2,
         "date": "22 Jun"
+      },
+      {
+        "t1": "Jordan",
+        "t2": "Argentina",
+        "s1": 1,
+        "s2": 3,
+        "date": "27 Jun"
+      },
+      {
+        "t1": "Algeria",
+        "t2": "Austria",
+        "s1": 3,
+        "s2": 3,
+        "date": "27 Jun"
       }
     ],
     "K": [
@@ -801,6 +855,20 @@
         "s1": 1,
         "s2": 0,
         "date": "23 Jun"
+      },
+      {
+        "t1": "Colombia",
+        "t2": "Portugal",
+        "s1": 0,
+        "s2": 0,
+        "date": "27 Jun"
+      },
+      {
+        "t1": "DR Congo",
+        "t2": "Uzbekistan",
+        "s1": 3,
+        "s2": 1,
+        "date": "27 Jun"
       }
     ],
     "L": [
@@ -916,6 +984,10 @@
     "Uruguay vs Spain on 26 Jun",
     "Cape Verde vs Saudi Arabia on 26 Jun",
     "Panama vs England on 27 Jun",
-    "Croatia vs Ghana on 27 Jun"
+    "Croatia vs Ghana on 27 Jun",
+    "Jordan vs Argentina on 27 Jun",
+    "Algeria vs Austria on 27 Jun",
+    "Colombia vs Portugal on 27 Jun",
+    "DR Congo vs Uzbekistan on 27 Jun"
   ]
 }
