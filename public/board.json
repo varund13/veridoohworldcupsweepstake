@@ -119,6 +119,14 @@
     "South Africa": {
       "person": "Drew Weicker",
       "when": "28 Jun"
+    },
+    "Japan": {
+      "person": "Jeremy Yang",
+      "when": "29 Jun"
+    },
+    "Germany": {
+      "person": "Minh Dao",
+      "when": "29 Jun"
     }
   },
   "revealed": {},
@@ -132,12 +140,12 @@
       {
         "a": "Brazil",
         "b": "Japan",
-        "w": null
+        "w": "Brazil"
       },
       {
         "a": "Germany",
         "b": "Paraguay",
-        "w": null
+        "w": "Paraguay"
       },
       {
         "a": "Netherlands",
@@ -208,11 +216,11 @@
     "r16": [
       {
         "a": "Canada",
-        "b": null,
+        "b": "Brazil",
         "w": null
       },
       {
-        "a": null,
+        "a": "Paraguay",
         "b": null,
         "w": null
       },
@@ -291,6 +299,18 @@
     "champion": null
   },
   "log": [
+    {
+      "country": "Germany",
+      "person": "Minh Dao",
+      "when": "29 Jun",
+      "flag": "🇩🇪"
+    },
+    {
+      "country": "Japan",
+      "person": "Jeremy Yang",
+      "when": "29 Jun",
+      "flag": "🇯🇵"
+    },
     {
       "country": "South Africa",
       "person": "Drew Weicker",
@@ -395,7 +415,7 @@
     }
   ],
   "champion": null,
-  "exportedAt": "2026-06-28T23:35:52.774Z",
+  "exportedAt": "2026-06-29T23:35:54.266Z",
   "match_results": {
     "A": [
       {
@@ -999,6 +1019,8 @@
     "Algeria vs Austria on 27 Jun",
     "Colombia vs Portugal on 27 Jun",
     "DR Congo vs Uzbekistan on 27 Jun",
-    "Canada vs South Africa on 28 Jun"
+    "Canada vs South Africa on 28 Jun",
+    "Brazil vs Japan on 29 Jun",
+    "Germany vs Paraguay on 29 Jun"
   ]
 }
