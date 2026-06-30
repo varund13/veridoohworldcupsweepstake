@@ -1,0 +1,51 @@
+name: WC26 Sweepstake Tracker
+
+on:
+  schedule:
+    # 3 runs/day during knockout stage (AEST = UTC+10)
+    # 23:30 UTC = 9:30am AEST
+    # 04:30 UTC = 2:30pm AEST
+    # 09:30 UTC = 7:30pm AEST
+    - cron: '30 23 * * *'
+    - cron: '30 4 * * *'
+    - cron: '30 9 * * *'
+  workflow_dispatch:  # Allow manual trigger
+
+permissions:
+  contents: write  # Required to commit board.json
+
+jobs:
+  track:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run tracker
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        run: python scripts/tracker.py
+
+      - name: Commit updated board.json
+        run: |
+          git config user.name "wc26-tracker"
+          git config user.email "tracker@noreply.github.com"
+          git add public/board.json
+          git diff --cached --quiet && echo "No changes" || git commit -m "tracker: $(date -u +%FT%TZ)"
+          git push
+
+      - name: Sync board.json to gh-pages
+        run: |
+          cp public/board.json /tmp/board.json
+          git fetch origin gh-pages
+          git checkout gh-pages
+          cp /tmp/board.json board.json
+          git add board.json
+          git diff --cached --quiet && echo "No changes to gh-pages" || git commit -m "tracker: sync to gh-pages"
+          git push
+          git checkout main

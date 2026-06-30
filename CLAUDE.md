@@ -7,7 +7,8 @@
 Automated World Cup 2026 sweepstake tracker that monitors match results, updates a live bracket, and publishes to GitHub Pages. Sends Slack notifications to the sweepstake group channel and a status DM to Varun on every run.
 
 ## Known constraints
-- git push permanently blocked by egress proxy in remote environment — use GitHub REST API (Contents PUT) for ALL writes to both `main` (public/board.json) and `gh-pages` (board.json at root)
+- NO git in the remote routine at all — git clone/push both blocked by egress proxy. Use GitHub REST API (Contents GET) for reads and GitHub GraphQL API (POST /graphql, createCommitOnBranch mutation) for writes to both `main` (public/board.json) and `gh-pages` (board.json at root)
+- REST API PUT to /repos/.../contents/ is also blocked by egress proxy — GraphQL POST is the only working write path
 - GitHub Pages serves from ROOT of gh-pages branch (not public/)
 - base64: use Python's base64.b64encode, NOT shell `base64 -w 0` (macOS incompatible)
 - Blocked research sources: Wikipedia (403), BBC Sport (anti-bot), Sky Sports (anti-bot), curl to github.io (proxy blocked)
