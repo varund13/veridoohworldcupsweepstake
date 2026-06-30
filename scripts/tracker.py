@@ -2,7 +2,6 @@
 """
 WC26 Sweepstake Tracker — GitHub Actions edition
 Fetches match results from ESPN API, updates board.json, posts to Slack.
-Runs inside GitHub Actions where git push is available.
 """
 
 import json
@@ -10,7 +9,6 @@ import os
 import re
 import sys
 import urllib.request
-import urllib.error
 from datetime import datetime, timezone
 
 BOARD_PATH = "public/board.json"
@@ -18,27 +16,6 @@ SLACK_CHANNEL = "C0B97JGMG1F"
 VARUN_DM = "U0B114QFZMG"
 BOARD_URL = "https://varund13.github.io/veridoohworldcupsweepstake/"
 
-# R32 bracket index map (must match board.json bracket.r32 order)
-R32_MAP = [
-    ("Canada", "South Africa"),
-    ("Brazil", "Japan"),
-    ("Germany", "Paraguay"),
-    ("Netherlands", "Morocco"),
-    ("Ivory Coast", "Norway"),
-    ("France", "Sweden"),
-    ("Mexico", "Ecuador"),
-    ("England", "DR Congo"),
-    ("Belgium", "Senegal"),
-    ("United States", "Bosnia & Herzegovina"),
-    ("Spain", "Austria"),
-    ("Portugal", "Croatia"),
-    ("Switzerland", "Algeria"),
-    ("Australia", "Egypt"),
-    ("Argentina", "Cape Verde"),
-    ("Colombia", "Ghana"),
-]
-
-# Country flags
 FLAGS = {
     "Canada": "🇨🇦", "South Africa": "🇿🇦", "Brazil": "🇧🇷", "Japan": "🇯🇵",
     "Germany": "🇩🇪", "Paraguay": "🇵🇾", "Netherlands": "🇳🇱", "Morocco": "🇲🇦",
@@ -51,15 +28,29 @@ FLAGS = {
     "Colombia": "🇨🇴", "Ghana": "🇬🇭",
 }
 
-# ESPN team name → board.json name (where they differ)
 ESPN_NAME_MAP = {
     "Cote d'Ivoire": "Ivory Coast",
-    "United States": "United States",
     "Bosnia and Herzegovina": "Bosnia & Herzegovina",
     "Democratic Republic of Congo": "DR Congo",
     "Congo DR": "DR Congo",
     "Cabo Verde": "Cape Verde",
 }
+
+ROUND_SLUG_MAP = {
+    "round-of-32": "Round of 32",
+    "round-of-16": "Round of 16",
+    "quarterfinal": "Quarter-final",
+    "semifinal": "Semi-final",
+    "final": "Final",
+}
+
+# Bracket round key → (array key, next array key)
+BRACKET_ROUNDS = [
+    ("r32", "r16"),
+    ("r16", "qf"),
+    ("qf", "sf"),
+    ("sf", "fin"),
+]
 
 
 def flag(country):
@@ -76,8 +67,7 @@ def slack_post(token, channel, text):
     payload = json.dumps({"channel": channel, "text": text}).encode()
     req = urllib.request.Request(
         "https://slack.com/api/chat.postMessage",
-        data=payload,
-        method="POST",
+        data=payload, method="POST",
         headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"},
     )
     with urllib.request.urlopen(req, timeout=10) as r:
@@ -91,23 +81,7 @@ def normalize_name(name):
     return ESPN_NAME_MAP.get(name, name)
 
 
-def get_round_label(name):
-    name = name.lower()
-    if "round of 32" in name or "32" in name:
-        return "Round of 32"
-    if "round of 16" in name or "16" in name:
-        return "Round of 16"
-    if "quarter" in name:
-        return "Quarter-final"
-    if "semi" in name:
-        return "Semi-final"
-    if "final" in name:
-        return "Final"
-    return name.title()
-
-
 def get_espn_results():
-    """Fetch all completed WC2026 matches from ESPN scoreboard."""
     url = "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard"
     try:
         data = fetch_json(url)
@@ -118,132 +92,127 @@ def get_espn_results():
     results = []
     for event in data.get("events", []):
         comp = event.get("competitions", [{}])[0]
-        status = comp.get("status", {}).get("type", {})
-        if status.get("name") != "STATUS_FULL_TIME":
+        if comp.get("status", {}).get("type", {}).get("name") != "STATUS_FULL_TIME":
             continue
 
         competitors = comp.get("competitors", [])
         if len(competitors) < 2:
             continue
 
-        # ESPN returns home/away; find each by homeAway field
         home = next((c for c in competitors if c.get("homeAway") == "home"), competitors[0])
         away = next((c for c in competitors if c.get("homeAway") == "away"), competitors[1])
-
         home_name = normalize_name(home.get("team", {}).get("displayName", ""))
         away_name = normalize_name(away.get("team", {}).get("displayName", ""))
         home_score = int(home.get("score", 0))
         away_score = int(away.get("score", 0))
 
-        # Determine winner (handle penalties)
-        winner = None
         notes = comp.get("notes", [])
         note_text = " ".join(n.get("headline", "") for n in notes).lower()
         aet = "aet" in note_text or "extra time" in note_text
         pens = "penalt" in note_text or "shootout" in note_text
+
         if home_score > away_score:
             winner = home_name
         elif away_score > home_score:
             winner = away_name
         else:
-            # Draw in 90 — check notes for penalty winner
+            winner = None
             for n in notes:
-                hl = n.get("headline", "")
-                m = re.search(r"(\w[\w\s&]+) win[s]? on penalt", hl, re.IGNORECASE)
+                m = re.search(r"([\w][\w\s&]+?) wins? on penalt", n.get("headline", ""), re.IGNORECASE)
                 if m:
-                    pen_winner = normalize_name(m.group(1).strip())
-                    winner = pen_winner
+                    winner = normalize_name(m.group(1).strip())
+                    pens = True
                     break
 
-        # Date from event
-        date_str = event.get("date", "")[:10]  # YYYY-MM-DD
+        season_slug = event.get("season", {}).get("slug", "")
+        round_label = ROUND_SLUG_MAP.get(season_slug, season_slug.replace("-", " ").title())
+
+        date_str = event.get("date", "")[:10]
         try:
             dt = datetime.strptime(date_str, "%Y-%m-%d")
             date_label = dt.strftime("%-d %b")
         except Exception:
             date_label = date_str
 
-        # Round
-        round_name = get_round_label(
-            event.get("season", {}).get("slug", "") + " " +
-            comp.get("type", {}).get("text", "")
-        )
-
-        # Match key
-        match_key = f"{home_name} vs {away_name} on {date_label}"
-
         results.append({
-            "home": home_name,
-            "away": away_name,
-            "home_score": home_score,
-            "away_score": away_score,
+            "home": home_name, "away": away_name,
+            "home_score": home_score, "away_score": away_score,
             "winner": winner,
+            "loser": (away_name if winner == home_name else home_name) if winner else None,
             "date": date_label,
-            "match_key": match_key,
-            "round": round_name,
-            "aet": aet,
-            "pens": pens,
-            "note_text": note_text,
+            "match_key": f"{home_name} vs {away_name} on {date_label}",
+            "round": round_label,
+            "round_slug": season_slug,
+            "aet": aet, "pens": pens,
         })
 
     return results
 
 
-def propagate_bracket(b):
-    """Fill in next-round slots from confirmed winners."""
-    rounds = [("r32", "r16"), ("r16", "qf"), ("qf", "sf")]
-    for from_r, to_r in rounds:
-        src = b[from_r]
-        dst = b[to_r]
-        for i, match in enumerate(src):
-            if not match.get("w"):
-                continue
-            di = i // 2
-            side = "a" if i % 2 == 0 else "b"
-            if dst[di].get(side) is None:
-                dst[di][side] = match["w"]
-    # sf → fin
-    sf = b.get("sf", [])
-    fin = b.get("fin", {})
-    if isinstance(sf, list) and len(sf) >= 2:
-        if sf[0].get("w") and not fin.get("a"):
-            fin["a"] = sf[0]["w"]
-        if sf[1].get("w") and not fin.get("b"):
-            fin["b"] = sf[1]["w"]
-    if isinstance(fin, dict) and fin.get("w") and not b.get("champion"):
-        b["champion"] = fin["w"]
+def find_bracket_slot(bracket, team_a, team_b):
+    """Find which round and index a match belongs to, by team names."""
+    for round_key, _ in BRACKET_ROUNDS:
+        slots = bracket.get(round_key, [])
+        if not isinstance(slots, list):
+            continue
+        for i, slot in enumerate(slots):
+            a, b = slot.get("a"), slot.get("b")
+            if {a, b} == {team_a, team_b}:
+                return round_key, i
+    # Check fin (dict, not list)
+    fin = bracket.get("fin", {})
+    if isinstance(fin, dict) and {fin.get("a"), fin.get("b")} == {team_a, team_b}:
+        return "fin", 0
+    return None, None
 
 
-def build_slack_message(match, board):
-    """Build Slack message for a completed knockout match."""
+def update_bracket_winner(bracket, round_key, idx, winner):
+    """Set winner and propagate to next round's slot."""
+    if round_key == "fin":
+        if not bracket["fin"].get("w"):
+            bracket["fin"]["w"] = winner
+            bracket["champion"] = winner
+        return
+
+    slots = bracket[round_key]
+    if slots[idx].get("w"):
+        return  # Already set
+    slots[idx]["w"] = winner
+
+    # Propagate to next round
+    next_round = dict(BRACKET_ROUNDS).get(round_key)
+    if not next_round:
+        return
+
+    next_idx = idx // 2
+    side = "a" if idx % 2 == 0 else "b"
+
+    if next_round == "fin":
+        fin = bracket.setdefault("fin", {"a": None, "b": None, "w": None})
+        if not fin.get(side):
+            fin[side] = winner
+    else:
+        next_slots = bracket.setdefault(next_round, [])
+        while len(next_slots) <= next_idx:
+            next_slots.append({"a": None, "b": None, "w": None})
+        if not next_slots[next_idx].get(side):
+            next_slots[next_idx][side] = winner
+
+
+def build_slack_message(match, mapping):
     home, away = match["home"], match["away"]
-    hs, as_ = match["home_score"], match["away_score"]
-    winner = match["winner"]
-    loser = away if winner == home else home
-    date = match["date"]
-    round_label = match["round"]
-    mapping = board.get("mapping", {})
+    winner, loser = match["winner"], match["loser"]
+    score_note = " _(AET — wins on penalties)_" if match["pens"] else (" _(AET)_" if match["aet"] else "")
 
-    score_note = ""
-    if match["pens"]:
-        score_note = " _(AET — wins on penalties)_"
-    elif match["aet"]:
-        score_note = " _(AET)_"
-
-    person_home = mapping.get(home, "?")
-    person_away = mapping.get(away, "?")
-    person_loser = mapping.get(loser, "?")
-
-    lines = [
-        f"{flag(home)} *{home}* {hs}–{as_} *{away}* {flag(away)}{score_note}",
-        f"📅 {date} · {round_label} · #FIFAWorldCup2026",
+    return "\n".join([
+        f"{flag(home)} *{home}* {match['home_score']}–{match['away_score']} *{away}* {flag(away)}{score_note}",
+        f"📅 {match['date']} · {match['round']} · #FIFAWorldCup2026",
         "",
         f"🏆 *{winner}* advance to the next round!",
-        f"💀 {flag(loser)} {loser} are eliminated — tough luck *{person_loser}*! 😢",
-        f"👀 Sweepstake watch: {flag(home)} belongs to *{person_home}* · {flag(away)} belongs to *{person_away}*",
+        f"💀 {flag(loser)} {loser} are eliminated — tough luck *{mapping.get(loser, '?')}*! 😢",
+        f"👀 Sweepstake watch: {flag(home)} belongs to *{mapping.get(home, '?')}* · {flag(away)} belongs to *{mapping.get(away, '?')}*",
         f"<{BOARD_URL}|📊 View the bracket>",
-    ]
-    return "\n".join(lines)
+    ])
 
 
 def main():
@@ -252,15 +221,14 @@ def main():
         print("ERROR: SLACK_BOT_TOKEN not set", file=sys.stderr)
         sys.exit(1)
 
-    # Load board
     with open(BOARD_PATH) as f:
         board = json.load(f)
 
     posted = set(board.get("posted_matches", []))
     bracket = board.setdefault("bracket", {})
     out = board.setdefault("out", {})
+    mapping = board.get("mapping", {})
 
-    # Fetch results
     results = get_espn_results()
     print(f"ESPN: {len(results)} completed matches found")
 
@@ -269,30 +237,28 @@ def main():
     new_eliminations = []
 
     for match in results:
+        winner, loser = match["winner"], match["loser"]
         key = match["match_key"]
-        winner = match["winner"]
-        loser = match["away"] if winner == match["home"] else match["home"]
 
-        # Update bracket for R32 matches
-        for i, (a, b_team) in enumerate(R32_MAP):
-            home_norm = match["home"]
-            away_norm = match["away"]
-            if (a == home_norm and b_team == away_norm) or (a == away_norm and b_team == home_norm):
-                if winner and not bracket.get("r32", [{}] * 16)[i].get("w"):
-                    bracket["r32"][i]["w"] = winner
-                    bracket_updates += 1
-                    print(f"Bracket: r32[{i}].w = {winner}")
-                break
+        # Update bracket
+        round_key, idx = find_bracket_slot(bracket, match["home"], match["away"])
+        if round_key and winner:
+            slots = bracket.get(round_key, [])
+            current_w = slots[idx].get("w") if isinstance(slots, list) else bracket.get(round_key, {}).get("w")
+            if not current_w:
+                update_bracket_winner(bracket, round_key, idx, winner)
+                bracket_updates += 1
+                print(f"Bracket: {round_key}[{idx}].w = {winner}")
 
-        # Knock-out elimination: add loser to out
-        if winner and loser and loser not in out:
+        # Track elimination
+        if loser and loser not in out:
             out[loser] = datetime.now(timezone.utc).strftime("%Y-%m-%d")
             new_eliminations.append(loser)
             print(f"Eliminated: {loser}")
 
-        # Post to Slack if not already posted
-        if key not in posted:
-            msg = build_slack_message(match, board)
+        # Post to Slack
+        if key not in posted and winner:
+            msg = build_slack_message(match, mapping)
             if slack_post(slack_token, SLACK_CHANNEL, msg):
                 posted.add(key)
                 new_posts += 1
@@ -300,10 +266,6 @@ def main():
             else:
                 print(f"Slack post failed: {key}", file=sys.stderr)
 
-    # Propagate bracket winners to next rounds
-    propagate_bracket(bracket)
-
-    # Save updated board
     board["posted_matches"] = sorted(posted)
     board["exportedAt"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z")
 
@@ -312,15 +274,13 @@ def main():
 
     print(f"Done: {new_posts} new posts, {bracket_updates} bracket updates, {len(new_eliminations)} new eliminations")
 
-    # Status DM to Varun
     r32_winners = sum(1 for m in bracket.get("r32", []) if m.get("w"))
-    status_msg = (
+    slack_post(slack_token, VARUN_DM,
         f"✅ WC26 tracker run complete (GitHub Actions) — "
         f"{len(out)} eliminated, {len(posted)} posted matches, "
         f"{new_posts} new results posted, {bracket_updates} bracket positions updated. "
-        f"R32 winners so far: {r32_winners}/16. Board updated."
+        f"R32: {r32_winners}/16 decided. Board updated."
     )
-    slack_post(slack_token, VARUN_DM, status_msg)
 
 
 if __name__ == "__main__":
