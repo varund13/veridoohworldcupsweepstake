@@ -124,6 +124,34 @@ def get_espn_results():
                     pens = True
                     break
 
+        # Build team_id → team_name map
+        team_id_map = {}
+        for c in competitors:
+            team_id_map[c.get("team", {}).get("id")] = normalize_name(c.get("team", {}).get("displayName", ""))
+
+        # Parse goalscorers from details (excluding shootout penalties)
+        goalscorers = []
+        for detail in comp.get("details", []):
+            if not detail.get("scoringPlay"):
+                continue
+            if detail.get("shootout"):
+                continue
+            clock = detail.get("clock", {}).get("displayValue", "")
+            own_goal = detail.get("ownGoal", False)
+            pen = detail.get("penaltyKick", False)
+            athletes = detail.get("athletesInvolved", [])
+            scorer_name = athletes[0].get("shortName", athletes[0].get("displayName", "?")) if athletes else "?"
+            team_id = detail.get("team", {}).get("id")
+            team_name = team_id_map.get(team_id, "")
+            suffix = " (pen)" if pen else (" (og)" if own_goal else "")
+            goalscorers.append({
+                "name": scorer_name,
+                "clock": clock,
+                "team": team_name,
+                "suffix": suffix,
+                "flag": FLAGS.get(team_name, "🏳️"),
+            })
+
         season_slug = event.get("season", {}).get("slug", "")
         round_label = ROUND_SLUG_MAP.get(season_slug, season_slug.replace("-", " ").title())
 
@@ -144,6 +172,7 @@ def get_espn_results():
             "round": round_label,
             "round_slug": season_slug,
             "aet": aet, "pens": pens,
+            "goalscorers": goalscorers,
         })
 
     return results
@@ -204,15 +233,25 @@ def build_slack_message(match, mapping):
     winner, loser = match["winner"], match["loser"]
     score_note = " _(AET — wins on penalties)_" if match["pens"] else (" _(AET)_" if match["aet"] else "")
 
-    return "\n".join([
+    lines = [
         f"{flag(home)} *{home}* {match['home_score']}–{match['away_score']} *{away}* {flag(away)}{score_note}",
         f"📅 {match['date']} · {match['round']} · #FIFAWorldCup2026",
         "",
         f"🏆 *{winner}* advance to the next round!",
         f"💀 {flag(loser)} {loser} are eliminated — tough luck *{mapping.get(loser, '?')}*! 😢",
+    ]
+
+    # Goals line
+    goals = match.get("goalscorers", [])
+    if goals:
+        goal_parts = [f"{g['flag']} {g['name']} {g['clock']}{g['suffix']}" for g in goals]
+        lines.append("⚽ " + " · ".join(goal_parts))
+
+    lines += [
         f"👀 Sweepstake watch: {flag(home)} belongs to *{mapping.get(home, '?')}* · {flag(away)} belongs to *{mapping.get(away, '?')}*",
         f"<{BOARD_URL}|📊 View the bracket>",
-    ])
+    ]
+    return "\n".join(lines)
 
 
 def main():
