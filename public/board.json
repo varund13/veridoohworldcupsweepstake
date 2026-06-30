@@ -20,7 +20,7 @@
     "Paraguay": "Danny Chavez",
     "Turkey": "Luke Kevin",
     "Germany": "Minh Dao",
-    "Curaçao": "Jon Kemp",
+    "Cura\u00e7ao": "Jon Kemp",
     "Ivory Coast": "James Tran",
     "Ecuador": "Ebony Cox",
     "Netherlands": "Prash Menon",
@@ -80,7 +80,7 @@
       "person": "Akshat Bansal",
       "when": "25 Jun"
     },
-    "Curaçao": {
+    "Cura\u00e7ao": {
       "person": "Jon Kemp",
       "when": "26 Jun"
     },
@@ -150,7 +150,7 @@
       {
         "a": "Netherlands",
         "b": "Morocco",
-        "w": null
+        "w": "Morocco"
       },
       {
         "a": "Ivory Coast",
@@ -221,7 +221,7 @@
       },
       {
         "a": "Paraguay",
-        "b": null,
+        "b": "Morocco",
         "w": null
       },
       {
@@ -303,119 +303,119 @@
       "country": "Germany",
       "person": "Minh Dao",
       "when": "29 Jun",
-      "flag": "🇩🇪"
+      "flag": "\ud83c\udde9\ud83c\uddea"
     },
     {
       "country": "Japan",
       "person": "Jeremy Yang",
       "when": "29 Jun",
-      "flag": "🇯🇵"
+      "flag": "\ud83c\uddef\ud83c\uddf5"
     },
     {
       "country": "South Africa",
       "person": "Drew Weicker",
       "when": "28 Jun",
-      "flag": "🇿🇦"
+      "flag": "\ud83c\uddff\ud83c\udde6"
     },
     {
       "country": "Iran",
       "person": "Zehua Liu",
       "when": "28 Jun",
-      "flag": "🇮🇷"
+      "flag": "\ud83c\uddee\ud83c\uddf7"
     },
     {
       "country": "Scotland",
       "person": "The Anh Nguyen",
       "when": "28 Jun",
-      "flag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿"
+      "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc73\udb40\udc63\udb40\udc74\udb40\udc7f"
     },
     {
       "country": "South Korea",
       "person": "Son Nguyen",
       "when": "28 Jun",
-      "flag": "🇰🇷"
+      "flag": "\ud83c\uddf0\ud83c\uddf7"
     },
     {
       "country": "Uzbekistan",
       "person": "Daniela Castano",
       "when": "28 Jun",
-      "flag": "🇺🇿"
+      "flag": "\ud83c\uddfa\ud83c\uddff"
     },
     {
       "country": "Uruguay",
       "person": "Varun Deshpande",
       "when": "26 Jun",
-      "flag": "🇺🇾"
+      "flag": "\ud83c\uddfa\ud83c\uddfe"
     },
     {
       "country": "Saudi Arabia",
       "person": "Mo Moubayed",
       "when": "26 Jun",
-      "flag": "🇸🇦"
+      "flag": "\ud83c\uddf8\ud83c\udde6"
     },
     {
       "country": "New Zealand",
       "person": "Thanh Dao",
       "when": "26 Jun",
-      "flag": "🇳🇿"
+      "flag": "\ud83c\uddf3\ud83c\uddff"
     },
     {
       "country": "Iraq",
       "person": "Bess Eshraghi",
       "when": "26 Jun",
-      "flag": "🇮🇶"
+      "flag": "\ud83c\uddee\ud83c\uddf6"
     },
     {
-      "country": "Curaçao",
+      "country": "Cura\u00e7ao",
       "person": "Jon Kemp",
       "when": "26 Jun",
-      "flag": "🇨🇼"
+      "flag": "\ud83c\udde8\ud83c\uddfc"
     },
     {
       "country": "Qatar",
       "person": "Akshat Bansal",
       "when": "25 Jun",
-      "flag": "🇶🇦"
+      "flag": "\ud83c\uddf6\ud83c\udde6"
     },
     {
       "country": "Czech Republic",
       "person": "Zerui Song",
       "when": "25 Jun",
-      "flag": "🇨🇿"
+      "flag": "\ud83c\udde8\ud83c\uddff"
     },
     {
       "country": "Panama",
       "person": "Justin Nhan",
       "when": "23 Jun",
-      "flag": "🇵🇦"
+      "flag": "\ud83c\uddf5\ud83c\udde6"
     },
     {
       "country": "Jordan",
       "person": "Puskar",
       "when": "22 Jun",
-      "flag": "🇯🇴"
+      "flag": "\ud83c\uddef\ud83c\uddf4"
     },
     {
       "country": "Tunisia",
       "person": "Jade Nguyen",
       "when": "20 Jun",
-      "flag": "🇹🇳"
+      "flag": "\ud83c\uddf9\ud83c\uddf3"
     },
     {
       "country": "Turkey",
       "person": "Luke Kevin",
       "when": "19 Jun",
-      "flag": "🇹🇷"
+      "flag": "\ud83c\uddf9\ud83c\uddf7"
     },
     {
       "country": "Haiti",
       "person": "Quan Do",
       "when": "19 Jun",
-      "flag": "🇭🇹"
+      "flag": "\ud83c\udded\ud83c\uddf9"
     }
   ],
   "champion": null,
-  "exportedAt": "2026-06-29T23:35:54.266Z",
+  "exportedAt": "2026-06-30T10:00:00.000Z",
   "match_results": {
     "A": [
       {
@@ -596,7 +596,7 @@
     "E": [
       {
         "t1": "Germany",
-        "t2": "Curaçao",
+        "t2": "Cura\u00e7ao",
         "s1": 7,
         "s2": 1,
         "date": "14 Jun"
@@ -617,7 +617,7 @@
       },
       {
         "t1": "Ecuador",
-        "t2": "Curaçao",
+        "t2": "Cura\u00e7ao",
         "s1": 0,
         "s2": 0,
         "date": "20 Jun"
@@ -630,7 +630,7 @@
         "date": "25 Jun"
       },
       {
-        "t1": "Curaçao",
+        "t1": "Cura\u00e7ao",
         "t2": "Ivory Coast",
         "s1": 0,
         "s2": 2,
@@ -955,7 +955,7 @@
     "Brazil vs Morocco on 13 Jun",
     "Haiti vs Scotland on 13 Jun",
     "Australia vs Turkey on 14 Jun",
-    "Germany vs Curaçao on 14 Jun",
+    "Germany vs Cura\u00e7ao on 14 Jun",
     "Netherlands vs Japan on 14 Jun",
     "Ivory Coast vs Ecuador on 14 Jun",
     "Sweden vs Tunisia on 14 Jun",
@@ -980,7 +980,7 @@
     "Brazil vs Haiti on 19 Jun",
     "Turkey vs Paraguay on 19 Jun",
     "Germany vs Ivory Coast on 20 Jun",
-    "Ecuador vs Curaçao on 20 Jun",
+    "Ecuador vs Cura\u00e7ao on 20 Jun",
     "Netherlands vs Sweden on 20 Jun",
     "Tunisia vs Japan on 20 Jun",
     "Belgium vs Iran on 21 Jun",
@@ -1002,7 +1002,7 @@
     "Brazil vs Scotland on 24 Jun",
     "Morocco vs Haiti on 24 Jun",
     "Ecuador vs Germany on 25 Jun",
-    "Curaçao vs Ivory Coast on 25 Jun",
+    "Cura\u00e7ao vs Ivory Coast on 25 Jun",
     "Japan vs Sweden on 25 Jun",
     "Netherlands vs Tunisia on 25 Jun",
     "Turkey vs United States on 25 Jun",
@@ -1021,6 +1021,7 @@
     "DR Congo vs Uzbekistan on 27 Jun",
     "Canada vs South Africa on 28 Jun",
     "Brazil vs Japan on 29 Jun",
-    "Germany vs Paraguay on 29 Jun"
+    "Germany vs Paraguay on 29 Jun",
+    "Netherlands vs Morocco on 29 Jun"
   ]
 }
