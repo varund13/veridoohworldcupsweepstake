@@ -92,7 +92,8 @@ def get_espn_results():
     results = []
     for event in data.get("events", []):
         comp = event.get("competitions", [{}])[0]
-        if comp.get("status", {}).get("type", {}).get("name") != "STATUS_FULL_TIME":
+        FINAL_STATUSES = {"STATUS_FULL_TIME", "STATUS_FINAL", "STATUS_FINAL_AET", "STATUS_FINAL_PEN"}
+        if comp.get("status", {}).get("type", {}).get("name") not in FINAL_STATUSES:
             continue
 
         competitors = comp.get("competitors", [])
