@@ -130,7 +130,9 @@
     },
     "Ivory Coast": "2026-06-30",
     "Sweden": "2026-06-30",
-    "Ecuador": "2026-06-30"
+    "Ecuador": "2026-06-30",
+    "DR Congo": "2026-07-02",
+    "Senegal": "2026-07-02"
   },
   "revealed": {},
   "bracket": {
@@ -173,12 +175,12 @@
       {
         "a": "England",
         "b": "DR Congo",
-        "w": null
+        "w": "England"
       },
       {
         "a": "Belgium",
         "b": "Senegal",
-        "w": null
+        "w": "Belgium"
       },
       {
         "a": "United States",
@@ -234,11 +236,11 @@
       },
       {
         "a": "Mexico",
-        "b": null,
+        "b": "England",
         "w": null
       },
       {
-        "a": null,
+        "a": "Belgium",
         "b": null,
         "w": null
       },
@@ -418,7 +420,7 @@
     }
   ],
   "champion": null,
-  "exportedAt": "2026-07-02T01:53:21.000Z",
+  "exportedAt": "2026-07-02T01:54:16.000Z",
   "match_results": {
     "A": [
       {
@@ -957,6 +959,7 @@
     "Austria vs Jordan on 17 Jun",
     "Belgium vs Egypt on 15 Jun",
     "Belgium vs Iran on 21 Jun",
+    "Belgium vs Senegal on 1 Jul",
     "Bosnia & Herzegovina vs Qatar on 24 Jun",
     "Brazil vs Haiti on 19 Jun",
     "Brazil vs Japan on 29 Jun",
@@ -977,6 +980,7 @@
     "Ecuador vs Germany on 25 Jun",
     "Egypt vs Iran on 26 Jun",
     "England vs Croatia on 17 Jun",
+    "England vs DR Congo on 1 Jul",
     "England vs Ghana on 23 Jun",
     "France vs Iraq on 22 Jun",
     "France vs Senegal on 16 Jun",
