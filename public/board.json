@@ -132,7 +132,9 @@
     "Sweden": "2026-06-30",
     "Ecuador": "2026-06-30",
     "DR Congo": "2026-07-02",
-    "Senegal": "2026-07-02"
+    "Senegal": "2026-07-02",
+    "Austria": "2026-07-03",
+    "Croatia": "2026-07-03"
   },
   "revealed": {},
   "bracket": {
@@ -190,12 +192,12 @@
       {
         "a": "Spain",
         "b": "Austria",
-        "w": null
+        "w": "Spain"
       },
       {
         "a": "Portugal",
         "b": "Croatia",
-        "w": null
+        "w": "Portugal"
       },
       {
         "a": "Switzerland",
@@ -245,8 +247,8 @@
         "w": null
       },
       {
-        "a": null,
-        "b": null,
+        "a": "Spain",
+        "b": "Portugal",
         "w": null
       },
       {
@@ -420,7 +422,7 @@
     }
   ],
   "champion": null,
-  "exportedAt": "2026-07-02T11:51:33.000Z",
+  "exportedAt": "2026-07-03T01:11:19.000Z",
   "match_results": {
     "A": [
       {
@@ -1010,6 +1012,7 @@
     "Panama vs Croatia on 23 Jun",
     "Panama vs England on 27 Jun",
     "Paraguay vs Australia on 25 Jun",
+    "Portugal vs Croatia on 2 Jul",
     "Portugal vs DR Congo on 17 Jun",
     "Portugal vs Uzbekistan on 23 Jun",
     "Qatar vs Switzerland on 13 Jun",
@@ -1018,6 +1021,7 @@
     "Senegal vs Iraq on 26 Jun",
     "South Africa vs South Korea on 24 Jun",
     "South Korea vs Czech Republic on 11 Jun",
+    "Spain vs Austria on 2 Jul",
     "Spain vs Cape Verde on 15 Jun",
     "Spain vs Saudi Arabia on 21 Jun",
     "Sweden vs Tunisia on 14 Jun",
