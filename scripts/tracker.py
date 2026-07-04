@@ -31,6 +31,7 @@ FLAGS = {
 ESPN_NAME_MAP = {
     "Cote d'Ivoire": "Ivory Coast",
     "Bosnia and Herzegovina": "Bosnia & Herzegovina",
+    "Bosnia-Herzegovina": "Bosnia & Herzegovina",
     "Democratic Republic of Congo": "DR Congo",
     "Congo DR": "DR Congo",
     "Cabo Verde": "Cape Verde",
