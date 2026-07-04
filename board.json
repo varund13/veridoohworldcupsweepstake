@@ -139,8 +139,8 @@
     "Australia": "2026-07-04",
     "Algeria": "2026-07-04",
     "Bosnia & Herzegovina": "2026-07-04",
-    "Bosnia-Herzegovina": "2026-07-04",
-    "Netherlands": "2026-07-04"
+    "Netherlands": "2026-07-04",
+    "Ghana": "2026-07-04"
   },
   "revealed": {},
   "bracket": {
@@ -223,7 +223,7 @@
       {
         "a": "Colombia",
         "b": "Ghana",
-        "w": null
+        "w": "Colombia"
       }
     ],
     "r16": [
@@ -264,7 +264,7 @@
       },
       {
         "a": "Argentina",
-        "b": null,
+        "b": "Colombia",
         "w": null
       }
     ],
@@ -428,7 +428,7 @@
     }
   ],
   "champion": null,
-  "exportedAt": "2026-07-04T01:29:59.000Z",
+  "exportedAt": "2026-07-04T07:24:49.000Z",
   "match_results": {
     "A": [
       {
@@ -980,6 +980,7 @@
     "Canada vs South Africa on 28 Jun",
     "Cape Verde vs Saudi Arabia on 26 Jun",
     "Colombia vs DR Congo on 23 Jun",
+    "Colombia vs Ghana on 4 Jul",
     "Colombia vs Portugal on 27 Jun",
     "Croatia vs Ghana on 27 Jun",
     "Cura\u00e7ao vs Ivory Coast on 25 Jun",
@@ -1056,6 +1057,7 @@
     "760492",
     "760494",
     "760498",
-    "760499"
+    "760499",
+    "760501"
   ]
 }
