@@ -342,7 +342,7 @@ def main():
     r32_winners = sum(1 for m in bracket.get("r32", []) if m.get("w"))
     slack_post(slack_token, VARUN_DM,
         f"✅ WC26 tracker run complete (GitHub Actions) — "
-        f"{len(out)} eliminated, {len(posted)} posted matches, "
+        f"{len(out)} eliminated, {len(posted_keys)} posted matches, "
         f"{new_posts} new results posted, {bracket_updates} bracket positions updated. "
         f"R32: {r32_winners}/16 decided. Board updated."
     )
