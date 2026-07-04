@@ -39,13 +39,13 @@ jobs:
           git diff --cached --quiet && echo "No changes" || git commit -m "tracker: $(date -u +%FT%TZ)"
           git push
 
-      - name: Sync board.json to gh-pages
+      - name: Sync public/ to gh-pages
         run: |
-          cp public/board.json /tmp/board.json
+          cp -r public /tmp/public
           git fetch origin gh-pages
           git checkout gh-pages
-          cp /tmp/board.json board.json
-          git add board.json
+          cp -r /tmp/public/. .
+          git add -A
           git diff --cached --quiet && echo "No changes to gh-pages" || git commit -m "tracker: sync to gh-pages"
           git push
           git checkout main

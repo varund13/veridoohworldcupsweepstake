@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Veridooh World Cup 2026 — Last Man Standing</title>
+<style>
+  :root{
+    --bg:#0b1020; --panel:#121a32; --panel2:#1a2444; --ink:#eef2ff; --muted:#9aa6c7;
+    --line:#26315a; --gold:#f5c542; --green:#2ecc71; --red:#ff5c6c; --blue:#5b8cff;
+    --shadow:0 10px 30px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+    background:radial-gradient(1200px 600px at 80% -10%,#1b2550 0%,var(--bg) 55%);color:var(--ink);min-height:100vh}
+  header{padding:22px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;
+    border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(11,16,32,.85);backdrop-filter:blur(8px);z-index:20}
+  .brand{display:flex;align-items:center;gap:14px}
+  .logo{width:40px;height:40px;border-radius:9px;background:
+     linear-gradient(135deg,var(--blue),#9bbcff);display:grid;place-items:center;font-size:22px;box-shadow:var(--shadow)}
+  h1{font-size:20px;margin:0;letter-spacing:.3px}
+  .sub{color:var(--muted);font-size:12.5px;margin-top:2px}
+  .stats{display:flex;gap:10px;flex-wrap:wrap}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px 14px;text-align:center;min-width:92px}
+  .stat b{display:block;font-size:22px;line-height:1.1}
+  .stat span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+  .stat.alive b{color:var(--green)} .stat.out b{color:var(--red)} .stat.win b{color:var(--gold)}
+  nav{display:flex;gap:6px;padding:14px 28px 0;flex-wrap:wrap}
+  .tab{padding:9px 16px;border-radius:10px 10px 0 0;cursor:pointer;color:var(--muted);font-weight:600;border:1px solid transparent;border-bottom:none}
+  .tab.active{background:var(--panel);color:var(--ink);border-color:var(--line)}
+  main{padding:18px 28px 60px}
+  .toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 18px}
+  button{font:inherit;cursor:pointer;border-radius:10px;border:1px solid var(--line);background:var(--panel2);color:var(--ink);padding:9px 14px;font-weight:600;transition:.15s}
+  button:hover{border-color:var(--blue)}
+  button.primary{background:linear-gradient(135deg,var(--blue),#3a6bff);border-color:transparent}
+  button.gold{background:linear-gradient(135deg,#f5c542,#e0a800);color:#2a1d00;border-color:transparent}
+  button.danger{background:#2a1320;border-color:#5a2433;color:#ffb3bd}
+  button:disabled{opacity:.4;cursor:not-allowed}
+  .pill{font-size:11px;padding:3px 9px;border-radius:999px;font-weight:700;letter-spacing:.4px}
+  .pill.admin{background:#23351f;color:#9be29b;border:1px solid #2f5a2b}
+  .pill.locked{background:#2a2030;color:#d6b3ff;border:1px solid #4a2f5a}
+  .banner{background:linear-gradient(135deg,#1d2750,#27225a);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin-bottom:18px;color:var(--muted);font-size:13.5px}
+  .winner{background:linear-gradient(135deg,#3a2d00,#5a4500);border:1px solid var(--gold);color:#fff;text-align:center;font-size:18px;font-weight:800;padding:22px}
+  /* Envelope grid */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:16px}
+  .env{position:relative;border-radius:14px;padding:14px 14px 16px;text-align:center;transition:.2s;
+    background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);box-shadow:var(--shadow)}
+  .env .flag{font-size:42px;line-height:1;filter:drop-shadow(0 3px 5px rgba(0,0,0,.45))}
+  .env .country{font-weight:800;font-size:16px;margin-top:8px}
+  .env .grp{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-top:2px}
+  .env .tag{position:absolute;top:10px;right:10px;font-size:10px;font-weight:800;padding:3px 8px;border-radius:999px;letter-spacing:.4px}
+  .env.alive{border-color:#2c5a3a} .env.alive .tag{background:#16341f;color:var(--green)}
+  .env.out{border-color:#5a2433;background:linear-gradient(180deg,#1c1426,#241622)} .env.out .tag{background:#3a1620;color:var(--red)}
+  .env.out .country{color:#ffc9cf}
+  /* Envelope graphic */
+  .envelope{position:relative;height:106px;margin:14px 8px 2px;border-radius:9px;
+    background:linear-gradient(160deg,#f7eecd,#e6d6a1);border:1px solid #c9b375;
+    box-shadow:0 7px 16px rgba(0,0,0,.4),inset 0 1px 0 #fff9;overflow:hidden}
+  .envelope::before{content:"";position:absolute;inset:0;opacity:.5;background:
+    linear-gradient(45deg,transparent 49.3%,#0001 49.6%,#0001 50.4%,transparent 50.7%),
+    linear-gradient(-45deg,transparent 49.3%,#0001 49.6%,#0001 50.4%,transparent 50.7%)}
+  .flap{position:absolute;top:0;left:0;right:0;height:64%;z-index:2;transform-origin:top;transition:.45s ease;
+    background:linear-gradient(160deg,#f1e4b8,#ddca94);clip-path:polygon(0 0,100% 0,50% 100%);filter:drop-shadow(0 2px 2px #0003)}
+  .wax{position:absolute;top:47%;left:50%;transform:translate(-50%,-50%);z-index:3;transition:.3s;
+    width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:900;color:#fff;
+    background:radial-gradient(circle at 35% 30%,#f0716a,#a8322c 72%);border:1px solid #7e221d;
+    box-shadow:0 2px 5px #0007,inset 0 1px 2px #fff7}
+  .letter{position:absolute;left:9px;right:9px;bottom:9px;top:36px;z-index:1;padding:6px;border-radius:5px;
+    background:#fffdf7;color:#191919;box-shadow:0 4px 11px #0009;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+    transform:translateY(112%);transition:.55s cubic-bezier(.2,.8,.2,1)}
+  .letter .nm{font-weight:900;font-size:14px;line-height:1.15}
+  .letter .kod{font-size:10px;color:#b23a4d;font-weight:700}
+  /* opened state — flap folds up, wax pops off, letter slides out */
+  .env.out .flap{transform:rotateX(175deg);background:linear-gradient(160deg,#e7d8a4,#d3be86);z-index:0}
+  .env.out .wax{opacity:0;transform:translate(-50%,-50%) scale(.3)}
+  .env.out .letter{transform:translateY(0)}
+  /* revealed-all mode: open flap to show person, keep green IN border */
+  .env.alive.revealed .flap{transform:rotateX(175deg);background:linear-gradient(160deg,#e7d8a4,#d3be86);z-index:0}
+  .env.alive.revealed .wax{opacity:0;transform:translate(-50%,-50%) scale(.3)}
+  .env.alive.revealed .letter{transform:translateY(0)}
+  .env .ko{margin-top:12px;width:100%}
+  .new-badge{display:inline-block;font-size:9px;font-weight:800;color:#fff;background:#3a6bff;border-radius:999px;padding:1px 7px}
+  /* Envelope toolbar + carousel (coverflow) */
+  .envtools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:2px 0 12px}
+  .seg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .seg button{border:none;border-radius:0;background:var(--panel);padding:8px 14px}
+  .seg button.on{background:var(--blue)}
+  .envcount{color:var(--muted);font-size:13px;font-weight:700}
+  .jump{padding:8px;border-radius:10px;background:#0c1226;color:#eef2ff;border:1px solid var(--line);font:inherit}
+  .carousel{position:relative;height:440px;perspective:1600px;overflow:hidden;margin-top:4px}
+  .cardwrap{position:absolute;top:14px;left:50%;width:248px;margin-left:-124px;
+    transition:transform .55s cubic-bezier(.2,.75,.2,1),opacity .45s;will-change:transform;cursor:pointer}
+  .carousel .env{width:248px;margin:0}
+  .carousel .env .flag{font-size:54px}
+  .carousel .env .envelope{height:128px}
+  .cardwrap.center{cursor:default}
+  .cardwrap.center .env{box-shadow:0 0 0 2px var(--gold),0 26px 60px rgba(0,0,0,.6)}
+  .cnav{position:absolute;top:50%;transform:translateY(-50%);z-index:30;width:48px;height:48px;border-radius:50%;
+    font-size:22px;display:grid;place-items:center;background:var(--panel2);border:1px solid var(--line);color:#fff;cursor:pointer}
+  .cnav:hover{border-color:var(--blue)}
+  .cnav.prev{left:6px} .cnav.next{right:6px}
+  .swipehint{text-align:center;color:var(--muted);font-size:12px;margin-top:2px}
+  /* Groups */
+  .groups{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:18px}
+  .gcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .gcard-head{padding:11px 16px;background:var(--panel2);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+  .gcard-head h3{margin:0;font-size:13px;letter-spacing:.6px;color:var(--blue);text-transform:uppercase;font-weight:800}
+  .gt{width:100%;border-collapse:collapse;font-size:12.5px}
+  .gt thead th{padding:6px 7px;color:var(--muted);font-weight:700;text-transform:uppercase;font-size:10px;letter-spacing:.5px;text-align:center;border-bottom:1px solid var(--line)}
+  .gt thead th:first-child{text-align:left;padding-left:12px;min-width:160px}
+  .gt tbody td{padding:8px 7px;border-bottom:1px solid rgba(38,49,90,.5);text-align:center;vertical-align:middle}
+  .gt tbody td:first-child{text-align:left;padding-left:12px}
+  .gt tbody tr:last-child td{border-bottom:none}
+  .gt tbody tr.gout td{color:#886e8e;text-decoration:line-through;opacity:.65}
+  .gt tbody tr.gout .gteam-name{color:#886e8e}
+  .gt tbody tr:not(.gout):hover{background:rgba(91,140,255,.06)}
+  .gt .pts{font-weight:800;color:var(--ink);font-size:13px}
+  .gt .gteam-flag{font-size:18px;margin-right:6px;vertical-align:middle}
+  .gt .gteam-name{font-weight:700;font-size:13px;vertical-align:middle}
+  .gt .gperson{font-size:10px;color:var(--muted);display:block;margin-top:1px;font-weight:500}
+  .gt .grank{color:var(--muted);font-size:11px;font-weight:700;width:18px;text-align:center;display:inline-block;margin-right:4px}
+  .gt .qual-bar{width:3px;position:absolute;left:0;top:0;bottom:0;border-radius:0}
+  .gt tbody tr.qualify td:first-child{position:relative;padding-left:15px}
+  .gt tbody tr.qualify td:first-child::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue);border-radius:0 2px 2px 0}
+  .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:8px;vertical-align:middle}
+  .dot.alive{background:var(--green)} .dot.out{background:var(--red)}
+  /* Bracket / spider */
+  .bracketScroll{overflow-x:auto;padding-bottom:14px}
+  .bracket{display:flex;gap:44px;min-width:max-content;align-items:stretch;position:relative}
+  svg.links{position:absolute;left:0;top:0;pointer-events:none;z-index:0;overflow:visible}
+  .round{display:flex;flex-direction:column;justify-content:space-around;gap:14px;min-width:182px;position:relative;z-index:1}
+  .round .rhead{font-size:11px;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);text-align:center;margin-bottom:2px;font-weight:700}
+  .match{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:11px;overflow:hidden}
+  .slot{display:flex;align-items:center;gap:8px;padding:9px 11px;font-size:13px;font-weight:600;cursor:default;border-bottom:1px solid var(--line)}
+  .slot:last-child{border-bottom:none}
+  .slot.win{background:linear-gradient(90deg,#3a2d00,#5a450033);color:var(--gold)}
+  .slot.lose{opacity:.5;text-decoration:line-through;color:#ff9aa5}
+  .slot.empty{color:#5b6892;font-style:italic;font-weight:500}
+  .slot.pick{cursor:pointer}
+  .slot.pick:hover{background:#1c2748}
+  .match .mlabel{position:absolute;top:-9px;left:8px;font-size:9px;background:var(--bg);color:var(--muted);padding:0 5px;border-radius:4px;letter-spacing:.5px}
+  .match .mreset{position:absolute;top:-9px;right:6px;font-size:10px;background:#2a1320;color:#ffb3bd;border:1px solid #5a2433;border-radius:5px;padding:1px 6px;cursor:pointer}
+  .seedsel{flex:1;padding:6px;border-radius:8px;background:#0c1226;color:#eef2ff;border:1px solid var(--line);font:inherit;font-size:12px}
+  .round.center{justify-content:center;min-width:172px}
+  .champ{margin-top:20px;display:flex;flex-direction:column;align-items:center;text-align:center}
+  .champ .cup{font-size:46px;filter:drop-shadow(0 3px 6px rgba(0,0,0,.5))}
+  .champ .cname{font-weight:900;font-size:16px;margin-top:6px}
+  .champ .cperson{color:var(--gold);font-weight:800;margin-top:4px}
+  #bracketControls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+  .timeline{margin-top:6px}
+  .tl{display:flex;gap:10px;align-items:center;padding:8px 4px;border-bottom:1px solid var(--line);font-size:13.5px}
+  .tl .when{color:var(--muted);font-size:12px;min-width:64px}
+  .modal{position:fixed;inset:0;background:rgba(4,7,18,.7);display:none;place-items:center;z-index:50;padding:20px}
+  .modal.show{display:grid}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;max-width:440px;width:100%;box-shadow:var(--shadow)}
+  .card h2{margin:0 0 6px} .card p{color:var(--muted);font-size:13.5px}
+  input[type=password],input[type=text]{width:100%;padding:11px;border-radius:10px;border:1px solid var(--line);background:#0c1226;color:var(--ink);font:inherit;margin:8px 0}
+  .reveal-anim{animation:flip .6s ease}
+  @keyframes flip{0%{transform:rotateX(90deg);opacity:0}100%{transform:rotateX(0);opacity:1}}
+  /* Cinematic elimination reveal */
+  .modal.cine{background:radial-gradient(900px 500px at 50% 35%,#101a3a 0%,rgba(4,7,18,.93) 70%)}
+  .cine-stage{text-align:center;color:#fff;max-width:540px;width:100%;padding:10px}
+  .cine-head{font-size:30px;font-weight:900;margin-bottom:8px;letter-spacing:.3px;position:relative;z-index:6}
+  .cine-head .cf{font-size:38px;vertical-align:middle;margin-right:8px}
+  .cine-tag{display:inline-block;background:#c2283a;color:#fff;font-weight:900;letter-spacing:3px;padding:5px 16px;
+    border-radius:6px;font-size:13px;margin-bottom:26px;box-shadow:0 5px 16px #0008;transform:rotate(-3deg);position:relative;z-index:6}
+  .bigenv{position:relative;width:330px;height:216px;margin:46px auto 28px;perspective:1000px}
+  .be-back{position:absolute;inset:0;border-radius:13px;background:linear-gradient(160deg,#f7eecd,#e2d09a);
+    border:1px solid #c9b375;box-shadow:0 22px 55px rgba(0,0,0,.6),inset 0 1px 0 #fff9}
+  .be-letter{position:absolute;left:15px;right:15px;bottom:15px;top:62px;background:#fffdf7;border-radius:9px;z-index:2;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;box-shadow:0 8px 22px #0007;
+    transform:translateY(42%);opacity:0;transition:transform .75s .35s cubic-bezier(.2,.85,.2,1),opacity .55s .35s}
+  .be-name{font-weight:900;font-size:32px;color:#151515;line-height:1.1;padding:0 8px}
+  .be-sub{font-size:13px;color:#b23a4d;font-weight:800;letter-spacing:.4px}
+  .be-flap{position:absolute;top:0;left:0;right:0;height:62%;z-index:3;transform-origin:top;transition:transform .6s ease;
+    background:linear-gradient(160deg,#f1e4b8,#d8c489);clip-path:polygon(0 0,100% 0,50% 100%);filter:drop-shadow(0 3px 5px #0004)}
+  .be-wax{position:absolute;top:46%;left:50%;transform:translate(-50%,-50%);z-index:4;width:48px;height:48px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%,#f0716a,#a8322c 72%);border:1px solid #7e221d;color:#fff;font-weight:900;font-size:18px;
+    display:grid;place-items:center;box-shadow:0 3px 9px #0009,inset 0 1px 2px #fff7;transition:.45s}
+  .bigenv.open .be-flap{transform:rotateX(178deg);z-index:1}
+  .bigenv.open .be-wax{opacity:0;transform:translate(-50%,-170%) scale(.5) rotate(45deg)}
+  .bigenv.open .be-letter{transform:translateY(0);opacity:1}
+  .confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+  .confetti i{position:absolute;top:-16px;width:9px;height:15px;border-radius:1px;opacity:.95;animation:fall linear forwards}
+  @keyframes fall{to{transform:translateY(115vh) rotate(620deg)}}
+  .updated{color:var(--muted);font-size:12px;font-weight:600}
+  .hint{color:var(--muted);font-size:12px}
+  .right{margin-left:auto}
+  .env-avatar{width:56px;height:56px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,0.25);margin-bottom:6px;display:block;}
+  .env-avatar-init{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;color:rgba(255,255,255,0.7);margin-bottom:6px;flex-shrink:0;}
+  /* avatar inside cream letter — override for light background */
+  .letter .env-avatar{border:3px solid rgba(0,0,0,0.15);box-shadow:0 2px 8px rgba(0,0,0,0.15);}
+  .letter .env-avatar-init{background:#d32f4b;color:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.15);}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <div class="logo">⚽</div>
+    <div>
+      <h1>World Cup 2026 — Last Man Standing</h1>
+      <div class="sub">Veridooh staff sweepstake · 48 countries · last country standing wins</div>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="stat alive"><b id="sAlive">48</b><span>Standing</span></div>
+    <div class="stat out"><b id="sOut">0</b><span>Eliminated</span></div>
+  </div>
+</header>
+
+<nav>
+  <div class="tab active" data-view="envelopes">✉️ Envelopes</div>
+  <div class="tab" data-view="groups">🏆 Groups</div>
+  <div class="tab" data-view="standing">🕸️ Bracket</div>
+  <div class="tab" data-view="timeline">🕒 Elimination Log</div>
+</nav>
+
+<main>
+  <div class="toolbar">
+    <span id="lockPill" class="pill locked">🔒 NOT DRAWN</span>
+    <span id="adminPill" class="pill admin" style="display:none">ADMIN MODE</span>
+    <span id="livePill" class="pill admin" style="display:none;background:#1e2f4a;color:#9bc2ff;border-color:#2f4a7a">🔴 LIVE · auto-tracked every 6h</span>
+    <span id="updatedAt" class="updated" style="display:none"></span>
+    <div class="right"></div>
+    <button id="btnAdmin">🔑 Admin</button>
+    <button id="btnDraw" class="gold">🎲 Draw &amp; Seal</button>
+    <button id="btnExport" class="primary" style="display:none">⬇ Export board.json</button>
+    <button id="btnExportDraw" style="display:none">🔐 Export draw (private)</button>
+    <button id="btnReset" class="danger">Reset</button>
+  </div>
+
+  <div id="bannerWrap"></div>
+
+  <section id="view-envelopes">
+    <div class="envtools">
+      <div class="seg">
+        <button id="modeCarousel" class="on" onclick="setEnvMode('carousel')">🎞️ Carousel</button>
+        <button id="modeGrid" onclick="setEnvMode('grid')">▦ Grid</button>
+      </div>
+      <select class="jump" id="groupJump" onchange="jumpToGroup(this.value)">
+        <option value="">Jump to group…</option>
+      </select>
+      <span class="envcount" id="envCount"></span>
+    </div>
+    <div class="carousel" id="carousel">
+      <div class="cnav prev" onclick="carouselGo(-1)">‹</div>
+      <div class="cnav next" onclick="carouselGo(1)">›</div>
+    </div>
+    <div class="swipehint" id="swipehint">← → arrow keys, click a side envelope, or swipe</div>
+    <div class="grid" id="grid" style="display:none"></div>
+  </section>
+
+  <section id="view-groups" style="display:none">
+    <div class="groups" id="groups"></div>
+  </section>
+
+  <section id="view-standing" style="display:none">
+    <div id="winnerWrap"></div>
+    <div id="bracketControls"></div>
+    <div class="bracketScroll"><div class="bracket" id="bracket"></div></div>
+  </section>
+
+  <section id="view-timeline" style="display:none">
+    <div class="timeline" id="timeline"></div>
+  </section>
+</main>
+
+<!-- Admin gate modal -->
+<div class="modal" id="adminModal">
+  <div class="card">
+    <h2>Admin access</h2>
+    <p>Enter the passphrase to mark teams as knocked out and reveal envelopes. Viewers don't need this.</p>
+    <input type="password" id="adminPass" placeholder="Passphrase" />
+    <div class="hint">Default passphrase: <b>prism-falcon-eclipse-301</b> — change it in the file (ADMIN_PASS).</div>
+    <div style="display:flex;gap:10px;margin-top:14px">
+      <button class="primary" id="adminGo">Unlock</button>
+      <button id="adminCancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Cinematic elimination reveal -->
+<div class="modal cine" id="revealModal">
+  <div class="confetti" id="confetti"></div>
+  <div class="cine-stage">
+    <div class="cine-head"><span class="cf" id="cFlag"></span><span id="cCountry"></span></div>
+    <div class="cine-tag">❌ ELIMINATED</div>
+    <div class="bigenv" id="bigenv">
+      <div class="be-back"></div>
+      <div class="be-letter"><div class="be-name" id="cName"></div><div class="be-sub" id="cWhen"></div></div>
+      <div class="be-flap"></div>
+      <div class="be-wax" id="cWax"></div>
+    </div>
+    <button class="primary" id="revealClose">Continue ›</button>
+  </div>
+</div>
+
+<script>
+/* ============================ CONFIG ============================ */
+const ADMIN_PASS = "prism-falcon-eclipse-301";   // change me
+const STORE_KEY  = "vd_wc26_sweepstake_v1";
+
+/* The 12 groups — FIFA World Cup 2026 official draw (5 Dec 2025) */
+const GROUPS = {
+  A:[["Mexico","🇲🇽"],["South Africa","🇿🇦"],["South Korea","🇰🇷"],["Czech Republic","🇨🇿"]],
+  B:[["Canada","🇨🇦"],["Bosnia & Herzegovina","🇧🇦"],["Qatar","🇶🇦"],["Switzerland","🇨🇭"]],
+  C:[["Brazil","🇧🇷"],["Morocco","🇲🇦"],["Haiti","🇭🇹"],["Scotland","🏴󠁧󠁢󠁳󠁣󠁴󠁿"]],
+  D:[["United States","🇺🇸"],["Paraguay","🇵🇾"],["Australia","🇦🇺"],["Turkey","🇹🇷"]],
+  E:[["Germany","🇩🇪"],["Curaçao","🇨🇼"],["Ivory Coast","🇨🇮"],["Ecuador","🇪🇨"]],
+  F:[["Netherlands","🇳🇱"],["Japan","🇯🇵"],["Sweden","🇸🇪"],["Tunisia","🇹🇳"]],
+  G:[["Belgium","🇧🇪"],["Egypt","🇪🇬"],["Iran","🇮🇷"],["New Zealand","🇳🇿"]],
+  H:[["Spain","🇪🇸"],["Cape Verde","🇨🇻"],["Saudi Arabia","🇸🇦"],["Uruguay","🇺🇾"]],
+  I:[["France","🇫🇷"],["Senegal","🇸🇳"],["Iraq","🇮🇶"],["Norway","🇳🇴"]],
+  J:[["Argentina","🇦🇷"],["Algeria","🇩🇿"],["Austria","🇦🇹"],["Jordan","🇯🇴"]],
+  K:[["Portugal","🇵🇹"],["DR Congo","🇨🇩"],["Uzbekistan","🇺🇿"],["Colombia","🇨🇴"]],
+  L:[["England","🏴󠁧󠁢󠁥󠁮󠁧󠁿"],["Croatia","🇭🇷"],["Ghana","🇬🇭"],["Panama","🇵🇦"]]
+};
+
+/* ===== PEOPLE (48) — from Org Chart Jun 2026 + new joiners.
+   Edit this list freely. New joiners flagged isNew:true. ===== */
+const PEOPLE = [
+  // Revenue
+  "Mo Moubayed","Zoe Jones","Jordan Scott","Nick Parker","Drew Weicker",
+  "Jon Kemp","Daniel Sturdivant","Ebony Cox","Lindsay Leskanic","Georgia Rousselot",
+  "Prash Menon","Luke Kevin","Kate Crook","Andres Puerto","Anchal Soni",
+  "Stefan Klukowski","Daniela Castano",
+  // Tech
+  "Jeremy Yang","Varun Deshpande","Bess Eshraghi","Zehua Liu","Alma Johansson",
+  "Denny Ma","Jordan Benzacken","Justin Nhan","Usama Bhatti","Xun Sun",
+  "Jade Nguyen","Mike Pham","Danny Chavez","Quan Do","James Tran",
+  "Son Nguyen","The Anh Nguyen","Minh Dao","Tom Vu","Tinh Pham","Thanh Dao",
+  // Corporate
+  "Nick Wong","Juan David (JD) Restrepo","Aditya Shahi","Akshat Bansal",
+  "Pratham Gulati","Nischit Shrestha","Zerui Song",
+  // New joiners
+  "Aaron","Yamit","Puskar"
+];
+const NEW_JOINERS = new Set(["Aaron","Yamit","Puskar"]);
+const PHOTOS = {
+  "Mo Moubayed":"https://avatars.slack-edge.com/2022-06-22/3726285196352_f96d22b6fd5e4020ee89_original.jpg",
+  "Zoe Jones":"https://avatars.slack-edge.com/2025-11-12/9882742227799_7d679f48edc34aeefc35_original.jpg",
+  "Jordan Scott":"https://avatars.slack-edge.com/2025-01-15/8308789289713_454cc519a21734995450_original.jpg",
+  "Nick Parker":"https://avatars.slack-edge.com/2026-05-25/11201946182294_846b78615e88cbfcb86f_original.png",
+  "Drew Weicker":"https://avatars.slack-edge.com/2025-11-17/9929758182931_5d11341a52d73816a757_original.jpg",
+  "Jon Kemp":"https://avatars.slack-edge.com/2026-04-02/10826524456659_6b18f8d8cfadcfb93e72_original.jpg",
+  "Daniel Sturdivant":"https://avatars.slack-edge.com/2026-01-26/10371045963859_773996804ca965beb213_original.jpg",
+  "Ebony Cox":"https://avatars.slack-edge.com/2024-12-10/8137463744807_128c63a03fa2b0291408_original.png",
+  "Lindsay Leskanic":"https://avatars.slack-edge.com/2025-09-24/9575727769650_144a0f055ddcff7fc96c_original.png",
+  "Georgia Rousselot":"https://avatars.slack-edge.com/2025-08-18/9370107826326_65f0bdd1a0a4f17d2b4b_original.jpg",
+  "Prash Menon":"https://avatars.slack-edge.com/2024-10-14/7873624436611_90a3a54122969fa9a145_original.png",
+  "Luke Kevin":"https://avatars.slack-edge.com/2025-05-27/8948151399846_f58c8503a2e1c2dda74b_original.jpg",
+  "Andres Puerto":"https://avatars.slack-edge.com/2022-06-06/3636967276705_e2363be525fb0257a1bb_original.jpg",
+  "Anchal Soni":"https://avatars.slack-edge.com/2026-01-27/10375363006693_a668f99f97e309338833_original.png",
+  "Daniela Castano":"https://avatars.slack-edge.com/2023-06-07/5370848644519_edb360b45aa3b31e5186_original.png",
+  "Jeremy Yang":"https://avatars.slack-edge.com/2022-06-06/3627806557188_dd8e64a02710f929a7d9_original.jpg",
+  "Varun Deshpande":"https://avatars.slack-edge.com/2026-05-05/11083624247056_76dd6af46d225c018605_original.jpg",
+  "Bess Eshraghi":"https://avatars.slack-edge.com/2026-02-11/10488203168450_883108fc4cac5583840c_original.png",
+  "Zehua Liu":"https://avatars.slack-edge.com/2022-06-08/3659732689344_83c17a765681e325dc3b_original.jpg",
+  "Alma Johansson":"https://avatars.slack-edge.com/2025-11-24/9978413280629_aa5da3c33fe276982aa0_original.jpg",
+  "Denny Ma":"https://avatars.slack-edge.com/2025-10-13/9684086069778_eec5cd0a9455d339cc3d_original.jpg",
+  "Jordan Benzacken":"https://avatars.slack-edge.com/2023-10-09/6008958076098_ae000249d1b709868514_original.jpg",
+  "Justin Nhan":"https://avatars.slack-edge.com/2025-09-25/9585111753316_ce9eb5b6907f38bedbe7_original.jpg",
+  "Usama Bhatti":"https://avatars.slack-edge.com/2025-08-15/9345851396311_5dffdc02c67866ab3686_original.jpg",
+  "Jade Nguyen":"https://avatars.slack-edge.com/2025-06-17/9057364877653_96821ed089f464b65d75_original.jpg",
+  "Mike Pham":"https://avatars.slack-edge.com/2025-04-23/8790067814981_46382bd9409941d8aff5_original.jpg",
+  "Danny Chavez":"https://avatars.slack-edge.com/2026-01-30/10432379527120_e48446a310142717afc7_original.jpg",
+  "Quan Do":"https://avatars.slack-edge.com/2025-05-25/8935858845335_8343ba7b587bd93561df_original.png",
+  "James Tran":"https://avatars.slack-edge.com/2026-04-18/10944539381250_516552d74fb4aee1d7fe_original.jpg",
+  "Minh Dao":"https://avatars.slack-edge.com/2025-01-16/8324833553728_804fb63d1ce37ab81b28_original.jpg",
+  "Tom Vu":"https://avatars.slack-edge.com/2025-04-22/8784602001173_a84325e64a3b3dce4821_original.png",
+  "Tinh Pham":"https://avatars.slack-edge.com/2025-06-02/8980644251349_dd919e533f6fdad6377d_original.jpg",
+  "Thanh Dao":"https://avatars.slack-edge.com/2026-02-10/10482874736244_ebdc2783711d1ef32452_original.jpg",
+  "Nick Wong":"https://avatars.slack-edge.com/2025-03-28/8672193657314_f73c4879f36f6266bac9_original.png",
+  "Juan David (JD) Restrepo":"https://avatars.slack-edge.com/2025-09-08/9462251313847_1d2b7ac4ce718b7e6108_original.png",
+  "Aditya Shahi":"https://avatars.slack-edge.com/2026-03-27/10787691873878_d1e83e8c07aff9e4fd8c_original.png",
+  "Akshat Bansal":"https://avatars.slack-edge.com/2025-02-18/8465464796485_3fd11782acfbb06ac319_original.png",
+  "Zerui Song":"https://avatars.slack-edge.com/2026-05-12/11114682937140_9e645842fec2efb9e5e6_original.png",
+  "Yamit":"https://avatars.slack-edge.com/2026-03-11/10687264725857_5d7e9867c27f39d33df7_original.png",
+  "Nischit Shrestha":"/photos/nischit-shrestha.jpg",
+  "The Anh Nguyen":"/photos/the-anh-nguyen.jpg",
+  "Tinh Pham":"/photos/tinh-pham.jpg"
+};
+
+/* Flatten teams in fixed order */
+const TEAMS = [];
+for(const g of Object.keys(GROUPS)) GROUPS[g].forEach(([name,flag])=>TEAMS.push({name,flag,group:g}));
+
+/* ============================ STATE ============================ */
+let state = load();
+function blankState(){
+  return { drawn:false, admin:false, readonly:false,
+    mapping:null,                 // base64 of {country:person} — PRIVATE, never exported
+    out:{},                        // country -> {person, when}
+    bracket:null,                  // knockout bracket structure
+    revealed:{},                   // country -> person, for names safe to show publicly (champion)
+    log:[] };                      // {country,person,when}
+}
+function load(){ try{const s=JSON.parse(localStorage.getItem(STORE_KEY));return s||blankState();}catch(e){return blankState();} }
+function save(){ if(state.readonly) return; localStorage.setItem(STORE_KEY, JSON.stringify(state)); }
+
+/* name shown for a country: eliminated -> revealed person; champion -> revealed; else private mapping (admin only) */
+function personOf(c){
+  if(state.out[c]) return state.out[c].person;
+  if(state.revealed && state.revealed[c]) return state.revealed[c];
+  return mapping()[c] || "";
+}
+
+/* obfuscation (not security — just stops casual view-source peeking) */
+const enc = o => btoa(unescape(encodeURIComponent(JSON.stringify(o))));
+const dec = s => JSON.parse(decodeURIComponent(escape(atob(s))));
+function mapping(){ return state.mapping ? dec(state.mapping) : {}; }
+
+/* ============================ DRAW ============================ */
+function draw(){
+  if(PEOPLE.length !== TEAMS.length){
+    alert(`Heads up: ${PEOPLE.length} people but ${TEAMS.length} teams.\n`+
+      (PEOPLE.length>TEAMS.length
+        ? "Too many people — trim PEOPLE or pair extras before drawing."
+        : "Too few people — add names or fillers so every country has an envelope."));
+    return;
+  }
+  const pool = [...PEOPLE];
+  for(let i=pool.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [pool[i],pool[j]]=[pool[j],pool[i]]; }
+  const map={};
+  TEAMS.forEach((t,i)=> map[t.name]=pool[i]);
+  const wasAdmin=state.admin;
+  state = blankState();
+  state.admin=wasAdmin;
+  state.drawn=true;
+  state.mapping=enc(map);
+  state.bracket=freshBracket();
+  save(); render();
+}
+
+/* ============================ KNOCKOUT ============================ */
+function knockOut(country, silent){
+  if(!state.admin) return;
+  if(state.out[country]) return;
+  const person = mapping()[country];
+  const when = new Date().toLocaleDateString("en-GB",{day:"2-digit",month:"short"});
+  state.out[country] = {person, when};
+  state.log.unshift({country, person, when, flag:flagOf(country)});
+  save();
+  if(!silent) showReveal(country, person);
+  render();
+}
+function reviveTeam(country){ // admin undo
+  delete state.out[country];
+  state.log = state.log.filter(l=>l.country!==country); save(); render();
+}
+
+function flagOf(c){ const t=TEAMS.find(x=>x.name===c); return t?t.flag:"🏳️"; }
+function groupOf(c){ const t=TEAMS.find(x=>x.name===c); return t?t.group:""; }
+
+/* ============================ AVATAR HELPERS ============================ */
+function initialsEl(person, size){
+  const s = size||56;
+  const d = document.createElement('div');
+  d.style.cssText = `width:${s}px;height:${s}px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:${Math.round(s*0.33)}px;font-weight:700;color:rgba(255,255,255,0.7);margin-bottom:6px;flex-shrink:0;`;
+  d.textContent = person.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+  return d;
+}
+function avatarEl(person, size){
+  const s = size||56;
+  const url = PHOTOS[person];
+  if(url){
+    const img = document.createElement('img');
+    img.src = url; img.alt = person;
+    img.style.cssText = `width:${s}px;height:${s}px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,0.25);margin-bottom:6px;display:block;`;
+    img.onerror = ()=>{ img.replaceWith(initialsEl(person,s)); };
+    return img;
+  }
+  return initialsEl(person, s);
+}
+
+/* ============================ RENDER ============================ */
+function render(){
+  const outCount = Object.keys(state.out).length;
+  const alive = TEAMS.length - outCount;
+  document.getElementById("sAlive").textContent = state.drawn?alive:TEAMS.length;
+  document.getElementById("sOut").textContent = outCount;
+
+  const ro=state.readonly;
+  document.getElementById("lockPill").style.display = ro?"none":"inline-block";
+  document.getElementById("lockPill").textContent = state.drawn? "🔒 SEALED" : "🔓 NOT DRAWN";
+  document.getElementById("adminPill").style.display = (!ro&&state.admin)? "inline-block":"none";
+  document.getElementById("livePill").style.display = ro?"inline-block":"none";
+  document.getElementById("btnAdmin").style.display = ro?"none":"inline-block";
+  document.getElementById("btnDraw").style.display = ro?"none":"inline-block";
+  document.getElementById("btnReset").style.display = ro?"none":"inline-block";
+  document.getElementById("btnExport").style.display = (!ro&&state.admin&&state.drawn)? "inline-block":"none";
+  document.getElementById("btnExportDraw").style.display = (!ro&&state.admin&&state.drawn)? "inline-block":"none";
+  document.getElementById("btnDraw").textContent = state.drawn? "🎲 Re-draw (admin)" : "🎲 Draw & Seal";
+
+  renderBanner(alive);
+  renderEnvelopes();
+  renderGroups();
+  renderBracket(alive);
+  renderTimeline();
+}
+
+function renderBanner(alive){
+  const w=document.getElementById("bannerWrap");
+  if(!state.drawn){
+    w.innerHTML = `<div class="banner">🎟️ <b>Not drawn yet.</b> An admin clicks <b>Draw &amp; Seal</b> once to shuffle all ${PEOPLE.length} staff into the 48 country envelopes. Names stay hidden until a team is knocked out.</div>`;
+    return;
+  }
+  if(alive===1){
+    const c=TEAMS.map(t=>t.name).find(n=>!state.out[n]);
+    w.innerHTML=`<div class="banner winner">🏆 WINNER: ${personOf(c)||c} — riding ${flagOf(c)} ${c} to the title! 🏆</div>`;
+    return;
+  }
+  const out48=48-alive;
+  w.innerHTML = `<div class="banner">⚽ <b>${alive} countries still standing</b>${out48>0?` · <span style="color:var(--red)">${out48} eliminated</span>`:""}. Results tracked automatically every 6 hours — board updates live. Last country standing wins! 🏆</div>`;
+}
+
+/* ---- one envelope card ---- */
+function envCard(t){
+  const isOut=!!state.out[t.name];
+  const drawn=state.drawn;
+  const pub = (state.publicMapping && state.publicMapping[t.name]) || (isOut && state.out[t.name].person) || null;
+  const el=document.createElement("div");
+  el.className="env "+(!drawn?"sealed":(isOut?"out":"alive"));
+
+  // If mapping is public, skip envelope entirely — just show person directly
+  if(pub){
+    const outData = isOut ? state.out[t.name] : null;
+    el.innerHTML = (drawn?`<div class="tag">${isOut?"OUT":"IN"}</div>`:"") +
+      `<div class="flag">${t.flag}</div>
+       <div class="country"${isOut?` style="color:#ffc9cf"`:""} >${t.name}</div>
+       <div class="grp">GROUP ${t.group}</div>`;
+    const personWrap=document.createElement("div");
+    personWrap.style.cssText="margin-top:12px;display:flex;flex-direction:column;align-items:center;gap:6px;";
+    personWrap.appendChild(avatarEl(pub,56));
+    const nm=document.createElement("div"); nm.className="nm"; nm.textContent=pub; personWrap.appendChild(nm);
+    if(NEW_JOINERS.has(pub)){ const nb=document.createElement("span"); nb.className="new-badge"; nb.textContent="NEW"; personWrap.appendChild(nb); }
+    if(isOut){ const kod=document.createElement("div"); kod.className="kod"; kod.textContent="knocked out "+outData.when; personWrap.appendChild(kod); }
+    el.appendChild(personWrap);
+    return el;
+  }
+
+  // Build the letter div as a DOM element so we can inject avatar nodes
+  const letterEl=document.createElement("div"); letterEl.className="letter";
+  if(drawn && state.admin){
+    // sealed but drawn: show small admin-only preview avatar + name
+    const adminPerson = mapping()[t.name];
+    if(adminPerson){
+      letterEl.appendChild(avatarEl(adminPerson, 32));
+      const nm=document.createElement("div"); nm.className="nm"; nm.style.fontSize="11px"; nm.style.opacity="0.7"; nm.textContent=adminPerson; letterEl.appendChild(nm);
+    }
+  }
+
+  el.innerHTML =
+    (drawn?`<div class="tag">${isOut?"OUT":"IN"}</div>`:"")+
+    `<div class="flag">${t.flag}</div>
+     <div class="country">${t.name}</div>
+     <div class="grp">Group ${t.group}</div>
+     <div class="envelope">
+       <div class="flap"></div>
+       <div class="wax">${t.group}</div>
+     </div>`;
+
+  // Append the letter element into the envelope div
+  el.querySelector(".envelope").appendChild(letterEl);
+
+  if(drawn && state.admin){
+    const btn=document.createElement("button"); btn.className=isOut?"ko":"ko danger";
+    btn.onclick=e=>{ e.stopPropagation(); isOut?reviveTeam(t.name):knockOut(t.name); };
+    btn.innerHTML=isOut?"↩︎ Undo":"✉️ Knock out &amp; reveal";
+    el.appendChild(btn);
+  }
+  return el;
+}
+
+let envMode="carousel", carouselIndex=0;
+function setEnvMode(m){
+  envMode=m;
+  document.getElementById("modeCarousel").classList.toggle("on",m==="carousel");
+  document.getElementById("modeGrid").classList.toggle("on",m==="grid");
+  document.getElementById("carousel").style.display = m==="carousel"?"block":"none";
+  document.getElementById("swipehint").style.display = m==="carousel"?"block":"none";
+  document.getElementById("grid").style.display = m==="grid"?"grid":"none";
+  renderEnvelopes();
+}
+
+function renderEnvelopes(){
+  // group jump options (once)
+  const gj=document.getElementById("groupJump");
+  if(gj.options.length<=1){ Object.keys(GROUPS).forEach(g=>{const o=document.createElement("option");o.value=g;o.textContent="Group "+g;gj.appendChild(o);}); }
+  const aliveN = state.drawn? TEAMS.length-Object.keys(state.out).length : TEAMS.length;
+  document.getElementById("envCount").textContent = `${aliveN} sealed · ${Object.keys(state.out).length} opened`;
+
+  if(envMode==="grid"){
+    const grid=document.getElementById("grid"); grid.innerHTML="";
+    TEAMS.forEach(t=>grid.appendChild(envCard(t)));
+    return;
+  }
+  // carousel
+  const car=document.getElementById("carousel");
+  [...car.querySelectorAll(".cardwrap")].forEach(n=>n.remove());
+  TEAMS.forEach((t,i)=>{
+    const wrap=document.createElement("div"); wrap.className="cardwrap"; wrap.dataset.i=i;
+    wrap.appendChild(envCard(t));
+    wrap.onclick=()=>{ if(i!==carouselIndex) carouselTo(i); };
+    car.appendChild(wrap);
+  });
+  positionCarousel();
+}
+function positionCarousel(){
+  const wraps=document.querySelectorAll("#carousel .cardwrap");
+  wraps.forEach(w=>{
+    const i=+w.dataset.i, off=i-carouselIndex, a=Math.abs(off);
+    const x=off*145, ry=Math.max(-58,Math.min(58,-off*40)), sc=off===0?1.06:(a===1?0.85:0.72), z=-a*170;
+    w.style.transform=`translateX(${x}px) translateZ(${z}px) rotateY(${ry}deg) scale(${sc})`;
+    w.style.opacity = a>3?0:1;
+    w.style.zIndex = 100-a;
+    w.style.pointerEvents = a>3?"none":"auto";
+    w.classList.toggle("center",off===0);
+  });
+}
+function carouselTo(i){ carouselIndex=Math.max(0,Math.min(TEAMS.length-1,i)); positionCarousel(); }
+function carouselGo(d){ carouselTo(carouselIndex+d); }
+function jumpToGroup(g){ if(!g)return; const i=TEAMS.findIndex(t=>t.group===g); if(i>=0){ if(envMode!=="carousel")setEnvMode("carousel"); carouselTo(i);} }
+function renderGroups(){
+  const wrap=document.getElementById("groups"); wrap.innerHTML="";
+  // Build match results index from board data if available
+  const matchResults = (window._matchResults)||{};
+
+  for(const g of Object.keys(GROUPS)){
+    const teams = GROUPS[g].map(([name,flag])=>({name,flag}));
+
+    // Compute standings from match results for this group
+    const stats={};
+    teams.forEach(t=>{ stats[t.name]={mp:0,w:0,d:0,l:0,gf:0,ga:0,pts:0}; });
+    const groupMatches = matchResults[g]||[];
+    groupMatches.forEach(({t1,t2,s1,s2})=>{
+      if(!stats[t1]||!stats[t2]) return;
+      stats[t1].mp++; stats[t2].mp++;
+      stats[t1].gf+=s1; stats[t1].ga+=s2;
+      stats[t2].gf+=s2; stats[t2].ga+=s1;
+      if(s1>s2){ stats[t1].w++; stats[t1].pts+=3; stats[t2].l++; }
+      else if(s1<s2){ stats[t2].w++; stats[t2].pts+=3; stats[t1].l++; }
+      else { stats[t1].d++; stats[t1].pts++; stats[t2].d++; stats[t2].pts++; }
+    });
+
+    // Sort: pts desc, gd desc, gf desc, name asc
+    const sorted=[...teams].sort((a,b)=>{
+      const sa=stats[a.name], sb=stats[b.name];
+      return (sb.pts-sa.pts)||((sb.gf-sb.ga)-(sa.gf-sa.ga))||(sb.gf-sa.gf)||a.name.localeCompare(b.name);
+    });
+
+    const card=document.createElement("div"); card.className="gcard";
+
+    // Build rows
+    const rows=sorted.map((t,i)=>{
+      const isOut=!!state.out[t.name];
+      const s=stats[t.name];
+      const gd=s.gf-s.ga;
+      const person=(state.publicMapping&&state.publicMapping[t.name])||"";
+      // top 2 qualify (plus potentially 3rd)
+      const qualifies=!isOut&&i<2;
+      return `<tr class="${isOut?'gout':''}${qualifies?' qualify':''}">
+        <td>
+          <span class="grank">${i+1}</span>
+          <span class="gteam-flag">${t.flag}</span>
+          <span class="gteam-name">${t.name}${isOut?' 🚫':''}</span>
+          ${person?`<span class="gperson">👤 ${person}</span>`:''}
+        </td>
+        <td>${s.mp}</td>
+        <td>${s.w}</td>
+        <td>${s.d}</td>
+        <td>${s.l}</td>
+        <td style="color:${gd>0?'var(--green)':gd<0?'var(--red)':'var(--muted)'}">${gd>0?'+'+gd:gd}</td>
+        <td class="pts">${s.pts}</td>
+      </tr>`;
+    }).join("");
+
+    card.innerHTML=`
+      <div class="gcard-head">
+        <h3>Group ${g}</h3>
+      </div>
+      <table class="gt">
+        <thead>
+          <tr>
+            <th style="text-align:left">Team</th>
+            <th>P</th><th>W</th><th>D</th><th>L</th><th>GD</th>
+            <th style="color:var(--ink)">Pts</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>`;
+    wrap.appendChild(card);
+  }
+}
+
+/* ---- Bracket engine ----
+   Rounds: r32(16) -> r16(8) -> qf(4) -> sf(2) -> fin(1) -> champion
+   Match {a,b,w}: a/b = country|null, w = 'a'|'b'|null
+   Winner of round[n] match i feeds round[n+1] match floor(i/2),
+   slot 'a' if i is even else 'b'. */
+const ROUNDS = [["r32",16],["r16",8],["qf",4],["sf",2],["fin",1]];
+const RLABEL = {r32:"Round of 32",r16:"Round of 16",qf:"Quarter-finals",sf:"Semi-finals",fin:"Final"};
+
+function freshBracket(){
+  const b={};
+  ROUNDS.forEach(([k,n])=>{ b[k]=Array.from({length:n},()=>({a:null,b:null,w:null})); });
+  b.champion=null; return b;
+}
+function resetBracket(){
+  if(!confirm("Clear all bracket slots and results? (Group-stage envelope reveals stay.)")) return;
+  state.bracket=freshBracket();
+  // re-seal any team that was eliminated via a knockout match (keep group-stage outs)
+  save(); render();
+}
+function seed(matchIdx, slot, country){
+  if(!state.admin||!state.bracket) return;
+  state.bracket.r32[matchIdx][slot] = country||null;
+  save(); render();
+}
+function nextRoundKey(k){ const i=ROUNDS.findIndex(r=>r[0]===k); return i<ROUNDS.length-1?ROUNDS[i+1][0]:null; }
+
+function pickWinner(roundKey, idx, slot){
+  if(!state.admin||!state.bracket) return;
+  const m=state.bracket[roundKey][idx];
+  if(!m.a||!m.b) return;
+  if(m.w) return; // already decided — reset first
+  m.w=slot;
+  const winner = slot==="a"?m.a:m.b;
+  const loser  = slot==="a"?m.b:m.a;
+  // advance winner
+  const nk=nextRoundKey(roundKey);
+  if(nk){ const nm=state.bracket[nk][Math.floor(idx/2)]; nm[idx%2===0?"a":"b"]=winner; }
+  else { state.bracket.champion=winner; state.revealed[winner]=mapping()[winner]; }
+  save();
+  knockOut(loser); // opens the loser's envelope + reveal + log
+}
+function resetMatch(roundKey, idx){
+  if(!state.admin||!state.bracket) return;
+  const m=state.bracket[roundKey][idx];
+  if(!m.w) return;
+  const loser = m.w==="a"?m.b:m.a;
+  const winner= m.w==="a"?m.a:m.b;
+  // pull winner back out of next slot / champion
+  const nk=nextRoundKey(roundKey);
+  if(nk){ const nm=state.bracket[nk][Math.floor(idx/2)]; const ns=idx%2===0?"a":"b"; if(nm[ns]===winner) nm[ns]=null; }
+  else if(state.bracket.champion===winner){ state.bracket.champion=null; delete state.revealed[winner]; }
+  m.w=null;
+  reviveTeam(loser); // re-seal the loser's envelope
+}
+
+function renderBracket(alive){
+  const winWrap=document.getElementById("winnerWrap");
+  const ctrl=document.getElementById("bracketControls");
+  const root=document.getElementById("bracket");
+  root.innerHTML=""; ctrl.innerHTML="";
+
+  if(!state.drawn){ winWrap.innerHTML=""; root.innerHTML=`<div class="banner">Draw &amp; seal the envelopes first — the bracket appears here.</div>`; return; }
+
+  // ensure structure exists (auto-built on draw; this covers older saved states)
+  if(!state.bracket){ if(state.readonly){ root.innerHTML=`<div class="banner">Bracket not published yet.</div>`; return; } state.bracket=freshBracket(); save(); }
+
+  // champion / winner banner
+  const champ = state.bracket.champion;
+  if(champ){
+    winWrap.innerHTML=`<div class="banner winner">🏆 CHAMPIONS: ${flagOf(champ)} ${champ} — last envelope standing belongs to <u>${personOf(champ)}</u>! 🏆</div>`;
+  } else winWrap.innerHTML="";
+
+  // controls (admin only)
+  const seeded=state.bracket.r32.filter(m=>m.a&&m.b).length;
+  if(state.admin){
+    ctrl.innerHTML=`<span class="hint">Fill the <b>32 Round-of-32 slots</b> with the teams that progressed — top 2 from each group (24) + the 8 best third-placed teams. Then click a team in a match to advance it; the loser's envelope opens automatically. (${seeded*2}/32 slots filled)</span>
+      <button class="danger" onclick="resetBracket()">Reset bracket</button>`;
+  }
+
+  // teams available for seeding = not eliminated & not already placed
+  const placed=new Set();
+  state.bracket.r32.forEach(m=>{ if(m.a)placed.add(m.a); if(m.b)placed.add(m.b); });
+  const available = TEAMS.map(t=>t.name).filter(c=>!state.out[c]);
+
+  // build a single match element
+  const makeMatch=(k,idx)=>{
+    const m=state.bracket[k][idx];
+    const md=document.createElement("div"); md.className="match";
+    md.dataset.round=k; md.dataset.idx=idx;
+    md.innerHTML=`<span class="mlabel">${k.toUpperCase()} ${idx+1}</span>`;
+    if(state.admin && m.w) md.innerHTML+=`<span class="mreset" onclick="resetMatch('${k}',${idx})">↺</span>`;
+    ["a","b"].forEach(slot=>{
+      const team=m[slot];
+      const div=document.createElement("div");
+      const isWin=m.w===slot, isLose=m.w&&m.w!==slot;
+      div.className="slot"+(isWin?" win":"")+(isLose?" lose":"")+(!team?" empty":"")+
+        (state.admin&&team&&!m.w?" pick":"");
+      if(k==="r32" && state.admin && !team){
+        const opts=[`<option value="">— pick team —</option>`].concat(
+          available.filter(c=>!placed.has(c)).map(c=>`<option value="${c}">${flagOf(c)} ${c}</option>`)).join("");
+        div.innerHTML=`<select class="seedsel" onchange="seed(${idx},'${slot}',this.value)">${opts}</select>`;
+      } else {
+        div.innerHTML = team ? `${flagOf(team)} ${team}` : "—";
+        if(state.admin && team && !m.w) div.onclick=()=>pickWinner(k,idx,slot);
+      }
+      md.appendChild(div);
+    });
+    return md;
+  };
+  const makeCol=(k,start,end)=>{
+    const col=document.createElement("div"); col.className="round";
+    const head=document.createElement("div"); head.className="rhead"; head.textContent=RLABEL[k]; col.appendChild(head);
+    for(let i=start;i<end;i++) col.appendChild(makeMatch(k,i));
+    return col;
+  };
+
+  // LEFT half — narrows inward toward the centre
+  [["r32",0,8],["r16",0,4],["qf",0,2],["sf",0,1]].forEach(c=>root.appendChild(makeCol(c[0],c[1],c[2])));
+  // CENTRE — final + champion
+  const center=document.createElement("div"); center.className="round center";
+  const fh=document.createElement("div"); fh.className="rhead"; fh.textContent="Final"; center.appendChild(fh);
+  center.appendChild(makeMatch("fin",0));
+  const cc=document.createElement("div"); cc.className="champ";
+  cc.innerHTML=`<div class="cup">🏆</div>`+
+    (champ?`<div class="cname">${flagOf(champ)} ${champ}</div><div class="cperson">${personOf(champ)}</div>`
+          :`<div class="hint" style="margin-top:6px">Champion TBD</div>`);
+  center.appendChild(cc);
+  root.appendChild(center);
+  // RIGHT half — mirror, narrows inward from the right
+  [["sf",1,2],["qf",2,4],["r16",4,8],["r32",8,16]].forEach(c=>root.appendChild(makeCol(c[0],c[1],c[2])));
+
+  requestAnimationFrame(()=>drawLinks(root));
+}
+
+/* Draw classic bracket connector lines (elbows) between rounds. */
+function drawLinks(root){
+  const old=root.querySelector("svg.links"); if(old) old.remove();
+  const NS="http://www.w3.org/2000/svg";
+  const svg=document.createElementNS(NS,"svg"); svg.setAttribute("class","links");
+  svg.setAttribute("width",root.scrollWidth); svg.setAttribute("height",root.scrollHeight);
+  const br=root.getBoundingClientRect();
+  const mEl=(k,i)=>root.querySelector(`.match[data-round="${k}"][data-idx="${i}"]`);
+  const link=(s,t)=>{
+    if(!s||!t) return;
+    const sr=s.getBoundingClientRect(), tr=t.getBoundingClientRect();
+    const goingRight = (tr.left+tr.width/2) > (sr.left+sr.width/2);
+    const sx=(goingRight?sr.right:sr.left)-br.left, sy=sr.top-br.top+sr.height/2;
+    const tx=(goingRight?tr.left:tr.right)-br.left, ty=tr.top-br.top+tr.height/2;
+    const mx=(sx+tx)/2;
+    const p=document.createElementNS(NS,"path");
+    p.setAttribute("d",`M${sx},${sy} H${mx} V${ty} H${tx}`);
+    p.setAttribute("fill","none"); p.setAttribute("stroke","#3a4a7d"); p.setAttribute("stroke-width","2");
+    svg.appendChild(p);
+  };
+  ROUNDS.forEach(([k,n],ri)=>{
+    if(ri>=ROUNDS.length-1) return;
+    const nk=ROUNDS[ri+1][0];
+    for(let i=0;i<n;i++) link(mEl(k,i), mEl(nk,Math.floor(i/2)));
+  });
+  root.insertBefore(svg, root.firstChild);
+}
+window.addEventListener("resize",()=>{
+  const root=document.getElementById("bracket");
+  if(root && root.querySelector(".match")) drawLinks(root);
+});
+
+function renderTimeline(){
+  const tl=document.getElementById("timeline");
+  if(!state.log.length){ tl.innerHTML=`<div class="banner">No eliminations yet. The log fills as teams fall.</div>`; return; }
+  tl.innerHTML = state.log.map(l=>
+    `<div class="tl"><span class="when">${l.when}</span> ${l.flag} <b>${l.country}</b> knocked out → envelope revealed <b style="color:var(--red)">${l.person}</b></div>`
+  ).join("");
+}
+
+/* ============================ UI WIRING ============================ */
+function esc(s){return s.replace(/'/g,"\\'");}
+document.querySelectorAll(".tab").forEach(tab=>{
+  tab.onclick=()=>{
+    document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+    tab.classList.add("active");
+    ["envelopes","groups","standing","timeline"].forEach(v=>
+      document.getElementById("view-"+v).style.display = (v===tab.dataset.view?"block":"none"));
+    if(tab.dataset.view==="standing"){
+      const root=document.getElementById("bracket");
+      if(root && root.querySelector(".match")) requestAnimationFrame(()=>drawLinks(root));
+    }
+  };
+});
+
+const adminModal=document.getElementById("adminModal");
+document.getElementById("btnAdmin").onclick=()=>{
+  if(state.admin){ state.admin=false; save(); render(); return; }
+  adminModal.classList.add("show"); document.getElementById("adminPass").focus();
+};
+document.getElementById("adminGo").onclick=()=>{
+  if(document.getElementById("adminPass").value===ADMIN_PASS){
+    state.admin=true; save(); adminModal.classList.remove("show");
+    document.getElementById("adminPass").value=""; render();
+  } else alert("Wrong passphrase.");
+};
+document.getElementById("adminCancel").onclick=()=>adminModal.classList.remove("show");
+document.getElementById("adminPass").addEventListener("keydown",e=>{if(e.key==="Enter")document.getElementById("adminGo").click();});
+
+document.getElementById("btnDraw").onclick=()=>{
+  if(state.drawn && !state.admin){ alert("Already drawn. Unlock Admin to re-draw."); return; }
+  if(state.drawn && !confirm("Re-draw will wipe the current sealed mapping and all knockouts. Continue?")) return;
+  draw();
+};
+document.getElementById("btnReset").onclick=()=>{
+  if(!confirm("Reset everything (mapping, knockouts, log)?")) return;
+  state=blankState(); save(); render();
+};
+
+const revealModal=document.getElementById("revealModal");
+const bigenv=document.getElementById("bigenv");
+let revealQ=[], revealing=false;
+const CONFETTI_COLORS=["#f5c542","#5b8cff","#2ecc71","#ff5c6c","#c084fc","#ffffff"];
+function spawnConfetti(){
+  const box=document.getElementById("confetti"); box.innerHTML="";
+  for(let n=0;n<70;n++){
+    const i=document.createElement("i");
+    const left=Math.random()*100, dur=2.4+Math.random()*2.2, delay=Math.random()*0.9;
+    i.style.left=left+"%";
+    i.style.background=CONFETTI_COLORS[(Math.random()*CONFETTI_COLORS.length)|0];
+    i.style.animationDuration=dur+"s"; i.style.animationDelay=delay+"s";
+    i.style.transform=`rotate(${(Math.random()*360)|0}deg)`;
+    box.appendChild(i);
+  }
+}
+function showReveal(country,person){ revealQ.push({country,person}); if(!revealing) nextReveal(); }
+function nextReveal(){
+  const item=revealQ.shift();
+  if(!item){ revealing=false; revealModal.classList.remove("show"); return; }
+  revealing=true;
+  document.getElementById("cFlag").textContent=flagOf(item.country);
+  document.getElementById("cCountry").textContent=item.country+" KNOCKED OUT";
+  document.getElementById("cName").textContent=item.person;
+  document.getElementById("cWhen").textContent="this envelope is now open";
+  document.getElementById("cWax").textContent=groupOf(item.country);
+  // inject avatar into the big envelope letter area
+  const beLetter=document.querySelector(".be-letter");
+  const oldAvatar=beLetter.querySelector(".cine-avatar");
+  if(oldAvatar) oldAvatar.remove();
+  const av=avatarEl(item.person, 80);
+  av.className=(av.tagName==="IMG"?"cine-avatar":"cine-avatar");
+  av.style.marginBottom="10px";
+  beLetter.insertBefore(av, beLetter.firstChild);
+  bigenv.classList.remove("open");
+  revealModal.classList.add("show");
+  spawnConfetti();
+  setTimeout(()=>bigenv.classList.add("open"),120);
+}
+document.getElementById("revealClose").onclick=nextReveal;
+
+/* ---- carousel navigation: keys + swipe/drag ---- */
+document.addEventListener("keydown",e=>{
+  if(document.getElementById("view-envelopes").style.display==="none") return;
+  if(revealModal.classList.contains("show")) return;
+  if(e.key==="ArrowLeft") carouselGo(-1);
+  else if(e.key==="ArrowRight") carouselGo(1);
+});
+(function(){
+  const car=document.getElementById("carousel"); let sx=null,mdx=null;
+  car.addEventListener("touchstart",e=>sx=e.touches[0].clientX,{passive:true});
+  car.addEventListener("touchend",e=>{ if(sx==null)return; const dx=e.changedTouches[0].clientX-sx; if(Math.abs(dx)>40)carouselGo(dx<0?1:-1); sx=null; });
+  car.addEventListener("mousedown",e=>mdx=e.clientX);
+  window.addEventListener("mouseup",e=>{ if(mdx==null)return; const dx=e.clientX-mdx; if(Math.abs(dx)>55)carouselGo(dx<0?1:-1); mdx=null; });
+})();
+
+/* ---- live board polling (read-only deployed mode) ---- */
+let lastStamp=null;
+function fmtAgo(iso){ if(!iso)return""; const s=(Date.now()-new Date(iso).getTime())/1000;
+  if(s<90)return"just now"; if(s<5400)return Math.round(s/60)+"m ago"; if(s<172800)return Math.round(s/3600)+"h ago"; return Math.round(s/86400)+"d ago"; }
+function showUpdated(){ const el=document.getElementById("updatedAt");
+  if(state.readonly && lastStamp){ el.style.display="inline"; el.textContent="checked "+fmtAgo(lastStamp); } else el.style.display="none"; }
+async function pollBoard(){
+  try{
+    const r=await fetch("board.json?ts="+Date.now(),{cache:"no-store"}); if(!r.ok)return;
+    const d=await r.json();
+    if(d.exportedAt===lastStamp){ showUpdated(); return; }
+    const prev=new Set(Object.keys(state.out||{}));
+    lastStamp=d.exportedAt;
+    state.out=d.out||{}; state.bracket=d.bracket||state.bracket; state.revealed=d.revealed||{}; state.log=d.log||[]; if(d.mapping) state.publicMapping=d.mapping; if(d.match_results) window._matchResults=d.match_results;
+    render(); showUpdated();
+    Object.keys(state.out).forEach(c=>{ if(!prev.has(c)) showReveal(c, state.out[c].person); });
+  }catch(e){}
+}
+
+/* ---- Export public board.json (NO sealed mapping) ---- */
+document.getElementById("btnExport").onclick=()=>{
+  if(!state.drawn){ alert("Draw & seal first."); return; }
+  const board = {
+    drawn:true, readonly:true, mapping:null,
+    out: state.out,            // eliminated names (already public)
+    bracket: state.bracket,    // country names only
+    revealed: state.revealed,  // champion (only once decided)
+    log: state.log,
+    exportedAt: new Date().toISOString()
+  };
+  const blob=new Blob([JSON.stringify(board,null,2)],{type:"application/json"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob); a.download="board.json"; a.click();
+  URL.revokeObjectURL(a.href);
+};
+
+/* ---- Export the FULL sealed draw (PRIVATE — keep off the public site).
+        Feeds the auto-tracker so it can reveal names as teams are eliminated. ---- */
+document.getElementById("btnExportDraw").onclick=()=>{
+  if(!state.drawn){ alert("Draw & seal first."); return; }
+  const draw={ mapping:mapping(), groups:GROUPS, exportedAt:new Date().toISOString() };
+  const blob=new Blob([JSON.stringify(draw,null,2)],{type:"application/json"});
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="draw-private.json"; a.click();
+  URL.revokeObjectURL(a.href);
+};
+
+/* ---- Init: on a deployed site, board.json exists -> read-only live board.
+        Opened locally (file://), fetch fails -> admin authoring mode. ---- */
+(async function init(){
+  try{
+    const r=await fetch("board.json",{cache:"no-store"});
+    if(r.ok){
+      const d=await r.json();
+      state=blankState();
+      state.drawn=true; state.readonly=true; state.mapping=null;
+      state.out=d.out||{}; state.bracket=d.bracket||null;
+      state.revealed=d.revealed||{}; state.log=d.log||[];
+      if(d.mapping) state.publicMapping=d.mapping;
+      if(d.match_results) window._matchResults=d.match_results;
+      lastStamp=d.exportedAt||null;
+      render(); showUpdated();
+      setInterval(pollBoard, 120000); // re-check the published board every 2 min
+      return;
+    }
+  }catch(e){/* local file:// — fall through to authoring */}
+  render();
+})();
+</script>
+</body>
+</html>
