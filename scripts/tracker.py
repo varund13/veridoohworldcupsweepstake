@@ -82,15 +82,25 @@ def normalize_name(name):
 
 
 def get_espn_results():
-    url = "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard"
-    try:
-        data = fetch_json(url)
-    except Exception as e:
-        print(f"ESPN fetch error: {e}", file=sys.stderr)
-        return []
+    # Query last 7 days by date to catch matches that fell off the live scoreboard
+    base = "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard"
+    today = datetime.now(timezone.utc)
+    dates = [(today - __import__('datetime').timedelta(days=i)).strftime("%Y%m%d") for i in range(7)]
+
+    seen_ids = set()
+    all_events = []
+    for date in dates:
+        try:
+            data = fetch_json(f"{base}?dates={date}")
+            for event in data.get("events", []):
+                if event.get("id") not in seen_ids:
+                    seen_ids.add(event.get("id"))
+                    all_events.append(event)
+        except Exception as e:
+            print(f"ESPN fetch error ({date}): {e}", file=sys.stderr)
 
     results = []
-    for event in data.get("events", []):
+    for event in all_events:
         comp = event.get("competitions", [{}])[0]
         FINAL_STATUSES = {"STATUS_FULL_TIME", "STATUS_FINAL", "STATUS_FINAL_AET", "STATUS_FINAL_PEN"}
         if comp.get("status", {}).get("type", {}).get("name") not in FINAL_STATUSES:
@@ -117,13 +127,20 @@ def get_espn_results():
         elif away_score > home_score:
             winner = away_name
         else:
+            # Tied after 90/120 min — check notes then ESPN winner boolean
             winner = None
             for n in notes:
-                m = re.search(r"([\w][\w\s&]+?) wins? on penalt", n.get("headline", ""), re.IGNORECASE)
+                m = re.search(r"([\w][\w\s&']+?)\s+(?:wins?|advance[sd]?)\s+(?:\d+-\d+\s+on\s+penalt|\bon\s+penalt)", n.get("headline", ""), re.IGNORECASE)
                 if m:
                     winner = normalize_name(m.group(1).strip())
                     pens = True
                     break
+            # Fallback: use ESPN's winner boolean on competitors
+            if not winner:
+                if home.get("winner"):
+                    winner = home_name
+                elif away.get("winner"):
+                    winner = away_name
 
         # Build team_id → team_name map
         team_id_map = {}
@@ -169,6 +186,7 @@ def get_espn_results():
             "winner": winner,
             "loser": (away_name if winner == home_name else home_name) if winner else None,
             "date": date_label,
+            "event_id": event.get("id", ""),
             "match_key": f"{home_name} vs {away_name} on {date_label}",
             "round": round_label,
             "round_slug": season_slug,
@@ -264,7 +282,10 @@ def main():
     with open(BOARD_PATH) as f:
         board = json.load(f)
 
-    posted = set(board.get("posted_matches", []))
+    # posted_event_ids is the canonical dedup key (ESPN event ID, timezone-proof)
+    # posted_matches kept for legacy/display only
+    posted_ids = set(board.get("posted_event_ids", []))
+    posted_keys = set(board.get("posted_matches", []))
     bracket = board.setdefault("bracket", {})
     out = board.setdefault("out", {})
     mapping = board.get("mapping", {})
@@ -278,6 +299,7 @@ def main():
 
     for match in results:
         winner, loser = match["winner"], match["loser"]
+        event_id = match["event_id"]
         key = match["match_key"]
 
         # Update bracket
@@ -296,17 +318,20 @@ def main():
             new_eliminations.append(loser)
             print(f"Eliminated: {loser}")
 
-        # Post to Slack
-        if key not in posted and winner:
+        # Post to Slack — dedup by event_id (falls back to key for legacy entries)
+        already_posted = event_id in posted_ids or key in posted_keys
+        if not already_posted and winner:
             msg = build_slack_message(match, mapping)
             if slack_post(slack_token, SLACK_CHANNEL, msg):
-                posted.add(key)
+                posted_ids.add(event_id)
+                posted_keys.add(key)
                 new_posts += 1
                 print(f"Posted: {key}")
             else:
                 print(f"Slack post failed: {key}", file=sys.stderr)
 
-    board["posted_matches"] = sorted(posted)
+    board["posted_event_ids"] = sorted(posted_ids)
+    board["posted_matches"] = sorted(posted_keys)
     board["exportedAt"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z")
 
     with open(BOARD_PATH, "w") as f:
