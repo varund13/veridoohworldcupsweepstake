@@ -20,7 +20,7 @@
     "Paraguay": "Danny Chavez",
     "Turkey": "Luke Kevin",
     "Germany": "Minh Dao",
-    "Curaçao": "Jon Kemp",
+    "Cura\u00e7ao": "Jon Kemp",
     "Ivory Coast": "James Tran",
     "Ecuador": "Ebony Cox",
     "Netherlands": "Prash Menon",
@@ -80,133 +80,190 @@
       "person": "Akshat Bansal",
       "when": "25 Jun"
     },
-    "Curaçao": {
+    "Cura\u00e7ao": {
       "person": "Jon Kemp",
       "when": "26 Jun"
-    }
+    },
+    "Iraq": {
+      "person": "Bess Eshraghi",
+      "when": "26 Jun"
+    },
+    "New Zealand": {
+      "person": "Thanh Dao",
+      "when": "26 Jun"
+    },
+    "Saudi Arabia": {
+      "person": "Mo Moubayed",
+      "when": "26 Jun"
+    },
+    "Uruguay": {
+      "person": "Varun Deshpande",
+      "when": "26 Jun"
+    },
+    "Uzbekistan": {
+      "person": "Daniela Castano",
+      "when": "28 Jun"
+    },
+    "South Korea": {
+      "person": "Son Nguyen",
+      "when": "28 Jun"
+    },
+    "Scotland": {
+      "person": "The Anh Nguyen",
+      "when": "28 Jun"
+    },
+    "Iran": {
+      "person": "Zehua Liu",
+      "when": "28 Jun"
+    },
+    "South Africa": {
+      "person": "Drew Weicker",
+      "when": "28 Jun"
+    },
+    "Japan": {
+      "person": "Jeremy Yang",
+      "when": "29 Jun"
+    },
+    "Germany": {
+      "person": "Minh Dao",
+      "when": "29 Jun"
+    },
+    "Ivory Coast": "2026-06-30",
+    "Sweden": "2026-06-30",
+    "Ecuador": "2026-06-30",
+    "DR Congo": "2026-07-02",
+    "Senegal": "2026-07-02",
+    "Austria": "2026-07-03",
+    "Croatia": "2026-07-03",
+    "Cape Verde": "2026-07-04",
+    "Australia": "2026-07-04",
+    "Algeria": "2026-07-04",
+    "Bosnia & Herzegovina": "2026-07-04",
+    "Bosnia-Herzegovina": "2026-07-04",
+    "Netherlands": "2026-07-04"
   },
   "revealed": {},
   "bracket": {
     "r32": [
       {
-        "a": null,
-        "b": null,
-        "w": null
+        "a": "Canada",
+        "b": "South Africa",
+        "w": "Canada"
       },
       {
-        "a": null,
-        "b": null,
-        "w": null
+        "a": "Brazil",
+        "b": "Japan",
+        "w": "Brazil"
       },
       {
-        "a": null,
-        "b": null,
-        "w": null
+        "a": "Germany",
+        "b": "Paraguay",
+        "w": "Paraguay"
       },
       {
-        "a": null,
-        "b": null,
-        "w": null
+        "a": "Netherlands",
+        "b": "Morocco",
+        "w": "Morocco"
       },
       {
-        "a": null,
-        "b": null,
-        "w": null
+        "a": "Ivory Coast",
+        "b": "Norway",
+        "w": "Norway"
       },
       {
-        "a": null,
-        "b": null,
-        "w": null
+        "a": "France",
+        "b": "Sweden",
+        "w": "France"
       },
       {
-        "a": null,
-        "b": null,
-        "w": null
+        "a": "Mexico",
+        "b": "Ecuador",
+        "w": "Mexico"
       },
       {
-        "a": null,
-        "b": null,
-        "w": null
+        "a": "England",
+        "b": "DR Congo",
+        "w": "England"
       },
       {
-        "a": null,
-        "b": null,
-        "w": null
+        "a": "Belgium",
+        "b": "Senegal",
+        "w": "Belgium"
       },
       {
-        "a": null,
-        "b": null,
-        "w": null
+        "a": "United States",
+        "b": "Bosnia & Herzegovina",
+        "w": "United States"
       },
       {
-        "a": null,
-        "b": null,
-        "w": null
+        "a": "Spain",
+        "b": "Austria",
+        "w": "Spain"
       },
       {
-        "a": null,
-        "b": null,
-        "w": null
+        "a": "Portugal",
+        "b": "Croatia",
+        "w": "Portugal"
       },
       {
-        "a": null,
-        "b": null,
-        "w": null
+        "a": "Switzerland",
+        "b": "Algeria",
+        "w": "Switzerland"
       },
       {
-        "a": null,
-        "b": null,
-        "w": null
+        "a": "Australia",
+        "b": "Egypt",
+        "w": "Egypt"
       },
       {
-        "a": null,
-        "b": null,
-        "w": null
+        "a": "Argentina",
+        "b": "Cape Verde",
+        "w": "Argentina"
       },
       {
-        "a": null,
-        "b": null,
+        "a": "Colombia",
+        "b": "Ghana",
         "w": null
       }
     ],
     "r16": [
       {
-        "a": null,
-        "b": null,
+        "a": "Canada",
+        "b": "Brazil",
         "w": null
       },
       {
-        "a": null,
-        "b": null,
+        "a": "Paraguay",
+        "b": "Morocco",
         "w": null
       },
       {
-        "a": null,
-        "b": null,
+        "a": "Norway",
+        "b": "France",
         "w": null
       },
       {
-        "a": null,
-        "b": null,
+        "a": "Mexico",
+        "b": "England",
         "w": null
       },
       {
-        "a": null,
-        "b": null,
+        "a": "Belgium",
+        "b": "United States",
         "w": null
       },
       {
-        "a": null,
-        "b": null,
+        "a": "Spain",
+        "b": "Portugal",
         "w": null
       },
       {
-        "a": null,
-        "b": null,
+        "a": "Switzerland",
+        "b": "Egypt",
         "w": null
       },
       {
-        "a": null,
+        "a": "Argentina",
         "b": null,
         "w": null
       }
@@ -256,56 +313,122 @@
   },
   "log": [
     {
-      "country": "Curaçao",
+      "country": "Germany",
+      "person": "Minh Dao",
+      "when": "29 Jun",
+      "flag": "\ud83c\udde9\ud83c\uddea"
+    },
+    {
+      "country": "Japan",
+      "person": "Jeremy Yang",
+      "when": "29 Jun",
+      "flag": "\ud83c\uddef\ud83c\uddf5"
+    },
+    {
+      "country": "South Africa",
+      "person": "Drew Weicker",
+      "when": "28 Jun",
+      "flag": "\ud83c\uddff\ud83c\udde6"
+    },
+    {
+      "country": "Iran",
+      "person": "Zehua Liu",
+      "when": "28 Jun",
+      "flag": "\ud83c\uddee\ud83c\uddf7"
+    },
+    {
+      "country": "Scotland",
+      "person": "The Anh Nguyen",
+      "when": "28 Jun",
+      "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc73\udb40\udc63\udb40\udc74\udb40\udc7f"
+    },
+    {
+      "country": "South Korea",
+      "person": "Son Nguyen",
+      "when": "28 Jun",
+      "flag": "\ud83c\uddf0\ud83c\uddf7"
+    },
+    {
+      "country": "Uzbekistan",
+      "person": "Daniela Castano",
+      "when": "28 Jun",
+      "flag": "\ud83c\uddfa\ud83c\uddff"
+    },
+    {
+      "country": "Uruguay",
+      "person": "Varun Deshpande",
+      "when": "26 Jun",
+      "flag": "\ud83c\uddfa\ud83c\uddfe"
+    },
+    {
+      "country": "Saudi Arabia",
+      "person": "Mo Moubayed",
+      "when": "26 Jun",
+      "flag": "\ud83c\uddf8\ud83c\udde6"
+    },
+    {
+      "country": "New Zealand",
+      "person": "Thanh Dao",
+      "when": "26 Jun",
+      "flag": "\ud83c\uddf3\ud83c\uddff"
+    },
+    {
+      "country": "Iraq",
+      "person": "Bess Eshraghi",
+      "when": "26 Jun",
+      "flag": "\ud83c\uddee\ud83c\uddf6"
+    },
+    {
+      "country": "Cura\u00e7ao",
       "person": "Jon Kemp",
       "when": "26 Jun",
-      "flag": "🇨🇼"
+      "flag": "\ud83c\udde8\ud83c\uddfc"
     },
     {
       "country": "Qatar",
       "person": "Akshat Bansal",
       "when": "25 Jun",
-      "flag": "🇶🇦"
+      "flag": "\ud83c\uddf6\ud83c\udde6"
     },
     {
       "country": "Czech Republic",
       "person": "Zerui Song",
       "when": "25 Jun",
-      "flag": "🇨🇿"
+      "flag": "\ud83c\udde8\ud83c\uddff"
     },
     {
       "country": "Panama",
       "person": "Justin Nhan",
       "when": "23 Jun",
-      "flag": "🇵🇦"
+      "flag": "\ud83c\uddf5\ud83c\udde6"
     },
     {
       "country": "Jordan",
       "person": "Puskar",
       "when": "22 Jun",
-      "flag": "🇯🇴"
+      "flag": "\ud83c\uddef\ud83c\uddf4"
     },
     {
       "country": "Tunisia",
       "person": "Jade Nguyen",
       "when": "20 Jun",
-      "flag": "🇹🇳"
+      "flag": "\ud83c\uddf9\ud83c\uddf3"
     },
     {
       "country": "Turkey",
       "person": "Luke Kevin",
       "when": "19 Jun",
-      "flag": "🇹🇷"
+      "flag": "\ud83c\uddf9\ud83c\uddf7"
     },
     {
       "country": "Haiti",
       "person": "Quan Do",
       "when": "19 Jun",
-      "flag": "🇭🇹"
+      "flag": "\ud83c\udded\ud83c\uddf9"
     }
   ],
   "champion": null,
-  "exportedAt": "2026-06-26T00:26:40.662Z",
+  "exportedAt": "2026-07-04T01:29:59.000Z",
   "match_results": {
     "A": [
       {
@@ -467,12 +590,26 @@
         "s1": 0,
         "s2": 1,
         "date": "19 Jun"
+      },
+      {
+        "t1": "Turkey",
+        "t2": "United States",
+        "s1": 3,
+        "s2": 2,
+        "date": "25 Jun"
+      },
+      {
+        "t1": "Paraguay",
+        "t2": "Australia",
+        "s1": 0,
+        "s2": 0,
+        "date": "25 Jun"
       }
     ],
     "E": [
       {
         "t1": "Germany",
-        "t2": "Curaçao",
+        "t2": "Cura\u00e7ao",
         "s1": 7,
         "s2": 1,
         "date": "14 Jun"
@@ -493,7 +630,7 @@
       },
       {
         "t1": "Ecuador",
-        "t2": "Curaçao",
+        "t2": "Cura\u00e7ao",
         "s1": 0,
         "s2": 0,
         "date": "20 Jun"
@@ -506,7 +643,7 @@
         "date": "25 Jun"
       },
       {
-        "t1": "Curaçao",
+        "t1": "Cura\u00e7ao",
         "t2": "Ivory Coast",
         "s1": 0,
         "s2": 2,
@@ -541,6 +678,20 @@
         "s1": 0,
         "s2": 4,
         "date": "20 Jun"
+      },
+      {
+        "t1": "Japan",
+        "t2": "Sweden",
+        "s1": 1,
+        "s2": 1,
+        "date": "25 Jun"
+      },
+      {
+        "t1": "Netherlands",
+        "t2": "Tunisia",
+        "s1": 3,
+        "s2": 1,
+        "date": "25 Jun"
       }
     ],
     "G": [
@@ -571,6 +722,20 @@
         "s1": 1,
         "s2": 3,
         "date": "21 Jun"
+      },
+      {
+        "t1": "Egypt",
+        "t2": "Iran",
+        "s1": 1,
+        "s2": 1,
+        "date": "26 Jun"
+      },
+      {
+        "t1": "New Zealand",
+        "t2": "Belgium",
+        "s1": 0,
+        "s2": 3,
+        "date": "26 Jun"
       }
     ],
     "H": [
@@ -601,6 +766,20 @@
         "s1": 2,
         "s2": 2,
         "date": "21 Jun"
+      },
+      {
+        "t1": "Uruguay",
+        "t2": "Spain",
+        "s1": 0,
+        "s2": 1,
+        "date": "26 Jun"
+      },
+      {
+        "t1": "Cape Verde",
+        "t2": "Saudi Arabia",
+        "s1": 0,
+        "s2": 0,
+        "date": "26 Jun"
       }
     ],
     "I": [
@@ -631,6 +810,20 @@
         "s1": 3,
         "s2": 2,
         "date": "22 Jun"
+      },
+      {
+        "t1": "Norway",
+        "t2": "France",
+        "s1": 1,
+        "s2": 4,
+        "date": "26 Jun"
+      },
+      {
+        "t1": "Senegal",
+        "t2": "Iraq",
+        "s1": 5,
+        "s2": 0,
+        "date": "26 Jun"
       }
     ],
     "J": [
@@ -661,6 +854,20 @@
         "s1": 1,
         "s2": 2,
         "date": "22 Jun"
+      },
+      {
+        "t1": "Jordan",
+        "t2": "Argentina",
+        "s1": 1,
+        "s2": 3,
+        "date": "27 Jun"
+      },
+      {
+        "t1": "Algeria",
+        "t2": "Austria",
+        "s1": 3,
+        "s2": 3,
+        "date": "27 Jun"
       }
     ],
     "K": [
@@ -691,6 +898,20 @@
         "s1": 1,
         "s2": 0,
         "date": "23 Jun"
+      },
+      {
+        "t1": "Colombia",
+        "t2": "Portugal",
+        "s1": 0,
+        "s2": 0,
+        "date": "27 Jun"
+      },
+      {
+        "t1": "DR Congo",
+        "t2": "Uzbekistan",
+        "s1": 3,
+        "s2": 1,
+        "date": "27 Jun"
       }
     ],
     "L": [
@@ -721,65 +942,120 @@
         "s1": 0,
         "s2": 1,
         "date": "23 Jun"
+      },
+      {
+        "t1": "Panama",
+        "t2": "England",
+        "s1": 0,
+        "s2": 2,
+        "date": "27 Jun"
+      },
+      {
+        "t1": "Croatia",
+        "t2": "Ghana",
+        "s1": 2,
+        "s2": 1,
+        "date": "27 Jun"
       }
     ]
   },
   "posted_matches": [
-    "Mexico vs South Africa on 11 Jun",
-    "South Korea vs Czech Republic on 11 Jun",
-    "Canada vs Bosnia & Herzegovina on 12 Jun",
-    "United States vs Paraguay on 12 Jun",
-    "Qatar vs Switzerland on 13 Jun",
-    "Brazil vs Morocco on 13 Jun",
-    "Haiti vs Scotland on 13 Jun",
-    "Australia vs Turkey on 14 Jun",
-    "Germany vs Curaçao on 14 Jun",
-    "Netherlands vs Japan on 14 Jun",
-    "Ivory Coast vs Ecuador on 14 Jun",
-    "Sweden vs Tunisia on 14 Jun",
-    "Belgium vs Egypt on 15 Jun",
-    "Spain vs Cape Verde on 15 Jun",
-    "Iran vs New Zealand on 15 Jun",
-    "Saudi Arabia vs Uruguay on 15 Jun",
-    "France vs Senegal on 16 Jun",
-    "Iraq vs Norway on 16 Jun",
+    "Algeria vs Austria on 27 Jun",
     "Argentina vs Algeria on 16 Jun",
-    "Austria vs Jordan on 17 Jun",
-    "Portugal vs DR Congo on 17 Jun",
-    "England vs Croatia on 17 Jun",
-    "Ghana vs Panama on 17 Jun",
-    "Uzbekistan vs Colombia on 17 Jun",
-    "Czech Republic vs South Africa on 18 Jun",
-    "Switzerland vs Bosnia & Herzegovina on 18 Jun",
-    "Mexico vs South Korea on 18 Jun",
-    "Canada vs Qatar on 18 Jun",
-    "United States vs Australia on 19 Jun",
-    "Scotland vs Morocco on 19 Jun",
-    "Brazil vs Haiti on 19 Jun",
-    "Turkey vs Paraguay on 19 Jun",
-    "Germany vs Ivory Coast on 20 Jun",
-    "Ecuador vs Curaçao on 20 Jun",
-    "Netherlands vs Sweden on 20 Jun",
-    "Tunisia vs Japan on 20 Jun",
-    "Belgium vs Iran on 21 Jun",
-    "Spain vs Saudi Arabia on 21 Jun",
-    "New Zealand vs Egypt on 21 Jun",
-    "Uruguay vs Cape Verde on 21 Jun",
     "Argentina vs Austria on 22 Jun",
-    "France vs Iraq on 22 Jun",
-    "Norway vs Senegal on 22 Jun",
-    "Jordan vs Algeria on 22 Jun",
-    "Portugal vs Uzbekistan on 23 Jun",
-    "England vs Ghana on 23 Jun",
-    "Colombia vs DR Congo on 23 Jun",
-    "Panama vs Croatia on 23 Jun",
-    "Czech Republic vs Mexico on 24 Jun",
-    "South Africa vs South Korea on 24 Jun",
-    "Switzerland vs Canada on 24 Jun",
+    "Argentina vs Cape Verde on 3 Jul",
+    "Australia vs Egypt on 3 Jul",
+    "Australia vs Turkey on 14 Jun",
+    "Austria vs Jordan on 17 Jun",
+    "Belgium vs Egypt on 15 Jun",
+    "Belgium vs Iran on 21 Jun",
+    "Belgium vs Senegal on 1 Jul",
     "Bosnia & Herzegovina vs Qatar on 24 Jun",
+    "Brazil vs Haiti on 19 Jun",
+    "Brazil vs Japan on 29 Jun",
+    "Brazil vs Morocco on 13 Jun",
     "Brazil vs Scotland on 24 Jun",
-    "Morocco vs Haiti on 24 Jun",
+    "Canada vs Bosnia & Herzegovina on 12 Jun",
+    "Canada vs Qatar on 18 Jun",
+    "Canada vs South Africa on 28 Jun",
+    "Cape Verde vs Saudi Arabia on 26 Jun",
+    "Colombia vs DR Congo on 23 Jun",
+    "Colombia vs Portugal on 27 Jun",
+    "Croatia vs Ghana on 27 Jun",
+    "Cura\u00e7ao vs Ivory Coast on 25 Jun",
+    "Czech Republic vs Mexico on 24 Jun",
+    "Czech Republic vs South Africa on 18 Jun",
+    "DR Congo vs Uzbekistan on 27 Jun",
+    "Ecuador vs Cura\u00e7ao on 20 Jun",
     "Ecuador vs Germany on 25 Jun",
-    "Curaçao vs Ivory Coast on 25 Jun"
+    "Egypt vs Iran on 26 Jun",
+    "England vs Croatia on 17 Jun",
+    "England vs DR Congo on 1 Jul",
+    "England vs Ghana on 23 Jun",
+    "France vs Iraq on 22 Jun",
+    "France vs Senegal on 16 Jun",
+    "France vs Sweden on 30 Jun",
+    "Germany vs Cura\u00e7ao on 14 Jun",
+    "Germany vs Ivory Coast on 20 Jun",
+    "Germany vs Paraguay on 29 Jun",
+    "Ghana vs Panama on 17 Jun",
+    "Haiti vs Scotland on 13 Jun",
+    "Iran vs New Zealand on 15 Jun",
+    "Iraq vs Norway on 16 Jun",
+    "Ivory Coast vs Ecuador on 14 Jun",
+    "Ivory Coast vs Norway on 30 Jun",
+    "Japan vs Sweden on 25 Jun",
+    "Jordan vs Algeria on 22 Jun",
+    "Jordan vs Argentina on 27 Jun",
+    "Mexico vs Ecuador on 30 Jun",
+    "Mexico vs South Africa on 11 Jun",
+    "Mexico vs South Korea on 18 Jun",
+    "Morocco vs Haiti on 24 Jun",
+    "Netherlands vs Japan on 14 Jun",
+    "Netherlands vs Morocco on 29 Jun",
+    "Netherlands vs Sweden on 20 Jun",
+    "Netherlands vs Tunisia on 25 Jun",
+    "New Zealand vs Belgium on 26 Jun",
+    "New Zealand vs Egypt on 21 Jun",
+    "Norway vs France on 26 Jun",
+    "Norway vs Senegal on 22 Jun",
+    "Panama vs Croatia on 23 Jun",
+    "Panama vs England on 27 Jun",
+    "Paraguay vs Australia on 25 Jun",
+    "Portugal vs Croatia on 2 Jul",
+    "Portugal vs DR Congo on 17 Jun",
+    "Portugal vs Uzbekistan on 23 Jun",
+    "Qatar vs Switzerland on 13 Jun",
+    "Saudi Arabia vs Uruguay on 15 Jun",
+    "Scotland vs Morocco on 19 Jun",
+    "Senegal vs Iraq on 26 Jun",
+    "South Africa vs South Korea on 24 Jun",
+    "South Korea vs Czech Republic on 11 Jun",
+    "Spain vs Austria on 2 Jul",
+    "Spain vs Cape Verde on 15 Jun",
+    "Spain vs Saudi Arabia on 21 Jun",
+    "Sweden vs Tunisia on 14 Jun",
+    "Switzerland vs Algeria on 3 Jul",
+    "Switzerland vs Bosnia & Herzegovina on 18 Jun",
+    "Switzerland vs Canada on 24 Jun",
+    "Tunisia vs Japan on 20 Jun",
+    "Turkey vs Paraguay on 19 Jun",
+    "Turkey vs United States on 25 Jun",
+    "United States vs Australia on 19 Jun",
+    "United States vs Bosnia-Herzegovina on 2 Jul",
+    "United States vs Paraguay on 12 Jun",
+    "Uruguay vs Cape Verde on 21 Jun",
+    "Uruguay vs Spain on 26 Jun",
+    "Uzbekistan vs Colombia on 17 Jun"
+  ],
+  "posted_event_ids": [
+    "760486",
+    "760488",
+    "760490",
+    "760491",
+    "760492",
+    "760494",
+    "760498",
+    "760499"
   ]
 }
