@@ -134,7 +134,8 @@
     "DR Congo": "2026-07-02",
     "Senegal": "2026-07-02",
     "Austria": "2026-07-03",
-    "Croatia": "2026-07-03"
+    "Croatia": "2026-07-03",
+    "Cape Verde": "2026-07-04"
   },
   "revealed": {},
   "bracket": {
@@ -212,7 +213,7 @@
       {
         "a": "Argentina",
         "b": "Cape Verde",
-        "w": null
+        "w": "Argentina"
       },
       {
         "a": "Colombia",
@@ -257,7 +258,7 @@
         "w": null
       },
       {
-        "a": null,
+        "a": "Argentina",
         "b": null,
         "w": null
       }
@@ -422,7 +423,7 @@
     }
   ],
   "champion": null,
-  "exportedAt": "2026-07-03T11:48:51.000Z",
+  "exportedAt": "2026-07-04T01:09:20.000Z",
   "match_results": {
     "A": [
       {
@@ -957,6 +958,7 @@
     "Algeria vs Austria on 27 Jun",
     "Argentina vs Algeria on 16 Jun",
     "Argentina vs Austria on 22 Jun",
+    "Argentina vs Cape Verde on 3 Jul",
     "Australia vs Turkey on 14 Jun",
     "Austria vs Jordan on 17 Jun",
     "Belgium vs Egypt on 15 Jun",
