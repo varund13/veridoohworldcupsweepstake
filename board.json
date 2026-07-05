@@ -140,7 +140,9 @@
     "Algeria": "2026-07-04",
     "Bosnia & Herzegovina": "2026-07-04",
     "Netherlands": "2026-07-04",
-    "Ghana": "2026-07-04"
+    "Ghana": "2026-07-04",
+    "Canada": "2026-07-05",
+    "Paraguay": "2026-07-05"
   },
   "revealed": {},
   "bracket": {
@@ -428,7 +430,7 @@
     }
   ],
   "champion": null,
-  "exportedAt": "2026-07-04T11:05:23.000Z",
+  "exportedAt": "2026-07-05T01:17:11.000Z",
   "match_results": {
     "A": [
       {
@@ -976,6 +978,7 @@
     "Brazil vs Morocco on 13 Jun",
     "Brazil vs Scotland on 24 Jun",
     "Canada vs Bosnia & Herzegovina on 12 Jun",
+    "Canada vs Morocco on 4 Jul",
     "Canada vs Qatar on 18 Jun",
     "Canada vs South Africa on 28 Jun",
     "Cape Verde vs Saudi Arabia on 26 Jun",
@@ -1023,6 +1026,7 @@
     "Panama vs Croatia on 23 Jun",
     "Panama vs England on 27 Jun",
     "Paraguay vs Australia on 25 Jun",
+    "Paraguay vs France on 4 Jul",
     "Portugal vs Croatia on 2 Jul",
     "Portugal vs DR Congo on 17 Jun",
     "Portugal vs Uzbekistan on 23 Jun",
@@ -1058,6 +1062,8 @@
     "760494",
     "760498",
     "760499",
-    "760501"
+    "760501",
+    "760502",
+    "760503"
   ]
 }
