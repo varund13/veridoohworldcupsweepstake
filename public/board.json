@@ -142,7 +142,8 @@
     "Netherlands": "2026-07-04",
     "Ghana": "2026-07-04",
     "Canada": "2026-07-05",
-    "Paraguay": "2026-07-05"
+    "Paraguay": "2026-07-05",
+    "Brazil": "2026-07-06"
   },
   "revealed": {},
   "bracket": {
@@ -430,7 +431,7 @@
     }
   ],
   "champion": null,
-  "exportedAt": "2026-07-05T11:16:56.000Z",
+  "exportedAt": "2026-07-06T01:16:44.000Z",
   "match_results": {
     "A": [
       {
@@ -976,6 +977,7 @@
     "Brazil vs Haiti on 19 Jun",
     "Brazil vs Japan on 29 Jun",
     "Brazil vs Morocco on 13 Jun",
+    "Brazil vs Norway on 5 Jul",
     "Brazil vs Scotland on 24 Jun",
     "Canada vs Bosnia & Herzegovina on 12 Jun",
     "Canada vs Morocco on 4 Jul",
@@ -1064,6 +1066,7 @@
     "760499",
     "760501",
     "760502",
-    "760503"
+    "760503",
+    "760504"
   ]
 }
