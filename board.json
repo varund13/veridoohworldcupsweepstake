@@ -143,7 +143,8 @@
     "Ghana": "2026-07-04",
     "Canada": "2026-07-05",
     "Paraguay": "2026-07-05",
-    "Brazil": "2026-07-06"
+    "Brazil": "2026-07-06",
+    "Mexico": "2026-07-06"
   },
   "revealed": {},
   "bracket": {
@@ -248,7 +249,7 @@
       {
         "a": "Mexico",
         "b": "England",
-        "w": null
+        "w": "England"
       },
       {
         "a": "Belgium",
@@ -279,7 +280,7 @@
       },
       {
         "a": null,
-        "b": null,
+        "b": "England",
         "w": null
       },
       {
@@ -431,7 +432,7 @@
     }
   ],
   "champion": null,
-  "exportedAt": "2026-07-06T01:16:44.000Z",
+  "exportedAt": "2026-07-06T08:47:56.000Z",
   "match_results": {
     "A": [
       {
@@ -1014,6 +1015,7 @@
     "Jordan vs Algeria on 22 Jun",
     "Jordan vs Argentina on 27 Jun",
     "Mexico vs Ecuador on 30 Jun",
+    "Mexico vs England on 6 Jul",
     "Mexico vs South Africa on 11 Jun",
     "Mexico vs South Korea on 18 Jun",
     "Morocco vs Haiti on 24 Jun",
@@ -1067,6 +1069,7 @@
     "760501",
     "760502",
     "760503",
-    "760504"
+    "760504",
+    "760505"
   ]
 }
