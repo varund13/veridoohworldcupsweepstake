@@ -144,7 +144,8 @@
     "Canada": "2026-07-05",
     "Paraguay": "2026-07-05",
     "Brazil": "2026-07-06",
-    "Mexico": "2026-07-06"
+    "Mexico": "2026-07-06",
+    "Portugal": "2026-07-07"
   },
   "revealed": {},
   "bracket": {
@@ -259,7 +260,7 @@
       {
         "a": "Spain",
         "b": "Portugal",
-        "w": null
+        "w": "Spain"
       },
       {
         "a": "Switzerland",
@@ -285,7 +286,7 @@
       },
       {
         "a": null,
-        "b": null,
+        "b": "Spain",
         "w": null
       },
       {
@@ -432,7 +433,7 @@
     }
   ],
   "champion": null,
-  "exportedAt": "2026-07-06T13:03:19.000Z",
+  "exportedAt": "2026-07-07T01:17:53.000Z",
   "match_results": {
     "A": [
       {
@@ -1033,6 +1034,7 @@
     "Paraguay vs France on 4 Jul",
     "Portugal vs Croatia on 2 Jul",
     "Portugal vs DR Congo on 17 Jun",
+    "Portugal vs Spain on 6 Jul",
     "Portugal vs Uzbekistan on 23 Jun",
     "Qatar vs Switzerland on 13 Jun",
     "Saudi Arabia vs Uruguay on 15 Jun",
@@ -1070,6 +1072,7 @@
     "760502",
     "760503",
     "760504",
-    "760505"
+    "760505",
+    "760506"
   ]
 }
