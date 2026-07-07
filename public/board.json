@@ -145,7 +145,8 @@
     "Paraguay": "2026-07-05",
     "Brazil": "2026-07-06",
     "Mexico": "2026-07-06",
-    "Portugal": "2026-07-07"
+    "Portugal": "2026-07-07",
+    "United States": "2026-07-07"
   },
   "revealed": {},
   "bracket": {
@@ -255,7 +256,7 @@
       {
         "a": "Belgium",
         "b": "United States",
-        "w": null
+        "w": "Belgium"
       },
       {
         "a": "Spain",
@@ -285,7 +286,7 @@
         "w": null
       },
       {
-        "a": null,
+        "a": "Belgium",
         "b": "Spain",
         "w": null
       },
@@ -433,7 +434,7 @@
     }
   ],
   "champion": null,
-  "exportedAt": "2026-07-07T01:17:53.000Z",
+  "exportedAt": "2026-07-07T08:00:28.000Z",
   "match_results": {
     "A": [
       {
@@ -1053,6 +1054,7 @@
     "Turkey vs Paraguay on 19 Jun",
     "Turkey vs United States on 25 Jun",
     "United States vs Australia on 19 Jun",
+    "United States vs Belgium on 7 Jul",
     "United States vs Bosnia-Herzegovina on 2 Jul",
     "United States vs Paraguay on 12 Jun",
     "Uruguay vs Cape Verde on 21 Jun",
@@ -1073,6 +1075,7 @@
     "760503",
     "760504",
     "760505",
-    "760506"
+    "760506",
+    "760507"
   ]
 }
