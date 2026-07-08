@@ -146,7 +146,9 @@
     "Brazil": "2026-07-06",
     "Mexico": "2026-07-06",
     "Portugal": "2026-07-07",
-    "United States": "2026-07-07"
+    "United States": "2026-07-07",
+    "Egypt": "2026-07-08",
+    "Colombia": "2026-07-08"
   },
   "revealed": {},
   "bracket": {
@@ -434,7 +436,7 @@
     }
   ],
   "champion": null,
-  "exportedAt": "2026-07-07T12:14:51.000Z",
+  "exportedAt": "2026-07-08T01:01:55.000Z",
   "match_results": {
     "A": [
       {
@@ -970,6 +972,7 @@
     "Argentina vs Algeria on 16 Jun",
     "Argentina vs Austria on 22 Jun",
     "Argentina vs Cape Verde on 3 Jul",
+    "Argentina vs Egypt on 7 Jul",
     "Australia vs Egypt on 3 Jul",
     "Australia vs Turkey on 14 Jun",
     "Austria vs Jordan on 17 Jun",
@@ -1050,6 +1053,7 @@
     "Switzerland vs Algeria on 3 Jul",
     "Switzerland vs Bosnia & Herzegovina on 18 Jun",
     "Switzerland vs Canada on 24 Jun",
+    "Switzerland vs Colombia on 7 Jul",
     "Tunisia vs Japan on 20 Jun",
     "Turkey vs Paraguay on 19 Jun",
     "Turkey vs United States on 25 Jun",
@@ -1076,6 +1080,8 @@
     "760504",
     "760505",
     "760506",
-    "760507"
+    "760507",
+    "760508",
+    "760509"
   ]
 }
