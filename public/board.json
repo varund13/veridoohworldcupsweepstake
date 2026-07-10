@@ -148,7 +148,8 @@
     "Portugal": "2026-07-07",
     "United States": "2026-07-07",
     "Egypt": "2026-07-08",
-    "Colombia": "2026-07-08"
+    "Colombia": "2026-07-08",
+    "Morocco": "2026-07-10"
   },
   "revealed": {},
   "bracket": {
@@ -436,7 +437,7 @@
     }
   ],
   "champion": null,
-  "exportedAt": "2026-07-09T12:19:16.000Z",
+  "exportedAt": "2026-07-10T01:11:35.000Z",
   "match_results": {
     "A": [
       {
@@ -1005,6 +1006,7 @@
     "England vs DR Congo on 1 Jul",
     "England vs Ghana on 23 Jun",
     "France vs Iraq on 22 Jun",
+    "France vs Morocco on 9 Jul",
     "France vs Senegal on 16 Jun",
     "France vs Sweden on 30 Jun",
     "Germany vs Cura\u00e7ao on 14 Jun",
@@ -1082,6 +1084,7 @@
     "760506",
     "760507",
     "760508",
-    "760509"
+    "760509",
+    "760510"
   ]
 }
