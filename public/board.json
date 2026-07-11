@@ -149,7 +149,8 @@
     "United States": "2026-07-07",
     "Egypt": "2026-07-08",
     "Colombia": "2026-07-08",
-    "Morocco": "2026-07-10"
+    "Morocco": "2026-07-10",
+    "Belgium": "2026-07-11"
   },
   "revealed": {},
   "bracket": {
@@ -291,7 +292,7 @@
       {
         "a": "Belgium",
         "b": "Spain",
-        "w": null
+        "w": "Spain"
       },
       {
         "a": null,
@@ -306,7 +307,7 @@
         "w": null
       },
       {
-        "a": null,
+        "a": "Spain",
         "b": null,
         "w": null
       }
@@ -437,7 +438,7 @@
     }
   ],
   "champion": null,
-  "exportedAt": "2026-07-10T12:13:03.000Z",
+  "exportedAt": "2026-07-11T00:58:31.000Z",
   "match_results": {
     "A": [
       {
@@ -1049,6 +1050,7 @@
     "South Africa vs South Korea on 24 Jun",
     "South Korea vs Czech Republic on 11 Jun",
     "Spain vs Austria on 2 Jul",
+    "Spain vs Belgium on 10 Jul",
     "Spain vs Cape Verde on 15 Jun",
     "Spain vs Saudi Arabia on 21 Jun",
     "Sweden vs Tunisia on 14 Jun",
@@ -1085,6 +1087,7 @@
     "760507",
     "760508",
     "760509",
-    "760510"
+    "760510",
+    "760511"
   ]
 }
