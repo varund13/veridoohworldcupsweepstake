@@ -151,7 +151,8 @@
     "Colombia": "2026-07-08",
     "Morocco": "2026-07-10",
     "Belgium": "2026-07-11",
-    "Norway": "2026-07-12"
+    "Norway": "2026-07-12",
+    "Switzerland": "2026-07-12"
   },
   "revealed": {},
   "bracket": {
@@ -439,7 +440,7 @@
     }
   ],
   "champion": null,
-  "exportedAt": "2026-07-12T01:06:18.000Z",
+  "exportedAt": "2026-07-12T07:08:00.000Z",
   "match_results": {
     "A": [
       {
@@ -976,6 +977,7 @@
     "Argentina vs Austria on 22 Jun",
     "Argentina vs Cape Verde on 3 Jul",
     "Argentina vs Egypt on 7 Jul",
+    "Argentina vs Switzerland on 12 Jul",
     "Australia vs Egypt on 3 Jul",
     "Australia vs Turkey on 14 Jun",
     "Austria vs Jordan on 17 Jun",
@@ -1091,6 +1093,7 @@
     "760509",
     "760510",
     "760511",
-    "760512"
+    "760512",
+    "760513"
   ]
 }
