@@ -150,7 +150,8 @@
     "Egypt": "2026-07-08",
     "Colombia": "2026-07-08",
     "Morocco": "2026-07-10",
-    "Belgium": "2026-07-11"
+    "Belgium": "2026-07-11",
+    "Norway": "2026-07-12"
   },
   "revealed": {},
   "bracket": {
@@ -438,7 +439,7 @@
     }
   ],
   "champion": null,
-  "exportedAt": "2026-07-11T10:40:48.000Z",
+  "exportedAt": "2026-07-12T01:06:18.000Z",
   "match_results": {
     "A": [
       {
@@ -1033,6 +1034,7 @@
     "Netherlands vs Tunisia on 25 Jun",
     "New Zealand vs Belgium on 26 Jun",
     "New Zealand vs Egypt on 21 Jun",
+    "Norway vs England on 11 Jul",
     "Norway vs France on 26 Jun",
     "Norway vs Senegal on 22 Jun",
     "Panama vs Croatia on 23 Jun",
@@ -1088,6 +1090,7 @@
     "760508",
     "760509",
     "760510",
-    "760511"
+    "760511",
+    "760512"
   ]
 }
