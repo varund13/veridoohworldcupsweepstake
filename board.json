@@ -241,18 +241,18 @@
     "r16": [
       {
         "a": "Canada",
-        "b": "Brazil",
-        "w": null
+        "b": "Morocco",
+        "w": "Morocco"
       },
       {
         "a": "Paraguay",
-        "b": "Morocco",
-        "w": null
+        "b": "France",
+        "w": "France"
       },
       {
-        "a": "Norway",
-        "b": "France",
-        "w": null
+        "a": "Brazil",
+        "b": "Norway",
+        "w": "Norway"
       },
       {
         "a": "Mexico",
@@ -271,25 +271,25 @@
       },
       {
         "a": "Switzerland",
-        "b": "Egypt",
-        "w": null
+        "b": "Colombia",
+        "w": "Switzerland"
       },
       {
         "a": "Argentina",
-        "b": "Colombia",
-        "w": null
+        "b": "Egypt",
+        "w": "Argentina"
       }
     ],
     "qf": [
       {
-        "a": null,
-        "b": null,
-        "w": null
+        "a": "Morocco",
+        "b": "France",
+        "w": "France"
       },
       {
-        "a": null,
+        "a": "Norway",
         "b": "England",
-        "w": null
+        "w": "England"
       },
       {
         "a": "Belgium",
@@ -297,30 +297,28 @@
         "w": "Spain"
       },
       {
-        "a": null,
-        "b": null,
-        "w": null
+        "a": "Switzerland",
+        "b": "Argentina",
+        "w": "Argentina"
       }
     ],
     "sf": [
       {
-        "a": null,
-        "b": null,
+        "a": "France",
+        "b": "England",
         "w": null
       },
       {
         "a": "Spain",
-        "b": null,
+        "b": "Argentina",
         "w": null
       }
     ],
-    "fin": [
-      {
-        "a": null,
-        "b": null,
-        "w": null
-      }
-    ],
+    "fin": {
+      "a": null,
+      "b": null,
+      "w": null
+    },
     "champion": null
   },
   "log": [
@@ -440,7 +438,7 @@
     }
   ],
   "champion": null,
-  "exportedAt": "2026-07-12T10:53:52.000Z",
+  "exportedAt": "2026-07-13T00:43:56.000Z",
   "match_results": {
     "A": [
       {
