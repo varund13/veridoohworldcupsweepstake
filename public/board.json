@@ -314,11 +314,13 @@
         "w": null
       }
     ],
-    "fin": {
-      "a": null,
-      "b": null,
-      "w": null
-    },
+    "fin": [
+      {
+        "a": null,
+        "b": null,
+        "w": null
+      }
+    ],
     "champion": null
   },
   "log": [

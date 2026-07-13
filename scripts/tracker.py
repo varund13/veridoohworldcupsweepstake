@@ -208,18 +208,21 @@ def find_bracket_slot(bracket, team_a, team_b):
             a, b = slot.get("a"), slot.get("b")
             if {a, b} == {team_a, team_b}:
                 return round_key, i
-    # Check fin (dict, not list)
-    fin = bracket.get("fin", {})
-    if isinstance(fin, dict) and {fin.get("a"), fin.get("b")} == {team_a, team_b}:
-        return "fin", 0
+    # Check fin (1-element array)
+    fin_slots = bracket.get("fin", [])
+    if isinstance(fin_slots, list) and fin_slots:
+        fin = fin_slots[0]
+        if {fin.get("a"), fin.get("b")} == {team_a, team_b}:
+            return "fin", 0
     return None, None
 
 
 def update_bracket_winner(bracket, round_key, idx, winner):
     """Set winner and propagate to next round's slot."""
     if round_key == "fin":
-        if not bracket["fin"].get("w"):
-            bracket["fin"]["w"] = winner
+        fin_slot = bracket["fin"][0]
+        if not fin_slot.get("w"):
+            fin_slot["w"] = winner
             bracket["champion"] = winner
         return
 
@@ -237,9 +240,9 @@ def update_bracket_winner(bracket, round_key, idx, winner):
     side = "a" if idx % 2 == 0 else "b"
 
     if next_round == "fin":
-        fin = bracket.setdefault("fin", {"a": None, "b": None, "w": None})
-        if not fin.get(side):
-            fin[side] = winner
+        fin_slots = bracket.setdefault("fin", [{"a": None, "b": None, "w": None}])
+        if not fin_slots[0].get(side):
+            fin_slots[0][side] = winner
     else:
         next_slots = bracket.setdefault(next_round, [])
         while len(next_slots) <= next_idx:
@@ -307,7 +310,7 @@ def main():
         round_key, idx = find_bracket_slot(bracket, match["home"], match["away"])
         if round_key and winner:
             slots = bracket.get(round_key, [])
-            current_w = slots[idx].get("w") if isinstance(slots, list) else bracket.get(round_key, {}).get("w")
+            current_w = slots[idx].get("w") if isinstance(slots, list) else None
             if not current_w:
                 update_bracket_winner(bracket, round_key, idx, winner)
                 bracket_updates += 1
