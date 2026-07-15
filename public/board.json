@@ -152,7 +152,8 @@
     "Morocco": "2026-07-10",
     "Belgium": "2026-07-11",
     "Norway": "2026-07-12",
-    "Switzerland": "2026-07-12"
+    "Switzerland": "2026-07-12",
+    "France": "2026-07-15"
   },
   "revealed": {},
   "bracket": {
@@ -440,7 +441,7 @@
     }
   ],
   "champion": null,
-  "exportedAt": "2026-07-14T11:05:50.000Z",
+  "exportedAt": "2026-07-15T00:52:26.000Z",
   "match_results": {
     "A": [
       {
@@ -1012,6 +1013,7 @@
     "France vs Iraq on 22 Jun",
     "France vs Morocco on 9 Jul",
     "France vs Senegal on 16 Jun",
+    "France vs Spain on 14 Jul",
     "France vs Sweden on 30 Jun",
     "Germany vs Cura\u00e7ao on 14 Jun",
     "Germany vs Ivory Coast on 20 Jun",
@@ -1094,6 +1096,7 @@
     "760510",
     "760511",
     "760512",
-    "760513"
+    "760513",
+    "760514"
   ]
 }
