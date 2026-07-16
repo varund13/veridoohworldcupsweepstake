@@ -153,7 +153,8 @@
     "Belgium": "2026-07-11",
     "Norway": "2026-07-12",
     "Switzerland": "2026-07-12",
-    "France": "2026-07-15"
+    "France": "2026-07-15",
+    "England": "2026-07-16"
   },
   "revealed": {},
   "bracket": {
@@ -441,7 +442,7 @@
     }
   ],
   "champion": null,
-  "exportedAt": "2026-07-15T11:07:49.000Z",
+  "exportedAt": "2026-07-16T00:57:18.000Z",
   "match_results": {
     "A": [
       {
@@ -1007,6 +1008,7 @@
     "Ecuador vs Cura\u00e7ao on 20 Jun",
     "Ecuador vs Germany on 25 Jun",
     "Egypt vs Iran on 26 Jun",
+    "England vs Argentina on 15 Jul",
     "England vs Croatia on 17 Jun",
     "England vs DR Congo on 1 Jul",
     "England vs Ghana on 23 Jun",
@@ -1097,6 +1099,7 @@
     "760511",
     "760512",
     "760513",
-    "760514"
+    "760514",
+    "760515"
   ]
 }
