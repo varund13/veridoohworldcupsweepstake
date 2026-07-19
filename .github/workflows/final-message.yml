@@ -9,30 +9,17 @@ jobs:
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         run: |
-          python3 - << 'PYEOF'
-import urllib.request, json, sys
-token = __import__('os').environ['SLACK_BOT_TOKEN']
-msg = (
-  "🏆 *WE HAVE A CHAMPION!* 🏆\n\n"
-  "🇪🇸 *Spain* are the *2026 FIFA World Cup Champions*, winning the final 1–0 against Argentina _(AET)_ on 19 July!\n\n"
-  "Congratulations to *Jordan Benzacken* — your envelope is the last one standing! 🎉🥳\n\n"
-  "📊 *Final results:*\n"
-  "• 🥇 🇪🇸 Spain → *Jordan Benzacken* 🏆\n"
-  "• 🥈 🇦🇷 Argentina → Kate Crook\n"
-  "• 🥉 🏴󠁧󠁢󠁥󠁮󠁧󠁿 England → Jordan Scott _(beat France 6–4 in the 3rd-place match!)_\n"
-  "• 4th 🇫🇷 France → Aaron\n\n"
-  "Thanks everyone for playing — what a tournament! ⚽🌍"
-)
-payload = json.dumps({"channel": "C0B97JGMG1F", "text": msg}).encode()
-req = urllib.request.Request(
-  "https://slack.com/api/chat.postMessage", data=payload, method="POST",
-  headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
-)
-with urllib.request.urlopen(req, timeout=10) as r:
-  resp = json.loads(r.read())
-if resp.get("ok"):
-  print("Posted!", resp.get("ts"))
-else:
-  print("ERROR:", resp.get("error"), file=sys.stderr)
-  sys.exit(1)
-PYEOF
+          python3 -c "
+          import urllib.request, json, sys, os
+          token = os.environ['SLACK_BOT_TOKEN']
+          msg = '\U0001f3c6 *WE HAVE A CHAMPION!* \U0001f3c6\n\n\U0001f1ea\U0001f1f8 *Spain* are the *2026 FIFA World Cup Champions*, winning the final 1–0 against Argentina _(AET)_ on 19 July!\n\nCongratulations to *Jordan Benzacken* — your envelope is the last one standing! \U0001f389\U0001f973\n\n\U0001f4ca *Final results:*\n• \U0001f947 \U0001f1ea\U0001f1f8 Spain → *Jordan Benzacken* \U0001f3c6\n• \U0001f948 \U0001f1e6\U0001f1f7 Argentina → Kate Crook\n• \U0001f949 \U0001f3f4󠁧󠁢󠁥󠁮󠁧󠁿 England → Jordan Scott _(beat France 6–4 in the 3rd-place match!)_\n• 4th \U0001f1eb\U0001f1f7 France → Aaron\n\nThanks everyone for playing — what a tournament! ⚽\U0001f30d'
+          payload = json.dumps({'channel': 'C0B97JGMG1F', 'text': msg}).encode()
+          req = urllib.request.Request('https://slack.com/api/chat.postMessage', data=payload, method='POST', headers={'Authorization': f'Bearer {token}', 'Content-Type': 'application/json'})
+          with urllib.request.urlopen(req, timeout=10) as r:
+            resp = json.loads(r.read())
+          if resp.get('ok'):
+            print('Posted!', resp.get('ts'))
+          else:
+            print('ERROR:', resp.get('error'), file=sys.stderr)
+            sys.exit(1)
+          "
