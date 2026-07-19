@@ -1,0 +1,38 @@
+name: WC26 Final Message
+on:
+  workflow_dispatch:
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post champion message to Slack
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        run: |
+          python3 - << 'PYEOF'
+import urllib.request, json, sys
+token = __import__('os').environ['SLACK_BOT_TOKEN']
+msg = (
+  "🏆 *WE HAVE A CHAMPION!* 🏆\n\n"
+  "🇪🇸 *Spain* are the *2026 FIFA World Cup Champions*, winning the final 1–0 against Argentina _(AET)_ on 19 July!\n\n"
+  "Congratulations to *Jordan Benzacken* — your envelope is the last one standing! 🎉🥳\n\n"
+  "📊 *Final results:*\n"
+  "• 🥇 🇪🇸 Spain → *Jordan Benzacken* 🏆\n"
+  "• 🥈 🇦🇷 Argentina → Kate Crook\n"
+  "• 🥉 🏴󠁧󠁢󠁥󠁮󠁧󠁿 England → Jordan Scott _(beat France 6–4 in the 3rd-place match!)_\n"
+  "• 4th 🇫🇷 France → Aaron\n\n"
+  "Thanks everyone for playing — what a tournament! ⚽🌍"
+)
+payload = json.dumps({"channel": "C0B97JGMG1F", "text": msg}).encode()
+req = urllib.request.Request(
+  "https://slack.com/api/chat.postMessage", data=payload, method="POST",
+  headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
+)
+with urllib.request.urlopen(req, timeout=10) as r:
+  resp = json.loads(r.read())
+if resp.get("ok"):
+  print("Posted!", resp.get("ts"))
+else:
+  print("ERROR:", resp.get("error"), file=sys.stderr)
+  sys.exit(1)
+PYEOF
