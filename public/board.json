@@ -154,7 +154,8 @@
     "Norway": "2026-07-12",
     "Switzerland": "2026-07-12",
     "France": "2026-07-15",
-    "England": "2026-07-16"
+    "England": "2026-07-16",
+    "Argentina": "2026-07-19"
   },
   "revealed": {},
   "bracket": {
@@ -307,23 +308,23 @@
     "sf": [
       {
         "a": "France",
-        "b": "England",
-        "w": "England"
+        "b": "Spain",
+        "w": "Spain"
       },
       {
-        "a": "Spain",
+        "a": "England",
         "b": "Argentina",
-        "w": null
+        "w": "Argentina"
       }
     ],
     "fin": [
       {
-        "a": "England",
-        "b": null,
-        "w": null
+        "a": "Spain",
+        "b": "Argentina",
+        "w": "Spain"
       }
     ],
-    "champion": null
+    "champion": "Spain"
   },
   "log": [
     {
@@ -442,7 +443,7 @@
     }
   ],
   "champion": null,
-  "exportedAt": "2026-07-19T10:51:54.000Z",
+  "exportedAt": "2026-07-19T23:28:14.000Z",
   "match_results": {
     "A": [
       {
